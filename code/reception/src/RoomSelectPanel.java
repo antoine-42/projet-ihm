@@ -2,14 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 
 class RoomSelectPanel extends JPanel {
-    private RechercheReservation window;
+    private Reception window;
 
     private JPanel reservationPanel;
     private JPanel suggestedRoomPanel;
     private JPanel altRoomsPanel;
 
 
-    RoomSelectPanel(RechercheReservation window_){
+    RoomSelectPanel(Reception window_){
         this.window = window_;
 
         this.drawPanel();
@@ -49,7 +49,7 @@ class RoomSelectPanel extends JPanel {
         this.add(this.altRoomsPanel, panelConstraints);
     }
 
-    void refresh(Reservation reservation, Chambre suggested, Chambre[] alternatives){
+    void refresh(Reservation reservation, Room suggested, Room[] alternatives){
         this.reservationPanel.removeAll();
         this.suggestedRoomPanel.removeAll();
         this.altRoomsPanel.removeAll();
@@ -59,52 +59,52 @@ class RoomSelectPanel extends JPanel {
 
         JLabel selectedReservationLabel = new JLabel("Reservation Selectionnee", JLabel.LEFT);
         selectedReservationLabel.setFont(selectedReservationLabel.getFont().deriveFont(17.0f));
-        RechercheReservation.labelTitleConstraints.gridx = 0;
-        RechercheReservation.labelTitleConstraints.gridy = 0;
-        RechercheReservation.labelTitleConstraints.gridwidth = reservationContent.length;
-        this.reservationPanel.add(selectedReservationLabel, RechercheReservation.labelTitleConstraints);
+        Reception.labelTitleConstraints.gridx = 0;
+        Reception.labelTitleConstraints.gridy = 0;
+        Reception.labelTitleConstraints.gridwidth = reservationContent.length;
+        this.reservationPanel.add(selectedReservationLabel, Reception.labelTitleConstraints);
 
         for (int i = 0; i < reservationContent.length; i++) {
             JLabel contentLabel = new JLabel(reservationContent[i], JLabel.LEFT);
 
-            RechercheReservation.cellConstraints.gridx = i;
-            RechercheReservation.cellConstraints.gridy = 1;
+            Reception.cellConstraints.gridx = i;
+            Reception.cellConstraints.gridy = 1;
 
-            this.reservationPanel.add(contentLabel, RechercheReservation.cellConstraints);
+            this.reservationPanel.add(contentLabel, Reception.cellConstraints);
         }
 
 
-        JLabel suggestedRoomLabel = new JLabel("Chambre " + String.valueOf(suggested.number), JLabel.LEFT);
+        JLabel suggestedRoomLabel = new JLabel("Room " + String.valueOf(suggested.number), JLabel.LEFT);
         suggestedRoomLabel.setFont(suggestedRoomLabel.getFont().deriveFont(17.0f));
-        RechercheReservation.labelTitleConstraints.gridx = 0;
-        RechercheReservation.labelTitleConstraints.gridy = 0;
-        RechercheReservation.labelTitleConstraints.gridwidth = 1;
-        this.suggestedRoomPanel.add(suggestedRoomLabel, RechercheReservation.labelTitleConstraints);
+        Reception.labelTitleConstraints.gridx = 0;
+        Reception.labelTitleConstraints.gridy = 0;
+        Reception.labelTitleConstraints.gridwidth = 1;
+        this.suggestedRoomPanel.add(suggestedRoomLabel, Reception.labelTitleConstraints);
 
         JButton acceptSuggestedButton = new JButton("VALIDER");
         SelectRoomListener selectRoomListener = new SelectRoomListener(this.window, suggested);
         acceptSuggestedButton.addActionListener(selectRoomListener);
 
-        RechercheReservation.buttonConstraints.gridx = 0;
-        RechercheReservation.buttonConstraints.gridy = 1;
-        this.suggestedRoomPanel.add(acceptSuggestedButton, RechercheReservation.buttonConstraints);
+        Reception.buttonConstraints.gridx = 0;
+        Reception.buttonConstraints.gridy = 1;
+        this.suggestedRoomPanel.add(acceptSuggestedButton, Reception.buttonConstraints);
 
 
         JLabel alternativesLabel = new JLabel("Alternatives");
         alternativesLabel.setFont(suggestedRoomLabel.getFont().deriveFont(17.0f));
-        RechercheReservation.labelTitleConstraints.gridx = 0;
-        RechercheReservation.labelTitleConstraints.gridy = 0;
-        RechercheReservation.labelTitleConstraints.gridwidth = 3;
-        this.altRoomsPanel.add(alternativesLabel, RechercheReservation.labelTitleConstraints);
+        Reception.labelTitleConstraints.gridx = 0;
+        Reception.labelTitleConstraints.gridy = 0;
+        Reception.labelTitleConstraints.gridwidth = 3;
+        this.altRoomsPanel.add(alternativesLabel, Reception.labelTitleConstraints);
 
         String[] alternativesTableLabel = {"Numero", "Type"};
         for (int i = 0; i < alternativesTableLabel.length; i++){
             JLabel alternativeContentLabel = new JLabel(alternativesTableLabel[i], JLabel.LEFT);
 
-            RechercheReservation.cellConstraints.gridx = i;
-            RechercheReservation.cellConstraints.gridy = 1;
+            Reception.cellConstraints.gridx = i;
+            Reception.cellConstraints.gridy = 1;
 
-            this.altRoomsPanel.add(alternativeContentLabel, RechercheReservation.cellConstraints);
+            this.altRoomsPanel.add(alternativeContentLabel, Reception.cellConstraints);
         }
 
         for (int i = 0; i < alternatives.length; i++) {
@@ -113,19 +113,19 @@ class RoomSelectPanel extends JPanel {
             for (int j = 0; j < roomContent.length; j++){
                 JLabel alternativeContentLabel = new JLabel(roomContent[j], JLabel.LEFT);
 
-                RechercheReservation.cellConstraints.gridx = j;
-                RechercheReservation.cellConstraints.gridy = i +2;
+                Reception.cellConstraints.gridx = j;
+                Reception.cellConstraints.gridy = i +2;
 
-                this.altRoomsPanel.add(alternativeContentLabel, RechercheReservation.cellConstraints);
+                this.altRoomsPanel.add(alternativeContentLabel, Reception.cellConstraints);
             }
 
             JButton acceptAlternativeButton = new JButton("VALIDER");
-            selectRoomListener = new SelectRoomListener(this.window, alternatives[i]);
-            acceptAlternativeButton.addActionListener(selectRoomListener);
+            SelectRoomListener selectAltRoomListener = new SelectRoomListener(this.window, alternatives[i]);
+            acceptAlternativeButton.addActionListener(selectAltRoomListener);
 
-            RechercheReservation.buttonConstraints.gridx = roomContent.length;
-            RechercheReservation.buttonConstraints.gridy = i +2;
-            this.altRoomsPanel.add(acceptAlternativeButton, RechercheReservation.buttonConstraints);
+            Reception.buttonConstraints.gridx = roomContent.length;
+            Reception.buttonConstraints.gridy = i +2;
+            this.altRoomsPanel.add(acceptAlternativeButton, Reception.buttonConstraints);
         }
     }
 }

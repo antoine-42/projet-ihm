@@ -2,14 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SearchPanel extends JPanel{
-    private RechercheReservation window;
+    private Reception window;
 
     TextField lastNameTextField;
     TextField nameTextField;
     TextField referenceTextField;
 
 
-    SearchPanel(RechercheReservation window_){
+    SearchPanel(Reception window_){
         this.window = window_;
 
         this.drawPanel();
@@ -24,14 +24,14 @@ public class SearchPanel extends JPanel{
         labelConstraints.ipady = 15;
         labelConstraints.weightx = 0;
         labelConstraints.fill = GridBagConstraints.HORIZONTAL;
-        labelConstraints.insets = RechercheReservation.marginDefault;
+        labelConstraints.insets = Reception.marginDefault;
 
         GridBagConstraints textFieldConstraints = new GridBagConstraints();
         textFieldConstraints.ipadx = 10;
         textFieldConstraints.ipady = 10;
         textFieldConstraints.weightx = 1;
         textFieldConstraints.fill = GridBagConstraints.HORIZONTAL;
-        textFieldConstraints.insets = RechercheReservation.marginDefault;
+        textFieldConstraints.insets = Reception.marginDefault;
 
         GridBagConstraints panelConstraints = new GridBagConstraints();
         panelConstraints.ipadx = 0;
@@ -44,7 +44,7 @@ public class SearchPanel extends JPanel{
         fullNamePanel.setLayout(new GridBagLayout());
         panelConstraints.gridx = 0;
         panelConstraints.gridy = 0;
-        panelConstraints.insets = RechercheReservation.marginRight;
+        panelConstraints.insets = Reception.marginRight;
         this.add(fullNamePanel, panelConstraints);
 
 
@@ -53,7 +53,7 @@ public class SearchPanel extends JPanel{
         labelConstraints.gridy = 0;
         fullNamePanel.add(lastNameLabel, labelConstraints);
 
-        this.lastNameTextField = new TextField("Carpentier");
+        this.lastNameTextField = new TextField("Faure");
         textFieldConstraints.gridx = 1;
         textFieldConstraints.gridy = 0;
         fullNamePanel.add(lastNameTextField, textFieldConstraints);
@@ -63,7 +63,7 @@ public class SearchPanel extends JPanel{
         labelConstraints.gridy = 1;
         fullNamePanel.add(nameLabel, labelConstraints);
 
-        this.nameTextField = new TextField("Marine");
+        this.nameTextField = new TextField("Florian");
         textFieldConstraints.gridx = 1;
         textFieldConstraints.gridy = 1;
         fullNamePanel.add(nameTextField, textFieldConstraints);
@@ -73,7 +73,7 @@ public class SearchPanel extends JPanel{
         panelReference.setLayout(new GridBagLayout());
         panelConstraints.gridx = 1;
         panelConstraints.gridy = 0;
-        panelConstraints.insets = RechercheReservation.marginLeft;
+        panelConstraints.insets = Reception.marginLeft;
         this.add(panelReference, panelConstraints);
 
 
@@ -89,12 +89,18 @@ public class SearchPanel extends JPanel{
 
 
         JButton bouttonRecherche = new JButton("Chercher");
-        RechercheReservationListener reservationListener = new RechercheReservationListener(this.window);
+        ReservationSearchListener reservationListener = new ReservationSearchListener(this.window);
         bouttonRecherche.addActionListener(reservationListener);
-        RechercheReservation.buttonConstraints.gridx = 0;
-        RechercheReservation.buttonConstraints.gridy = 1;
-        RechercheReservation.buttonConstraints.gridwidth = 2;
-        RechercheReservation.buttonConstraints.anchor = GridBagConstraints.CENTER;
-        this.add(bouttonRecherche, RechercheReservation.buttonConstraints);
+        Reception.buttonConstraints.gridx = 0;
+        Reception.buttonConstraints.gridy = 1;
+        Reception.buttonConstraints.gridwidth = 2;
+        Reception.buttonConstraints.anchor = GridBagConstraints.CENTER;
+        this.add(bouttonRecherche, Reception.buttonConstraints);
+    }
+
+    void reset(){
+        this.nameTextField.setText("");
+        this.lastNameTextField.setText("");
+        this.referenceTextField.setText("");
     }
 }

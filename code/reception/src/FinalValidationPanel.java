@@ -2,10 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class FinalValidationPanel extends JPanel {
-    private RechercheReservation window;
+    private Reception window;
 
 
-    FinalValidationPanel(RechercheReservation window_){
+    FinalValidationPanel(Reception window_){
         this.window = window_;
 
         this.drawPanel();
@@ -15,20 +15,22 @@ public class FinalValidationPanel extends JPanel {
         this.setLayout(new GridBagLayout());
     }
 
-    void refresh(Chambre selected){
+    void refresh(Room selected){
         this.removeAll();
 
 
         JLabel selectedRoomLabel = new JLabel("La chambre " + String.valueOf(selected.number) + " a bien ete attribuee", JLabel.LEFT);
         selectedRoomLabel.setFont(selectedRoomLabel.getFont().deriveFont(17.0f));
-        RechercheReservation.labelTitleConstraints.gridx = 0;
-        RechercheReservation.labelTitleConstraints.gridy = 0;
-        RechercheReservation.labelTitleConstraints.gridwidth = 2;
-        this.add(selectedRoomLabel, RechercheReservation.labelTitleConstraints);
+        Reception.labelTitleConstraints.gridx = 0;
+        Reception.labelTitleConstraints.gridy = 0;
+        Reception.labelTitleConstraints.fill = GridBagConstraints.BOTH;
+        this.add(selectedRoomLabel, Reception.labelTitleConstraints);
 
-        JButton terminerButton = new JButton("TERMINER");
-        RechercheReservation.buttonConstraints.gridx = 0;
-        RechercheReservation.buttonConstraints.gridy = 1;
-        this.add(terminerButton, RechercheReservation.buttonConstraints);
+        JButton finishButton = new JButton("TERMINER");
+        FinishListener finishListener = new FinishListener(this.window);
+        finishButton.addActionListener(finishListener);
+        Reception.buttonConstraints.gridx = 0;
+        Reception.buttonConstraints.gridy = 1;
+        this.add(finishButton, Reception.buttonConstraints);
     }
 }

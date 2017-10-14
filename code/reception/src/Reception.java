@@ -3,7 +3,7 @@ import java.awt.*;
 import java.text.*;
 
 
-class RechercheReservation {
+class Reception {
 	static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     static Insets marginDefault = new Insets(5, 5, 5, 5);
@@ -30,13 +30,13 @@ class RechercheReservation {
 	private Reservation[] reservations = {};
 
     private Reservation selectedReservation;
-    private Chambre suggestedRoom;
-    private Chambre[] alternativeRooms;
+    private Room suggestedRoom;
+    private Room[] alternativeRooms;
 
-    private Chambre selectedRoom;
+    private Room selectedRoom;
 
 
-	RechercheReservation() {
+	Reception() {
 		this.window = new JFrame();
         this.window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,17 +45,17 @@ class RechercheReservation {
         this.window.add(windowPanel);
 
         JButton backButton = new JButton("←");
-        BoutonRetoursListener boutonRetoursListener = new BoutonRetoursListener(this);
+        ReturnButtonListener boutonRetoursListener = new ReturnButtonListener(this);
         backButton.addActionListener(boutonRetoursListener);
 
         this.buttonWrapper = new JPanel(new FlowLayout(FlowLayout.LEFT));
         this.buttonWrapper.add(backButton);
         this.buttonWrapper.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
-        RechercheReservation.buttonConstraints.gridx = 0;
-        RechercheReservation.buttonConstraints.gridy = 0;
-        RechercheReservation.buttonConstraints.gridwidth = 1;
-        RechercheReservation.buttonConstraints.anchor = GridBagConstraints.LINE_START;
+        Reception.buttonConstraints.gridx = 0;
+        Reception.buttonConstraints.gridy = 0;
+        Reception.buttonConstraints.gridwidth = 1;
+        Reception.buttonConstraints.anchor = GridBagConstraints.LINE_START;
         windowPanel.add(buttonWrapper);
         windowPanel.add(this.mainPanel);
 
@@ -76,7 +76,7 @@ class RechercheReservation {
 		this.step = i;
 
 		if (this.step == 0) {
-            this.window.setSize(700, 200);
+            this.window.setSize(700, 150);
             this.window.setTitle("Recherche de reservation");
             this.buttonWrapper.setVisible(false);
 
@@ -99,7 +99,7 @@ class RechercheReservation {
             this.mainPanelCard.show(this.mainPanel, "roomSelect");
         }
         else if (this.step == 3) {
-            this.window.setSize(700, 600);
+            this.window.setSize(700, 150);
             this.window.setTitle("Confirmation");
             this.buttonWrapper.setVisible(false);
 
@@ -120,7 +120,7 @@ class RechercheReservation {
     }
 
 	void searchReservation(){
-		DBReservations db = new DBReservations();
+		ReservationsDB db = new ReservationsDB();
 
 		if (!isNullOrEmpty(this.getReservation())) {
 			this.reservations = db.searchReservationRef(this.getReservation());
@@ -145,26 +145,36 @@ class RechercheReservation {
 		}
 	}
 
+	void searchRooms(){
+        InternalDB internalDB = new InternalDB();
+
+
+    }
+
 	void selectReservation(Reservation reservation){
         this.selectedReservation = reservation;
 
-        this.suggestedRoom = new Chambre(42, 1,false, true);
+        this.suggestedRoom = new Room(42, 1,false, true);
 
-        this.alternativeRooms = new Chambre[]{
-                new Chambre(69, 1,false, true),
-                new Chambre(58, 2,false, true),
-                new Chambre(34, 0,false, true),
-                new Chambre(13, 1,false, true),
-                new Chambre(37, 0,false, true),
-                new Chambre(07, 1,false, true)
+        this.alternativeRooms = new Room[]{
+                new Room(69, 1,false, true),
+                new Room(58, 2,false, true),
+                new Room(34, 0,false, true),
+                new Room(13, 1,false, true),
+                new Room(37, 0,false, true),
+                new Room(07, 1,false, true)
         };
 
         this.setStep(2);
     }
-
-    void selectRoom(Chambre room){
+    void selectRoom(Room room){
 	    this.selectedRoom = room;
 	    this.setStep(3);
+    }
+    void reset(){
+        //this.searchPanel.reset();
+
+        this.setStep(0);
     }
 
 
