@@ -22,6 +22,7 @@ class RoomSelectPanel extends JPanel {
         GridBagConstraints panelConstraints = new GridBagConstraints();
         panelConstraints.ipadx = 0;
         panelConstraints.ipady = 0;
+        panelConstraints.gridwidth = 1;
         panelConstraints.weightx = 1;
         panelConstraints.fill = GridBagConstraints.BOTH;
 
@@ -29,16 +30,22 @@ class RoomSelectPanel extends JPanel {
         this.reservationPanel = new JPanel(new GridBagLayout());
         panelConstraints.gridx = 0;
         panelConstraints.gridy = 0;
+        panelConstraints.gridwidth = 2;
+        panelConstraints.weightx = 1;
         this.add(this.reservationPanel, panelConstraints);
 
         this.suggestedRoomPanel = new JPanel(new GridBagLayout());
         panelConstraints.gridx = 0;
         panelConstraints.gridy = 1;
+        panelConstraints.gridwidth = 1;
+        panelConstraints.weightx = 1;
         this.add(this.suggestedRoomPanel, panelConstraints);
 
         this.altRoomsPanel = new JPanel(new GridBagLayout());
         panelConstraints.gridx = 1;
         panelConstraints.gridy = 1;
+        panelConstraints.gridwidth = 1;
+        panelConstraints.weightx = 4;
         this.add(this.altRoomsPanel, panelConstraints);
     }
 
@@ -71,15 +78,16 @@ class RoomSelectPanel extends JPanel {
         suggestedRoomLabel.setFont(suggestedRoomLabel.getFont().deriveFont(17.0f));
         RechercheReservation.labelTitleConstraints.gridx = 0;
         RechercheReservation.labelTitleConstraints.gridy = 0;
+        RechercheReservation.labelTitleConstraints.gridwidth = 1;
         this.suggestedRoomPanel.add(suggestedRoomLabel, RechercheReservation.labelTitleConstraints);
 
-        JButton acceptSuggested = new JButton("VALIDER");
+        JButton acceptSuggestedButton = new JButton("VALIDER");
         SelectRoomListener selectRoomListener = new SelectRoomListener(this.window, suggested);
-        acceptSuggested.addActionListener(selectRoomListener);
+        acceptSuggestedButton.addActionListener(selectRoomListener);
 
         RechercheReservation.buttonConstraints.gridx = 0;
         RechercheReservation.buttonConstraints.gridy = 1;
-        this.suggestedRoomPanel.add(acceptSuggested, RechercheReservation.buttonConstraints);
+        this.suggestedRoomPanel.add(acceptSuggestedButton, RechercheReservation.buttonConstraints);
 
 
         JLabel alternativesLabel = new JLabel("Alternatives");
@@ -89,6 +97,16 @@ class RoomSelectPanel extends JPanel {
         RechercheReservation.labelTitleConstraints.gridwidth = 3;
         this.altRoomsPanel.add(alternativesLabel, RechercheReservation.labelTitleConstraints);
 
+        String[] alternativesTableLabel = {"Numero", "Type"};
+        for (int i = 0; i < alternativesTableLabel.length; i++){
+            JLabel alternativeContentLabel = new JLabel(alternativesTableLabel[i], JLabel.LEFT);
+
+            RechercheReservation.cellConstraints.gridx = i;
+            RechercheReservation.cellConstraints.gridy = 1;
+
+            this.altRoomsPanel.add(alternativeContentLabel, RechercheReservation.cellConstraints);
+        }
+
         for (int i = 0; i < alternatives.length; i++) {
             String[] roomContent = alternatives[i].getInfo();
 
@@ -96,18 +114,18 @@ class RoomSelectPanel extends JPanel {
                 JLabel alternativeContentLabel = new JLabel(roomContent[j], JLabel.LEFT);
 
                 RechercheReservation.cellConstraints.gridx = j;
-                RechercheReservation.cellConstraints.gridy = i +1;
+                RechercheReservation.cellConstraints.gridy = i +2;
 
                 this.altRoomsPanel.add(alternativeContentLabel, RechercheReservation.cellConstraints);
             }
 
-            JButton acceptAlternative = new JButton("VALIDER");
+            JButton acceptAlternativeButton = new JButton("VALIDER");
             selectRoomListener = new SelectRoomListener(this.window, alternatives[i]);
-            acceptAlternative.addActionListener(selectRoomListener);
+            acceptAlternativeButton.addActionListener(selectRoomListener);
 
             RechercheReservation.buttonConstraints.gridx = roomContent.length;
-            RechercheReservation.buttonConstraints.gridy = i +1;
-            this.altRoomsPanel.add(acceptAlternative, RechercheReservation.buttonConstraints);
+            RechercheReservation.buttonConstraints.gridy = i +2;
+            this.altRoomsPanel.add(acceptAlternativeButton, RechercheReservation.buttonConstraints);
         }
     }
 }

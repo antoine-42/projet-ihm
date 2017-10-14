@@ -21,7 +21,6 @@ class ResultPanel extends JPanel {
 
         this.panelTableauResults = new JPanel();
         this.panelTableauResults.setLayout(new GridBagLayout());
-        this.panelTableauResults.setBackground(Color.GRAY);
         constraints.gridx = 0;
         constraints.gridy = 1;
         constraints.ipadx = 0;
@@ -60,8 +59,7 @@ class ResultPanel extends JPanel {
 
                 if (i % 2 == 0) {
                     contentLabel.setOpaque(true);
-                    contentLabel.setBackground(Color.BLUE);
-                    contentLabel.setForeground(Color.WHITE);
+                    contentLabel.setBackground(Color.LIGHT_GRAY);
                 }
 
                 RechercheReservation.cellConstraints.gridx = j;

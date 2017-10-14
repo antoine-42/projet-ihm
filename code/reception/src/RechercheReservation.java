@@ -25,6 +25,7 @@ class RechercheReservation {
 	private SearchPanel searchPanel = new SearchPanel(this);
     private ResultPanel resultPanel = new ResultPanel(this);
     private RoomSelectPanel roomSelectPanel = new RoomSelectPanel(this);
+    private FinalValidationPanel finalValidationPanel = new FinalValidationPanel(this);
 
 	private Reservation[] reservations = {};
 
@@ -64,6 +65,7 @@ class RechercheReservation {
         this.mainPanel.add(this.searchPanel, "search");
         this.mainPanel.add(this.resultPanel, "results");
         this.mainPanel.add(this.roomSelectPanel, "roomSelect");
+        this.mainPanel.add(this.finalValidationPanel, "finalValidation");
 
 		this.setStep(0);
 
@@ -95,6 +97,14 @@ class RechercheReservation {
 
             this.roomSelectPanel.refresh(this.selectedReservation, this.suggestedRoom, this.alternativeRooms);
             this.mainPanelCard.show(this.mainPanel, "roomSelect");
+        }
+        else if (this.step == 3) {
+            this.window.setSize(700, 600);
+            this.window.setTitle("Confirmation");
+            this.buttonWrapper.setVisible(false);
+
+            this.finalValidationPanel.refresh(this.selectedRoom);
+            this.mainPanelCard.show(this.mainPanel, "finalValidation");
         }
 	}
 
