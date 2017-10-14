@@ -3,7 +3,7 @@ class Client {
 	String lastName;
 
 	Client(String name_, String lastName_){
-		name = name_;
-		lastName = lastName_;
+		this.name = name_;
+		this.lastName = lastName_;
 	}
 }
