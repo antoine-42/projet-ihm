@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class ResultPanel extends JPanel {
+class ResultPanel extends JPanel {
     private RechercheReservation window;
 
     private JPanel panelTableauResults;
@@ -19,17 +19,6 @@ public class ResultPanel extends JPanel {
 
         GridBagConstraints constraints = new GridBagConstraints();
 
-
-        JButton bouttonRetours = new JButton("←");
-        BoutonRetoursListener boutonRetoursListener = new BoutonRetoursListener(this.window);
-        bouttonRetours.addActionListener(boutonRetoursListener);
-
-        RechercheReservation.buttonConstraints.gridx = 0;
-        RechercheReservation.buttonConstraints.gridy = 0;
-        RechercheReservation.buttonConstraints.gridwidth = 1;
-        RechercheReservation.buttonConstraints.anchor = GridBagConstraints.LINE_START;
-        this.add(bouttonRetours, RechercheReservation.buttonConstraints);
-
         this.panelTableauResults = new JPanel();
         this.panelTableauResults.setLayout(new GridBagLayout());
         this.panelTableauResults.setBackground(Color.GRAY);
@@ -46,15 +35,6 @@ public class ResultPanel extends JPanel {
     }
     
     void refresh(Reservation[] reservations){
-        GridBagConstraints cellConstraints = new GridBagConstraints();
-        cellConstraints.ipadx = 15;
-        cellConstraints.ipady = 15;
-        cellConstraints.weightx = 1;
-        cellConstraints.weighty = 0;
-        cellConstraints.fill = GridBagConstraints.BOTH;
-        cellConstraints.insets = RechercheReservation.marginNone;
-
-
         this.panelTableauResults.removeAll();
 
         String legendes[] = {
@@ -67,20 +47,13 @@ public class ResultPanel extends JPanel {
         };
         for (int i = 0; i < legendes.length; i++) {
             JLabel labelLegende = new JLabel(legendes[i], JLabel.LEFT);
-            cellConstraints.gridx = i;
-            cellConstraints.gridy = 0;
-            this.panelTableauResults.add(labelLegende, cellConstraints);
+            RechercheReservation.cellConstraints.gridx = i;
+            RechercheReservation.cellConstraints.gridy = 0;
+            this.panelTableauResults.add(labelLegende, RechercheReservation.cellConstraints);
         }
 
         for (int i = 0; i < reservations.length; i++) {
-            String[] content = {
-                    reservations[i].client.lastName,
-                    reservations[i].client.name,
-                    reservations[i].reference,
-                    TypeChambre.TYPE[reservations[i].category],
-                    RechercheReservation.dateFormat.format(reservations[i].start),
-                    String.valueOf(reservations[i].length) + " Jours"
-            };
+            String[] content = reservations[i].getInfo();
 
             for (int j = 0; j < content.length; j++) {
                 JLabel contentLabel = new JLabel(content[j], JLabel.LEFT);
@@ -91,19 +64,19 @@ public class ResultPanel extends JPanel {
                     contentLabel.setForeground(Color.WHITE);
                 }
 
-                cellConstraints.gridx = j;
-                cellConstraints.gridy = i +1;
+                RechercheReservation.cellConstraints.gridx = j;
+                RechercheReservation.cellConstraints.gridy = i +1;
 
-                this.panelTableauResults.add(contentLabel, cellConstraints);
+                this.panelTableauResults.add(contentLabel, RechercheReservation.cellConstraints);
             }
 
             JButton selectButton = new JButton("⇒");
             selectReservationListener selectListener = new selectReservationListener(this.window, reservations[i]);
             selectButton.addActionListener(selectListener);
 
-            cellConstraints.gridx = content.length;
-            cellConstraints.gridy = i +1;
-            this.panelTableauResults.add(selectButton, cellConstraints);
+            RechercheReservation.cellConstraints.gridx = content.length;
+            RechercheReservation.cellConstraints.gridy = i +1;
+            this.panelTableauResults.add(selectButton, RechercheReservation.cellConstraints);
         }
     }
 }

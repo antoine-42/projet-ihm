@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.*;
 import java.text.*;
 import java.sql.ResultSet;
@@ -63,4 +64,15 @@ class Reservation {
 			return null;
 		}
 	}
+
+	String[] getInfo(){
+        return new String[]{
+            this.client.lastName,
+            this.client.name,
+            this.reference,
+            TypeChambre.TYPE[this.category],
+            RechercheReservation.dateFormat.format(this.start),
+            String.valueOf(this.length) + " Jours"
+        };
+    }
 }

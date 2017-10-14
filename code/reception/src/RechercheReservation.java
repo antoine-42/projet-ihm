@@ -12,25 +12,51 @@ class RechercheReservation {
     static Insets marginLeft = new Insets(0, 20, 0, 0);
 
     static GridBagConstraints buttonConstraints = new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, marginNone, 10, 10);
+    static GridBagConstraints labelTitleConstraints = new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, marginNone, 25, 25);
+    static GridBagConstraints cellConstraints = new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, marginNone, 0, 0);
 
 
 	int step = 0;
 	private JFrame window;
 	private CardLayout mainPanelCard;
     private JPanel mainPanel = new JPanel();
+    private JPanel buttonWrapper;
 
 	private SearchPanel searchPanel = new SearchPanel(this);
     private ResultPanel resultPanel = new ResultPanel(this);
     private RoomSelectPanel roomSelectPanel = new RoomSelectPanel(this);
 
 	private Reservation[] reservations = {};
+
     private Reservation selectedReservation;
+    private Chambre suggestedRoom;
+    private Chambre[] alternativeRooms;
+
+    private Chambre selectedRoom;
 
 
 	RechercheReservation() {
 		this.window = new JFrame();
         this.window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.window.add(this.mainPanel);
+
+        JPanel windowPanel = new JPanel();
+        windowPanel.setLayout(new BoxLayout(windowPanel, BoxLayout.Y_AXIS));
+        this.window.add(windowPanel);
+
+        JButton backButton = new JButton("←");
+        BoutonRetoursListener boutonRetoursListener = new BoutonRetoursListener(this);
+        backButton.addActionListener(boutonRetoursListener);
+
+        this.buttonWrapper = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        this.buttonWrapper.add(backButton);
+        this.buttonWrapper.setAlignmentX(Component.RIGHT_ALIGNMENT);
+
+        RechercheReservation.buttonConstraints.gridx = 0;
+        RechercheReservation.buttonConstraints.gridy = 0;
+        RechercheReservation.buttonConstraints.gridwidth = 1;
+        RechercheReservation.buttonConstraints.anchor = GridBagConstraints.LINE_START;
+        windowPanel.add(buttonWrapper);
+        windowPanel.add(this.mainPanel);
 
         this.mainPanelCard = new CardLayout();
         this.mainPanel.setLayout(this.mainPanelCard);
@@ -50,12 +76,14 @@ class RechercheReservation {
 		if (this.step == 0) {
             this.window.setSize(700, 200);
             this.window.setTitle("Recherche de reservation");
+            this.buttonWrapper.setVisible(false);
 
             this.mainPanelCard.show(this.mainPanel, "search");
 		}
 		else if (this.step == 1) {
             this.window.setSize(700, 600);
             this.window.setTitle("Resultats de la recherche");
+            this.buttonWrapper.setVisible(true);
 
 		    this.resultPanel.refresh(reservations);
             this.mainPanelCard.show(this.mainPanel, "results");
@@ -63,8 +91,9 @@ class RechercheReservation {
         else if (this.step == 2) {
             this.window.setSize(700, 600);
             this.window.setTitle("Attribuer une chambre");
+            this.buttonWrapper.setVisible(true);
 
-            this.roomSelectPanel.refresh(this.selectedReservation);
+            this.roomSelectPanel.refresh(this.selectedReservation, this.suggestedRoom, this.alternativeRooms);
             this.mainPanelCard.show(this.mainPanel, "roomSelect");
         }
 	}
@@ -108,7 +137,24 @@ class RechercheReservation {
 
 	void selectReservation(Reservation reservation){
         this.selectedReservation = reservation;
+
+        this.suggestedRoom = new Chambre(42, 1,false, true);
+
+        this.alternativeRooms = new Chambre[]{
+                new Chambre(69, 1,false, true),
+                new Chambre(58, 2,false, true),
+                new Chambre(34, 0,false, true),
+                new Chambre(13, 1,false, true),
+                new Chambre(37, 0,false, true),
+                new Chambre(07, 1,false, true)
+        };
+
         this.setStep(2);
+    }
+
+    void selectRoom(Chambre room){
+	    this.selectedRoom = room;
+	    this.setStep(3);
     }
 
 
