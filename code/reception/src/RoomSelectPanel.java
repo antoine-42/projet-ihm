@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 
 class RoomSelectPanel extends JPanel {
+    private static int maxAlternatives = 10;
+
     private Reception window;
 
     private JPanel reservationPanel;
@@ -74,7 +76,7 @@ class RoomSelectPanel extends JPanel {
         }
 
 
-        JLabel suggestedRoomLabel = new JLabel("Room " + String.valueOf(suggested.number), JLabel.LEFT);
+        JLabel suggestedRoomLabel = new JLabel("Chambre " + String.valueOf(suggested.number), JLabel.LEFT);
         suggestedRoomLabel.setFont(suggestedRoomLabel.getFont().deriveFont(17.0f));
         Reception.labelTitleConstraints.gridx = 0;
         Reception.labelTitleConstraints.gridy = 0;
@@ -107,7 +109,8 @@ class RoomSelectPanel extends JPanel {
             this.altRoomsPanel.add(alternativeContentLabel, Reception.cellConstraints);
         }
 
-        for (int i = 0; i < alternatives.length; i++) {
+        int maxAltDisplay = Math.min(alternatives.length, maxAlternatives);
+        for (int i = 0; i < maxAltDisplay; i++) {
             String[] roomContent = alternatives[i].getInfo();
 
             for (int j = 0; j < roomContent.length; j++){

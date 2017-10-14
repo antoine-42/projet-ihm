@@ -2,27 +2,23 @@ import java.sql.*;
 
 
 public class InternalDB {
-    boolean offline = false;
-    private Connection connection;
+    private DB dataBase;
 
 
     InternalDB(){
-        try{
-            Class.forName("org.mariadb.jdbc.Driver");
-        }
-        catch(ClassNotFoundException e) {
-            this.offline = true;
-            System.out.println("[FATAL] could not load db driver");
-            e.printStackTrace();
-        }
+        dataBase = new DB("bohl", "bohl", "bohl");
+    }
 
-        try{
-            connection = DriverManager.getConnection("jdbc:mariadb://dwarves.iut-fbleau.fr/~bohl", "bohl", "bohl");
-        }
-        catch(SQLException e) {
-            offline = true;
-            System.out.println("[FATAL] could not connect to db");
-            e.printStackTrace();
-        }
+
+    Room[] searchRoom(int roomType){
+        String query = "SELECT * FROM Chambre WHERE Categorie = ? AND Nettoyee AND !Occupee";
+        String[] args = {String.valueOf(roomType +1)};
+
+        return Room.resultSetToRooms(dataBase.executeQuery(query, args));
+    }
+
+
+    boolean closeConnection(){
+        return this.dataBase.closeConnection();
     }
 }

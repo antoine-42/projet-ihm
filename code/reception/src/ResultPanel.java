@@ -54,6 +54,7 @@ class ResultPanel extends JPanel {
         for (int i = 0; i < reservations.length; i++) {
             String[] content = reservations[i].getInfo();
 
+
             for (int j = 0; j < content.length; j++) {
                 JLabel contentLabel = new JLabel(content[j], JLabel.LEFT);
 

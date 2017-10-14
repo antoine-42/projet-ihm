@@ -76,7 +76,7 @@ class Reception {
 		this.step = i;
 
 		if (this.step == 0) {
-            this.window.setSize(700, 150);
+            this.window.setSize(700, 200);
             this.window.setTitle("Recherche de reservation");
             this.buttonWrapper.setVisible(false);
 
@@ -99,7 +99,7 @@ class Reception {
             this.mainPanelCard.show(this.mainPanel, "roomSelect");
         }
         else if (this.step == 3) {
-            this.window.setSize(700, 150);
+            this.window.setSize(700, 200);
             this.window.setTitle("Confirmation");
             this.buttonWrapper.setVisible(false);
 
@@ -148,12 +148,25 @@ class Reception {
 	void searchRooms(){
         InternalDB internalDB = new InternalDB();
 
+        Room[] rooms = internalDB.searchRoom(this.selectedReservation.category);
 
+        internalDB.closeConnection();
+
+        if (rooms.length > 0){
+            this.suggestedRoom = rooms[0];
+
+            if (rooms.length > 1){
+                this.alternativeRooms = new Room[rooms.length -1];
+                System.arraycopy(rooms, 1, this.alternativeRooms, 0, rooms.length - 1);
+            }
+
+            this.setStep(2);
+        }
     }
 
 	void selectReservation(Reservation reservation){
         this.selectedReservation = reservation;
-
+        /*
         this.suggestedRoom = new Room(42, 1,false, true);
 
         this.alternativeRooms = new Room[]{
@@ -163,16 +176,16 @@ class Reception {
                 new Room(13, 1,false, true),
                 new Room(37, 0,false, true),
                 new Room(07, 1,false, true)
-        };
+        };*/
 
-        this.setStep(2);
+        this.searchRooms();
     }
     void selectRoom(Room room){
 	    this.selectedRoom = room;
 	    this.setStep(3);
     }
     void reset(){
-        //this.searchPanel.reset();
+        this.searchPanel.reset();
 
         this.setStep(0);
     }
