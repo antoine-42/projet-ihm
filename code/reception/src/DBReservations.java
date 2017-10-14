@@ -1,18 +1,11 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 import java.sql.*;
-import java.util.*;
-import java.text.*;
 
-public class DBReservations{
+class DBReservations{
 	boolean offline = false;
-	Connection connection;
+	private Connection connection;
 
 
-	public DBReservations(){
-		Reservation[] reservations = {};
-
+	DBReservations(){
 		try{
 			Class.forName("org.mariadb.jdbc.Driver");
 		}
@@ -32,36 +25,32 @@ public class DBReservations{
 		}
 	}
 
-	Reservation[] chercherReservationNomPrenom(String nom, String prenom){
+	Reservation[] searchReservationFullName(String lastName, String name){
 		String query = "SELECT * FROM Reservation JOIN Client ON Client.nom = ? AND Client.prenom = ? AND Reservation.client = Client.id";
-		String[] args = {nom, prenom};
+		String[] args = {lastName, name};
 
-		Reservation[] reservations = executeQuery(query, args);
-		return reservations;
+		return executeQuery(query, args);
 	}
-	Reservation[] chercherReservationNom(String nom){
+	Reservation[] searchReservationLastName(String lastName){
 		String query = "SELECT * FROM Reservation JOIN Client ON Client.nom = ? AND Reservation.client = Client.id";
-		String[] args = {nom};
+		String[] args = {lastName};
 
-		Reservation[] reservations = executeQuery(query, args);
-		return reservations;
+		return executeQuery(query, args);
 	}
-	Reservation[] chercherReservationPrenom(String prenom){
+	Reservation[] searchReservationName(String name){
 		String query = "SELECT * FROM Reservation JOIN Client ON Client.prenom = ? AND Reservation.client = Client.id";
-		String[] args = {prenom};
+		String[] args = {name};
 
-		Reservation[] reservations = executeQuery(query, args);
-		return reservations;
+		return executeQuery(query, args);
 	}
-	Reservation[] chercherReservationRef(String reference){
+	Reservation[] searchReservationRef(String reference){
 		String query = "SELECT * FROM Reservation JOIN Client ON Reservation.reference = ? AND Reservation.client = Client.id";
 		String[] args = {reference};
 
-		Reservation[] reservations = executeQuery(query, args);
-		return reservations;
+		return executeQuery(query, args);
 	}
 
-	Reservation[] executeQuery(String query, String[] args){
+	private Reservation[] executeQuery(String query, String[] args){
 		ResultSet results = null;
 		try{
 			PreparedStatement statement = connection.prepareStatement(query);

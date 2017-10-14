@@ -5,22 +5,22 @@ import java.sql.SQLException;
 
 
 
-public class Reservation {
+class Reservation {
 	Client client;
 	String reference;
-	int categorie;
-	Date debut;
-	Date fin;
-	int duree;
+	int category;
+	Date start;
+	Date end;
+	int length;
 
-	public Reservation(Client client_, String reference_, int categorie_, Date debut_, int duree_){
+	Reservation(Client client_, String reference_, int category_, Date start_, int length_){
 		client = client_;
 		reference = reference_;
-		categorie = categorie_;
-		debut = debut_;
-		duree = duree_;
+		category = category_;
+		start = start_;
+		length = length_;
 
-		fin = new Date(debut.getTime() + 86400*duree);
+		end = new Date(this.start.getTime() + 86400*this.length);
 	}
 
 
@@ -32,18 +32,18 @@ public class Reservation {
 
 			result.absolute(1);
 			for (int i = 0; i < resultNumber; i++) {
-				String resultat_nom = result.getString("nom");
-				String resultat_prenom = result.getString("prenom");
-				Client client = new Client(resultat_nom, resultat_prenom);
+				String resultLastName = result.getString("nom");
+				String resultName = result.getString("prenom");
+				Client client = new Client(resultLastName, resultName);
 
 				String reference = result.getString("reference");
-				int categorie = result.getInt("categorie") -1;
-				int duree = result.getInt("nuits");
+				int category = result.getInt("categorie") -1;
+				int length = result.getInt("nuits");
 
 				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-				java.util.Date date = new java.util.Date();
+				Date start;
 				try{
-					date = dateFormat.parse(result.getString("debut"));
+					start = dateFormat.parse(result.getString("debut"));
 				}
 				catch(ParseException e){
 					System.out.println("[FATAL] could not parse DB output");
@@ -51,7 +51,7 @@ public class Reservation {
 					return null;
 				}
 
-				reservations[i] = new Reservation(client, reference, categorie, date, duree);
+				reservations[i] = new Reservation(client, reference, category, start, length);
 				result.next();
 			}
 

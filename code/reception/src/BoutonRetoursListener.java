@@ -1,11 +1,9 @@
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
 public class BoutonRetoursListener implements ActionListener{
-	RechercheReservation reception;
+	private RechercheReservation reception;
 
-	public BoutonRetoursListener(RechercheReservation reception_){
+	BoutonRetoursListener(RechercheReservation reception_){
 		reception = reception_;
 	}
 
