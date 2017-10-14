@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.util.*;
 import java.text.*;
 import java.sql.ResultSet;
@@ -70,8 +69,8 @@ class Reservation {
             this.client.lastName,
             this.client.name,
             this.reference,
-            TypeChambre.TYPE[this.category],
-            RechercheReservation.dateFormat.format(this.start),
+            RoomType.TYPE[this.category],
+            Reception.dateFormat.format(this.start),
             String.valueOf(this.length) + " Jours"
         };
     }

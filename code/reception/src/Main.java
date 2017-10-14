@@ -1,5 +1,5 @@
 public class Main {
     public static void main(String[] args) {
-        RechercheReservation search = new RechercheReservation();
+        Reception search = new Reception();
     }
 }

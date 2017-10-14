@@ -1,11 +1,11 @@
 import java.awt.event.*;
 
 public class SelectRoomListener implements ActionListener {
-    private RechercheReservation reception;
+    private Reception reception;
 
-    private Chambre room;
+    private Room room;
 
-    SelectRoomListener(RechercheReservation reception_, Chambre room_){
+    SelectRoomListener(Reception reception_, Room room_){
         this.reception = reception_;
         this.room = room_;
     }
