@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class SearchPanel extends JPanel{
+class SearchPanel extends JPanel{
     private Reception window;
 
     TextField lastNameTextField;
@@ -16,6 +16,7 @@ public class SearchPanel extends JPanel{
     }
 
 
+    @SuppressWarnings("SpellCheckingInspection")
     private void drawPanel(){
         this.setLayout(new GridBagLayout());
 
@@ -90,14 +91,14 @@ public class SearchPanel extends JPanel{
         panelReference.add(referenceTextField, textFieldConstraints);
 
 
-        JButton bouttonRecherche = new JButton("Chercher");
+        JButton searchButton = new JButton("Chercher");
         ReservationSearchListener reservationListener = new ReservationSearchListener(this.window);
-        bouttonRecherche.addActionListener(reservationListener);
+        searchButton.addActionListener(reservationListener);
         Reception.buttonConstraints.gridx = 0;
         Reception.buttonConstraints.gridy = 1;
         Reception.buttonConstraints.gridwidth = 2;
         Reception.buttonConstraints.anchor = GridBagConstraints.CENTER;
-        this.add(bouttonRecherche, Reception.buttonConstraints);
+        this.add(searchButton, Reception.buttonConstraints);
     }
 
     void reset(){

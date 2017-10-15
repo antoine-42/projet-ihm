@@ -1,13 +1,14 @@
 import java.sql.*;
 
 
-public class DB {
+class DB {
     boolean offline = false;
     private Connection connection;
 
 
     DB(String location, String user, String password){
         try{
+            //noinspection SpellCheckingInspection
             Class.forName("org.mariadb.jdbc.Driver");
         }
         catch(ClassNotFoundException e) {
@@ -17,6 +18,7 @@ public class DB {
         }
 
         try{
+            //noinspection SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection
             connection = DriverManager.getConnection("jdbc:mariadb://dwarves.iut-fbleau.fr/" + location, user, password);
         }
         catch(SQLException e) {

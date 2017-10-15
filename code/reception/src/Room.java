@@ -3,7 +3,7 @@ import java.sql.SQLException;
 
 
 
-public class Room {
+class Room {
 	int number;
 	int category;
 	Boolean occupied;
@@ -25,6 +25,7 @@ public class Room {
     }
 
 
+    @SuppressWarnings("SpellCheckingInspection")
     static Room[] resultSetToRooms(ResultSet result){
         try{
             result.last();

@@ -33,12 +33,12 @@ class Reservation {
 			result.absolute(1);
 			for (int i = 0; i < resultNumber; i++) {
 				String resultLastName = result.getString("nom");
-				String resultName = result.getString("prenom");
+				@SuppressWarnings("SpellCheckingInspection") String resultName = result.getString("prenom");
 				Client client = new Client(resultLastName, resultName);
 
 				String reference = result.getString("reference");
-				int category = result.getInt("categorie") -1;
-				int length = result.getInt("nuits");
+				@SuppressWarnings("SpellCheckingInspection") int category = result.getInt("categorie") -1;
+				@SuppressWarnings("SpellCheckingInspection") int length = result.getInt("nuits");
 
 				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				Date start;
@@ -65,6 +65,7 @@ class Reservation {
 	}
 
 	String[] getInfo(){
+        //noinspection SpellCheckingInspection
         return new String[]{
             this.client.lastName,
             this.client.name,

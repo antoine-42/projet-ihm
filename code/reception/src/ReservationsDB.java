@@ -1,6 +1,4 @@
-import java.sql.*;
-
-
+@SuppressWarnings("SpellCheckingInspection")
 class ReservationsDB {
     private static String reservationSearchQueryPrefix = "SELECT * FROM Reservation JOIN Client ON ";
     private static String reservationSearchQuerySuffix = "AND Reservation.client = Client.id AND Reservation.debut >= CURDATE()";

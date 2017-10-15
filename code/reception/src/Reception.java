@@ -45,8 +45,8 @@ class Reception {
         this.window.add(windowPanel);
 
         JButton backButton = new JButton("←");
-        ReturnButtonListener boutonRetoursListener = new ReturnButtonListener(this);
-        backButton.addActionListener(boutonRetoursListener);
+        ReturnButtonListener returnButtonListener = new ReturnButtonListener(this);
+        backButton.addActionListener(returnButtonListener);
 
         this.buttonWrapper = new JPanel(new FlowLayout(FlowLayout.LEFT));
         this.buttonWrapper.add(backButton);
@@ -72,7 +72,8 @@ class Reception {
         this.window.setVisible(true);
 	}
 
-	void setStep(int i){
+	@SuppressWarnings("SpellCheckingInspection")
+    void setStep(int i){
 		this.step = i;
 
 		if (this.step == 0) {
@@ -145,7 +146,7 @@ class Reception {
 		}
 	}
 
-	void searchRooms(){
+	private void searchRooms(){
         InternalDB internalDB = new InternalDB();
 
         Room[] rooms = internalDB.searchRoom(this.selectedReservation.category);
@@ -166,17 +167,6 @@ class Reception {
 
 	void selectReservation(Reservation reservation){
         this.selectedReservation = reservation;
-        /*
-        this.suggestedRoom = new Room(42, 1,false, true);
-
-        this.alternativeRooms = new Room[]{
-                new Room(69, 1,false, true),
-                new Room(58, 2,false, true),
-                new Room(34, 0,false, true),
-                new Room(13, 1,false, true),
-                new Room(37, 0,false, true),
-                new Room(07, 1,false, true)
-        };*/
 
         this.searchRooms();
     }

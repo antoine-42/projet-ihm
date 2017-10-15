@@ -33,10 +33,11 @@ class ResultPanel extends JPanel {
         this.add(this.panelTableauResults, constraints);
     }
     
+    @SuppressWarnings("SpellCheckingInspection")
     void refresh(Reservation[] reservations){
         this.panelTableauResults.removeAll();
 
-        String legendes[] = {
+        String labelTitles[] = {
                 "Nom",
                 "Prenom",
                 "Reference",
@@ -44,11 +45,11 @@ class ResultPanel extends JPanel {
                 "Debut du sejour",
                 "Duree du sejour"
         };
-        for (int i = 0; i < legendes.length; i++) {
-            JLabel labelLegende = new JLabel(legendes[i], JLabel.LEFT);
+        for (int i = 0; i < labelTitles.length; i++) {
+            JLabel labelTitle = new JLabel(labelTitles[i], JLabel.LEFT);
             Reception.cellConstraints.gridx = i;
             Reception.cellConstraints.gridy = 0;
-            this.panelTableauResults.add(labelLegende, Reception.cellConstraints);
+            this.panelTableauResults.add(labelTitle, Reception.cellConstraints);
         }
 
         for (int i = 0; i < reservations.length; i++) {

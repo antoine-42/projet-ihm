@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class FinalValidationPanel extends JPanel {
+class FinalValidationPanel extends JPanel {
     private Reception window;
 
 
@@ -19,14 +19,14 @@ public class FinalValidationPanel extends JPanel {
         this.removeAll();
 
 
-        JLabel selectedRoomLabel = new JLabel("La chambre " + String.valueOf(selected.number) + " a bien ete attribuee", JLabel.LEFT);
+        @SuppressWarnings("SpellCheckingInspection") JLabel selectedRoomLabel = new JLabel("La chambre " + String.valueOf(selected.number) + " a bien ete attribuee", JLabel.LEFT);
         selectedRoomLabel.setFont(selectedRoomLabel.getFont().deriveFont(17.0f));
         Reception.labelTitleConstraints.gridx = 0;
         Reception.labelTitleConstraints.gridy = 0;
         Reception.labelTitleConstraints.fill = GridBagConstraints.BOTH;
         this.add(selectedRoomLabel, Reception.labelTitleConstraints);
 
-        JButton finishButton = new JButton("TERMINER");
+        @SuppressWarnings("SpellCheckingInspection") JButton finishButton = new JButton("TERMINER");
         FinishListener finishListener = new FinishListener(this.window);
         finishButton.addActionListener(finishListener);
         Reception.buttonConstraints.gridx = 0;
