@@ -16,6 +16,12 @@ public class InternalDB {
 
         return Room.resultSetToRooms(dataBase.executeQuery(query, args));
     }
+    void affectRoom(int roomNumber){
+        String query = "UPDATE Chambre SET Occupee=1 WHERE Numero = ?";
+        String[] args = {String.valueOf(roomNumber)};
+
+        dataBase.executeQuery(query, args);
+    }
 
 
     boolean closeConnection(){

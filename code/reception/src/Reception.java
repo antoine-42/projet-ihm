@@ -182,6 +182,13 @@ class Reception {
     }
     void selectRoom(Room room){
 	    this.selectedRoom = room;
+
+        InternalDB internalDB = new InternalDB();
+
+        internalDB.affectRoom(room.number);
+
+        internalDB.closeConnection();
+
 	    this.setStep(3);
     }
     void reset(){

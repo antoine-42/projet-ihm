@@ -15,8 +15,8 @@
       <file leaf-file-name="Reception.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Reception.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="91" column="9" lean-forward="true" selection-start-line="91" selection-start-column="9" selection-end-line="91" selection-end-column="9" />
+            <state relative-caret-position="761">
+              <caret line="189" column="37" lean-forward="true" selection-start-line="189" selection-start-column="37" selection-end-line="189" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -65,8 +65,8 @@
       <file leaf-file-name="SearchPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SearchPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-34">
-              <caret line="19" column="44" lean-forward="true" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
+            <state relative-caret-position="765">
+              <caret line="69" column="63" lean-forward="true" selection-start-line="69" selection-start-column="63" selection-end-line="69" selection-end-column="63" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -87,13 +87,13 @@
       <file leaf-file-name="InternalDB.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/InternalDB.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="40" lean-forward="true" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+            <state relative-caret-position="306">
+              <caret line="18" column="19" lean-forward="false" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="19" />
               <folding>
                 <element signature="e#90#91#0" expanded="true" />
                 <element signature="e#147#148#0" expanded="true" />
-                <element signature="e#449#450#0" expanded="true" />
-                <element signature="e#503#504#0" expanded="true" />
+                <element signature="e#663#664#0" expanded="true" />
+                <element signature="e#717#718#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -202,7 +202,6 @@
         <option value="$PROJECT_DIR$/src/Reservation.java" />
         <option value="$PROJECT_DIR$/src/SelectRoomListener.java" />
         <option value="$PROJECT_DIR$/src/FinishListener.java" />
-        <option value="$PROJECT_DIR$/src/SearchPanel.java" />
         <option value="$PROJECT_DIR$/src/FinalValidationPanel.java" />
         <option value="$PROJECT_DIR$/src/DBReservations.java" />
         <option value="$PROJECT_DIR$/src/Chambre.java" />
@@ -210,9 +209,10 @@
         <option value="$PROJECT_DIR$/src/DB.java" />
         <option value="$PROJECT_DIR$/src/Room.java" />
         <option value="$PROJECT_DIR$/src/ReservationsDB.java" />
-        <option value="$PROJECT_DIR$/src/InternalDB.java" />
         <option value="$PROJECT_DIR$/src/ResultPanel.java" />
         <option value="$PROJECT_DIR$/src/RoomSelectPanel.java" />
+        <option value="$PROJECT_DIR$/src/SearchPanel.java" />
+        <option value="$PROJECT_DIR$/src/InternalDB.java" />
         <option value="$PROJECT_DIR$/src/Reception.java" />
       </list>
     </option>
@@ -400,12 +400,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1507988533763</updated>
-      <workItem from="1507988536096" duration="25416000" />
+      <workItem from="1507988536096" duration="26023000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25416000" />
+    <option name="totallyTimeSpent" value="26023000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
@@ -599,24 +599,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/InternalDB.java">
+    <entry file="file://$PROJECT_DIR$/src/ResultPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="40" lean-forward="true" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+        <state relative-caret-position="17">
+          <caret line="3" column="34" lean-forward="false" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
           <folding>
-            <element signature="e#90#91#0" expanded="true" />
-            <element signature="e#147#148#0" expanded="true" />
-            <element signature="e#449#450#0" expanded="true" />
-            <element signature="e#503#504#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -632,21 +621,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SearchPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-34">
-          <caret line="19" column="44" lean-forward="true" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
+        <state relative-caret-position="765">
+          <caret line="69" column="63" lean-forward="true" selection-start-line="69" selection-start-column="63" selection-end-line="69" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ResultPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/DB.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="3" column="34" lean-forward="false" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="272">
+          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -662,10 +649,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/InternalDB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="19" lean-forward="false" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="19" />
+          <folding>
+            <element signature="e#90#91#0" expanded="true" />
+            <element signature="e#147#148#0" expanded="true" />
+            <element signature="e#663#664#0" expanded="true" />
+            <element signature="e#717#718#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Reception.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="91" column="9" lean-forward="true" selection-start-line="91" selection-start-column="9" selection-end-line="91" selection-end-column="9" />
+        <state relative-caret-position="761">
+          <caret line="189" column="37" lean-forward="true" selection-start-line="189" selection-start-column="37" selection-end-line="189" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

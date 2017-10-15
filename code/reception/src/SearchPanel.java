@@ -44,6 +44,7 @@ public class SearchPanel extends JPanel{
         fullNamePanel.setLayout(new GridBagLayout());
         panelConstraints.gridx = 0;
         panelConstraints.gridy = 0;
+        panelConstraints.weightx = 1;
         panelConstraints.insets = Reception.marginRight;
         this.add(fullNamePanel, panelConstraints);
 
@@ -73,6 +74,7 @@ public class SearchPanel extends JPanel{
         panelReference.setLayout(new GridBagLayout());
         panelConstraints.gridx = 1;
         panelConstraints.gridy = 0;
+        panelConstraints.weightx = 3;
         panelConstraints.insets = Reception.marginLeft;
         this.add(panelReference, panelConstraints);
 
