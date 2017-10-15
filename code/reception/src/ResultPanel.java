@@ -16,11 +16,13 @@ class ResultPanel extends JPanel {
 
     private void drawPanel(){
         this.setLayout(new GridBagLayout());
+        this.setOpaque(false);
 
         GridBagConstraints constraints = new GridBagConstraints();
 
         this.panelTableauResults = new JPanel();
         this.panelTableauResults.setLayout(new GridBagLayout());
+        this.panelTableauResults.setOpaque(false);
         constraints.gridx = 0;
         constraints.gridy = 1;
         constraints.ipadx = 0;
@@ -46,6 +48,9 @@ class ResultPanel extends JPanel {
         };
         for (int i = 0; i < labelTitles.length; i++) {
             JLabel labelTitle = new JLabel(labelTitles[i], JLabel.LEFT);
+            labelTitle.setFont(Reception.defaultFont);
+            labelTitle.setForeground(Reception.secondaryColor);
+
             Reception.cellConstraints.gridx = i;
             Reception.cellConstraints.gridy = 0;
             this.panelTableauResults.add(labelTitle, Reception.cellConstraints);
@@ -56,10 +61,12 @@ class ResultPanel extends JPanel {
 
             for (int j = 0; j < content.length; j++) {
                 JLabel contentLabel = new JLabel(content[j], JLabel.LEFT);
+                contentLabel.setFont(Reception.defaultFont);
+                contentLabel.setForeground(Reception.secondaryColor);
 
                 if (i % 2 == 0) {
                     contentLabel.setOpaque(true);
-                    contentLabel.setBackground(Color.LIGHT_GRAY);
+                    contentLabel.setBackground(Reception.thirdColor);
                 }
 
                 Reception.cellConstraints.gridx = j;
@@ -71,6 +78,7 @@ class ResultPanel extends JPanel {
             JButton selectButton = new JButton("⇒");
             ReservationSelectListener selectListener = new ReservationSelectListener(this.window, reservations[i]);
             selectButton.addActionListener(selectListener);
+            selectButton.setFont(Reception.defaultFont);
 
             Reception.cellConstraints.gridx = content.length;
             Reception.cellConstraints.gridy = i +1;
@@ -82,6 +90,7 @@ class ResultPanel extends JPanel {
         constraints.weighty = 1;
 
         JPanel spacer = new JPanel();
+        spacer.setOpaque(false);
         this.panelTableauResults.add(spacer, constraints);
     }
 }

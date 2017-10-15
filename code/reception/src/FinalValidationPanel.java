@@ -13,6 +13,7 @@ class FinalValidationPanel extends JPanel {
 
     private void drawPanel(){
         this.setLayout(new GridBagLayout());
+        this.setOpaque(false);
 
         GridBagConstraints panelConstraints = new GridBagConstraints();
         panelConstraints.ipadx = 0;
@@ -27,15 +28,20 @@ class FinalValidationPanel extends JPanel {
 
 
         JLabel selectedRoomLabel = new JLabel("La chambre " + String.valueOf(selected.number) + " a bien ete attribuee", JLabel.LEFT);
-        selectedRoomLabel.setFont(selectedRoomLabel.getFont().deriveFont(17.0f));
+        selectedRoomLabel.setFont(Reception.titleFont);
+        selectedRoomLabel.setForeground(Reception.secondaryColor);
+
         Reception.labelTitleConstraints.gridx = 0;
         Reception.labelTitleConstraints.gridy = 0;
+        Reception.labelTitleConstraints.weightx = 1;
         Reception.labelTitleConstraints.fill = GridBagConstraints.BOTH;
         this.add(selectedRoomLabel, Reception.labelTitleConstraints);
 
         JButton finishButton = new JButton("TERMINER");
         FinishListener finishListener = new FinishListener(this.window);
         finishButton.addActionListener(finishListener);
+        finishButton.setFont(Reception.defaultFont);
+
         Reception.buttonConstraints.gridx = 0;
         Reception.buttonConstraints.gridy = 1;
         this.add(finishButton, Reception.buttonConstraints);
@@ -44,6 +50,7 @@ class FinalValidationPanel extends JPanel {
         constraints.gridy = 2;
         constraints.weighty = 1;
         JPanel spacer = new JPanel();
+        spacer.setOpaque(false);
         this.add(spacer, constraints);
     }
 }

@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.*;
 import java.awt.*;
 import java.text.*;
 
@@ -7,6 +8,7 @@ class Reception {
 	static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     static Insets marginDefault = new Insets(5, 5, 5, 5);
+    static Insets marginNoDown = new Insets(5, 5, 0, 5);
     static Insets marginNone = new Insets(0, 0, 0, 0);
     static Insets marginRight = new Insets(0, 0, 0, 20);
     static Insets marginLeft = new Insets(0, 20, 0, 0);
@@ -14,6 +16,13 @@ class Reception {
     static GridBagConstraints buttonConstraints = new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, marginNone, 10, 10);
     static GridBagConstraints labelTitleConstraints = new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, marginNone, 25, 25);
     static GridBagConstraints cellConstraints = new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.NORTH, GridBagConstraints.BOTH, marginNone, 0, 0);
+
+    static Font defaultFont = new Font("SansSerif", Font.PLAIN, 15);
+    static Font titleFont = new Font("SansSerif", Font.PLAIN, 23);
+
+    static Color primaryColor = Color.decode("#EAEAEA");
+    static Color secondaryColor = Color.black;
+    static Color thirdColor = Color.WHITE;
 
 
 	int step = 0;
@@ -42,15 +51,19 @@ class Reception {
 
         JPanel windowPanel = new JPanel();
         windowPanel.setLayout(new BoxLayout(windowPanel, BoxLayout.Y_AXIS));
+        windowPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        windowPanel.setBackground(primaryColor);
         this.window.add(windowPanel);
 
         JButton backButton = new JButton("←");
         ReturnButtonListener returnButtonListener = new ReturnButtonListener(this);
         backButton.addActionListener(returnButtonListener);
+        backButton.setFont(Reception.defaultFont);
 
         this.buttonWrapper = new JPanel(new FlowLayout(FlowLayout.LEFT));
         this.buttonWrapper.add(backButton);
         this.buttonWrapper.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        this.buttonWrapper.setOpaque(false);
 
         Reception.buttonConstraints.gridx = 0;
         Reception.buttonConstraints.gridy = 0;
@@ -61,6 +74,7 @@ class Reception {
 
         this.mainPanelCard = new CardLayout();
         this.mainPanel.setLayout(this.mainPanelCard);
+        this.mainPanel.setOpaque(false);
 
         this.mainPanel.add(this.searchPanel, "search");
         this.mainPanel.add(this.resultPanel, "results");
@@ -76,14 +90,14 @@ class Reception {
 		this.step = i;
 
 		if (this.step == 0) {
-            this.window.setSize(700, 200);
+            this.window.setSize(700, 250);
             this.window.setTitle("Recherche de reservation");
             this.buttonWrapper.setVisible(false);
 
             this.mainPanelCard.show(this.mainPanel, "search");
 		}
 		else if (this.step == 1) {
-            this.window.setSize(700, 600);
+            this.window.setSize(800, 400);
             this.window.setTitle("Resultats de la recherche");
             this.buttonWrapper.setVisible(true);
 
@@ -91,7 +105,7 @@ class Reception {
             this.mainPanelCard.show(this.mainPanel, "results");
 		}
         else if (this.step == 2) {
-            this.window.setSize(700, 600);
+            this.window.setSize(800, 750);
             this.window.setTitle("Attribuer une chambre");
             this.buttonWrapper.setVisible(true);
 
@@ -99,7 +113,7 @@ class Reception {
             this.mainPanelCard.show(this.mainPanel, "roomSelect");
         }
         else if (this.step == 3) {
-            this.window.setSize(700, 200);
+            this.window.setSize(500, 150);
             this.window.setTitle("Confirmation");
             this.buttonWrapper.setVisible(false);
 
@@ -108,33 +122,23 @@ class Reception {
         }
 	}
 
-	
-	private String getReservation(){
-		return this.searchPanel.referenceTextField.getText();
-	}
-	private String getLastName(){
-        return this.searchPanel.lastNameTextField.getText();
-	}
-    private String getName(){
-        return this.searchPanel.nameTextField.getText();
-    }
 
 	void searchReservation(){
 		ReservationsDB db = new ReservationsDB();
 
-		if (!isNullOrEmpty(this.getReservation())) {
-			this.reservations = db.searchReservationRef(this.getReservation());
+		if (!this.searchPanel.reservationNullOrEmpty()) {
+			this.reservations = db.searchReservationRef(this.searchPanel.getReservation());
 		}
-		else if (!isNullOrEmpty(this.getLastName())) {
-			if (!isNullOrEmpty(this.getName())) {
-				this.reservations = db.searchReservationFullName(this.getLastName(), this.getName());
+		else if (!isNullOrEmpty(this.searchPanel.getLastName())) {
+			if (!isNullOrEmpty(this.searchPanel.getFirstName())) {
+				this.reservations = db.searchReservationFullName(this.searchPanel.getLastName(), this.searchPanel.getFirstName());
 			}
 			else {
-				this.reservations = db.searchReservationLastName(this.getLastName());
+				this.reservations = db.searchReservationLastName(this.searchPanel.getLastName());
 			}
 		}
 		else {
-			this.reservations = db.searchReservationName(this.getName());
+			this.reservations = db.searchReservationName(this.searchPanel.getName());
 		}
 
 		db.closeConnection();

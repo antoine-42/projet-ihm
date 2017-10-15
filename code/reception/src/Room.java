@@ -55,7 +55,8 @@ class Room {
     String[] getInfo(){
         return new String[]{
                 String.valueOf(this.number),
-                RoomType.TYPE[this.category]
+                RoomType.TYPE[this.category],
+                this.description
         };
     }
 }
