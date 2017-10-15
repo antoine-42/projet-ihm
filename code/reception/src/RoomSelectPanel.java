@@ -49,6 +49,13 @@ class RoomSelectPanel extends JPanel {
         panelConstraints.gridwidth = 1;
         panelConstraints.weightx = 4;
         this.add(this.altRoomsPanel, panelConstraints);
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridy = 2;
+        constraints.weighty = 1;
+
+        JPanel spacer = new JPanel();
+        this.add(spacer, constraints);
     }
 
     void refresh(Reservation reservation, Room suggested, Room[] alternatives){

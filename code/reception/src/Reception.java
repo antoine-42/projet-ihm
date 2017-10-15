@@ -13,7 +13,7 @@ class Reception {
 
     static GridBagConstraints buttonConstraints = new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, marginNone, 10, 10);
     static GridBagConstraints labelTitleConstraints = new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, marginNone, 25, 25);
-    static GridBagConstraints cellConstraints = new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, marginNone, 0, 0);
+    static GridBagConstraints cellConstraints = new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.NORTH, GridBagConstraints.BOTH, marginNone, 0, 0);
 
 
 	int step = 0;
@@ -72,7 +72,6 @@ class Reception {
         this.window.setVisible(true);
 	}
 
-	@SuppressWarnings("SpellCheckingInspection")
     void setStep(int i){
 		this.step = i;
 

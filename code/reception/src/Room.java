@@ -25,7 +25,6 @@ class Room {
     }
 
 
-    @SuppressWarnings("SpellCheckingInspection")
     static Room[] resultSetToRooms(ResultSet result){
         try{
             result.last();

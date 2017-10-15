@@ -8,7 +8,6 @@ class DB {
 
     DB(String location, String user, String password){
         try{
-            //noinspection SpellCheckingInspection
             Class.forName("org.mariadb.jdbc.Driver");
         }
         catch(ClassNotFoundException e) {
@@ -18,7 +17,6 @@ class DB {
         }
 
         try{
-            //noinspection SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection
             connection = DriverManager.getConnection("jdbc:mariadb://dwarves.iut-fbleau.fr/" + location, user, password);
         }
         catch(SQLException e) {

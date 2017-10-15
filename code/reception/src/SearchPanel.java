@@ -16,7 +16,6 @@ class SearchPanel extends JPanel{
     }
 
 
-    @SuppressWarnings("SpellCheckingInspection")
     private void drawPanel(){
         this.setLayout(new GridBagLayout());
 
@@ -99,6 +98,13 @@ class SearchPanel extends JPanel{
         Reception.buttonConstraints.gridwidth = 2;
         Reception.buttonConstraints.anchor = GridBagConstraints.CENTER;
         this.add(searchButton, Reception.buttonConstraints);
+
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridy = 2;
+        constraints.weighty = 1;
+        JPanel spacer = new JPanel();
+        this.add(spacer, constraints);
     }
 
     void reset(){

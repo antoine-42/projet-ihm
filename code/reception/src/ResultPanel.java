@@ -32,8 +32,7 @@ class ResultPanel extends JPanel {
         constraints.anchor = GridBagConstraints.NORTH;
         this.add(this.panelTableauResults, constraints);
     }
-    
-    @SuppressWarnings("SpellCheckingInspection")
+
     void refresh(Reservation[] reservations){
         this.panelTableauResults.removeAll();
 
@@ -54,7 +53,6 @@ class ResultPanel extends JPanel {
 
         for (int i = 0; i < reservations.length; i++) {
             String[] content = reservations[i].getInfo();
-
 
             for (int j = 0; j < content.length; j++) {
                 JLabel contentLabel = new JLabel(content[j], JLabel.LEFT);
@@ -78,5 +76,12 @@ class ResultPanel extends JPanel {
             Reception.cellConstraints.gridy = i +1;
             this.panelTableauResults.add(selectButton, Reception.cellConstraints);
         }
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridy = reservations.length +1;
+        constraints.weighty = 1;
+
+        JPanel spacer = new JPanel();
+        this.panelTableauResults.add(spacer, constraints);
     }
 }
