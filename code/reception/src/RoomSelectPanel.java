@@ -41,7 +41,7 @@ class RoomSelectPanel extends JPanel {
         this.suggestedRoomPanel = new JPanel(new GridBagLayout());
         this.suggestedRoomPanel.setOpaque(false);
         panelConstraints.gridx = 0;
-        panelConstraints.gridy = 1;
+        panelConstraints.gridy = 2;
         panelConstraints.gridwidth = 1;
         panelConstraints.weightx = 1;
         this.add(this.suggestedRoomPanel, panelConstraints);
@@ -49,15 +49,14 @@ class RoomSelectPanel extends JPanel {
         this.altRoomsPanel = new JPanel(new GridBagLayout());
         this.altRoomsPanel.setOpaque(false);
         panelConstraints.gridx = 1;
-        panelConstraints.gridy = 1;
+        panelConstraints.gridy = 2;
         panelConstraints.gridwidth = 1;
         panelConstraints.weightx = 4;
         this.add(this.altRoomsPanel, panelConstraints);
 
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.gridy = 2;
+        constraints.gridy = 1;
         constraints.weighty = 1;
-
         JPanel spacer = new JPanel();
         spacer.setOpaque(false);
         this.add(spacer, constraints);

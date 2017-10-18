@@ -201,7 +201,6 @@ class SearchPanel extends JPanel{
         return Reception.isNullOrEmpty(this.referencePt1TextField.getText()) && Reception.isNullOrEmpty(this.referencePt2TextField.getText()) && Reception.isNullOrEmpty(this.referencePt3TextField.getText());
     }
     String getReservation(){
-        System.out.println(this.referencePt1TextField.getText() + "-" + this.referencePt2TextField.getText() + "-" + this.referencePt3TextField.getText());
         return this.referencePt1TextField.getText() + "-" + this.referencePt2TextField.getText() + "-" + this.referencePt3TextField.getText();
     }
     String getLastName(){

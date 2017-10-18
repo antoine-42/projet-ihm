@@ -37,6 +37,7 @@ class Reception {
     private FinalValidationPanel finalValidationPanel = new FinalValidationPanel(this);
 
 	private Reservation[] reservations = {};
+    private Reservation[] additionalReservations = {};
 
     private Reservation selectedReservation;
     private Room suggestedRoom;
@@ -90,22 +91,22 @@ class Reception {
 		this.step = i;
 
 		if (this.step == 0) {
-            this.window.setSize(700, 250);
+            this.window.setSize(600, 250);
             this.window.setTitle("Recherche de reservation");
             this.buttonWrapper.setVisible(false);
 
             this.mainPanelCard.show(this.mainPanel, "search");
 		}
 		else if (this.step == 1) {
-            this.window.setSize(800, 400);
+            this.window.setSize(800, 350);
             this.window.setTitle("Resultats de la recherche");
             this.buttonWrapper.setVisible(true);
 
-		    this.resultPanel.refresh(reservations);
+		    this.resultPanel.refresh(this.reservations, this.additionalReservations);
             this.mainPanelCard.show(this.mainPanel, "results");
 		}
         else if (this.step == 2) {
-            this.window.setSize(800, 750);
+            this.window.setSize(800, 650);
             this.window.setTitle("Attribuer une chambre");
             this.buttonWrapper.setVisible(true);
 
@@ -127,24 +128,28 @@ class Reception {
 		ReservationsDB db = new ReservationsDB();
 
 		if (!this.searchPanel.reservationNullOrEmpty()) {
-			this.reservations = db.searchReservationRef(this.searchPanel.getReservation());
+			this.reservations = db.searchActiveReservationRef(this.searchPanel.getReservation());
 		}
 		else if (!isNullOrEmpty(this.searchPanel.getLastName())) {
 			if (!isNullOrEmpty(this.searchPanel.getFirstName())) {
-				this.reservations = db.searchReservationFullName(this.searchPanel.getLastName(), this.searchPanel.getFirstName());
+				this.reservations = db.searchActiveReservationFullName(this.searchPanel.getLastName(), this.searchPanel.getFirstName());
+                this.additionalReservations = db.searchAllReservationFullName(this.searchPanel.getLastName(), this.searchPanel.getFirstName());
 			}
 			else {
-				this.reservations = db.searchReservationLastName(this.searchPanel.getLastName());
+				this.reservations = db.searchActiveReservationLastName(this.searchPanel.getLastName());
+                this.additionalReservations = db.searchAllReservationLastName(this.searchPanel.getLastName());
 			}
 		}
 		else {
-			this.reservations = db.searchReservationName(this.searchPanel.getName());
+			this.reservations = db.searchActiveReservationName(this.searchPanel.getName());
+            this.additionalReservations = db.searchAllReservationName(this.searchPanel.getFirstName());
 		}
 
 		db.closeConnection();
 
-		System.out.println("Results: " + this.reservations.length);
-		if (this.reservations.length > 0) {
+        int reservationsNumber = this.additionalReservations.length + this.reservations.length;
+		System.out.println("Results: " + reservationsNumber);
+		if (reservationsNumber > 0) {
 			this.setStep(1);
 		}
 	}
