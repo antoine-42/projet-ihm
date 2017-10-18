@@ -1,15 +1,10 @@
 import javax.swing.*;
-import javax.swing.border.*;
-import java.awt.*;
 
 
 class Reception {
 	int step = 0;
-	private JFrame window = new MainWindow();
-    private JPanel windowPanel = new JPanel();
-	private CardLayout mainPanelCard;
-    private JPanel mainPanel = new JPanel();
-    private JPanel buttonWrapper;
+	private JFrame window = new JFrame();
+	private PanelWindow windowPanel = new PanelWindow(this);
 
 	private PanelSearch searchPanel = new PanelSearch(this);
     private PanelResult resultPanel = new PanelResult(this);
@@ -30,45 +25,23 @@ class Reception {
 
 
 	Reception() {
-		this.window = new JFrame();
         this.window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        this.windowPanel.setLayout(new BoxLayout(this.windowPanel, BoxLayout.Y_AXIS));
-        this.windowPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
-        this.windowPanel.setBackground(Utils.PRIMARY_COLOR);
         this.window.add(this.windowPanel);
 
-        this.createBackButton();
-        this.windowPanel.add(this.mainPanel);
-
-        this.mainPanelCard = new CardLayout();
-        this.mainPanel.setLayout(this.mainPanelCard);
-        this.mainPanel.setOpaque(false);
-
-        this.mainPanel.add(this.searchPanel, "search");
-        this.mainPanel.add(this.resultPanel, "results");
-        this.mainPanel.add(this.roomSelectPanel, "roomSelect");
-        this.mainPanel.add(this.finalValidationPanel, "finalValidation");
+        this.windowPanel.addPanel(this.searchPanel);
+        this.windowPanel.addPanel(this.resultPanel);
+        this.windowPanel.addPanel(this.roomSelectPanel);
+        this.windowPanel.addPanel(this.finalValidationPanel);
 
 		this.setStep(0);
 
         this.window.setVisible(true);
         this.connectionCheck();
 	}
-
-    private void createBackButton(){
-        ListenerReturnButton returnButtonListener = new ListenerReturnButton(this);
-        JButton backButton = Utils.createJButton("←", returnButtonListener);
-
-        this.buttonWrapper = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        this.buttonWrapper.add(backButton);
-        this.buttonWrapper.setAlignmentX(Component.RIGHT_ALIGNMENT);
-        this.buttonWrapper.setOpaque(false);
-
-        this.windowPanel.add(buttonWrapper);
-    }
     private void connectionCheck(){
         Boolean error = false;
+
         try{
             this.reservationsDB = new DBReservations();
         }
@@ -91,7 +64,6 @@ class Reception {
             error = true;
         }
 
-
         if (error) {
             System.exit(0);
         }
@@ -103,33 +75,33 @@ class Reception {
 		if (this.step == 0) {
             this.window.setSize(600, 250);
             this.window.setTitle("Recherche de reservation");
-            this.buttonWrapper.setVisible(false);
+            this.windowPanel.setBackButtonVisible(false);
 
-            this.mainPanelCard.show(this.mainPanel, "search");
+            this.windowPanel.setVisiblePanel(0);
 		}
 		else if (this.step == 1) {
             this.window.setSize(800, 350);
             this.window.setTitle("Resultats de la recherche");
-            this.buttonWrapper.setVisible(true);
+            this.windowPanel.setBackButtonVisible(true);
 
 		    this.resultPanel.refresh(this.reservations, this.additionalReservations);
-            this.mainPanelCard.show(this.mainPanel, "results");
+            this.windowPanel.setVisiblePanel(1);
 		}
         else if (this.step == 2) {
             this.window.setSize(800, 650);
             this.window.setTitle("Attribuer une chambre");
-            this.buttonWrapper.setVisible(true);
+            this.windowPanel.setBackButtonVisible(true);
 
             this.roomSelectPanel.refresh(this.selectedReservation, this.suggestedRoom, this.alternativeRooms);
-            this.mainPanelCard.show(this.mainPanel, "roomSelect");
+            this.windowPanel.setVisiblePanel(2);
         }
         else if (this.step == 3) {
             this.window.setSize(500, 150);
             this.window.setTitle("Confirmation");
-            this.buttonWrapper.setVisible(false);
+            this.windowPanel.setBackButtonVisible(false);
 
             this.finalValidationPanel.refresh(this.selectedRoom);
-            this.mainPanelCard.show(this.mainPanel, "finalValidation");
+            this.windowPanel.setVisiblePanel(3);
         }
 	}
 
