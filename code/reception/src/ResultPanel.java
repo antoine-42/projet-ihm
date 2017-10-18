@@ -28,17 +28,17 @@ class ResultPanel extends JPanel {
         constraints.weightx = 1;
         constraints.weighty = 0;
         constraints.fill = GridBagConstraints.BOTH;
-        constraints.insets = Reception.marginNone;
+        constraints.insets = Utils.MARGIN_NONE;
         constraints.anchor = GridBagConstraints.NORTH;
 
 
         this.resultsLabel = new JLabel("Resultats", JLabel.LEFT);
-        resultsLabel.setFont(Reception.titleFont);
-        resultsLabel.setForeground(Reception.secondaryColor);
-        Reception.labelTitleConstraints.gridx = 0;
-        Reception.labelTitleConstraints.gridy = 0;
-        Reception.labelTitleConstraints.gridwidth = 1;
-        this.add(resultsLabel, Reception.labelTitleConstraints);
+        resultsLabel.setFont(Utils.TITLE_FONT);
+        resultsLabel.setForeground(Utils.SECONDARY_COLOR);
+        Utils.labelTitleConstraints.gridx = 0;
+        Utils.labelTitleConstraints.gridy = 0;
+        Utils.labelTitleConstraints.gridwidth = 1;
+        this.add(resultsLabel, Utils.labelTitleConstraints);
 
         this.panelTableauResults = new JPanel();
         this.panelTableauResults.setLayout(new GridBagLayout());
@@ -47,12 +47,12 @@ class ResultPanel extends JPanel {
         this.add(this.panelTableauResults, constraints);
 
         this.additionalResultsLabel = new JLabel("Autres reservations", JLabel.LEFT);
-        additionalResultsLabel.setFont(Reception.titleFont);
-        additionalResultsLabel.setForeground(Reception.secondaryColor);
-        Reception.labelTitleConstraints.gridx = 0;
-        Reception.labelTitleConstraints.gridy = 3;
-        Reception.labelTitleConstraints.gridwidth = 1;
-        this.add(additionalResultsLabel, Reception.labelTitleConstraints);
+        additionalResultsLabel.setFont(Utils.TITLE_FONT);
+        additionalResultsLabel.setForeground(Utils.SECONDARY_COLOR);
+        Utils.labelTitleConstraints.gridx = 0;
+        Utils.labelTitleConstraints.gridy = 3;
+        Utils.labelTitleConstraints.gridwidth = 1;
+        this.add(additionalResultsLabel, Utils.labelTitleConstraints);
 
         this.panelTableauAdditionalResults = new JPanel();
         this.panelTableauAdditionalResults.setLayout(new GridBagLayout());
@@ -92,12 +92,12 @@ class ResultPanel extends JPanel {
         };
         for (int i = 0; i < labelTitles.length; i++) {
             JLabel labelTitle = new JLabel(labelTitles[i], JLabel.LEFT);
-            labelTitle.setFont(Reception.defaultFont);
-            labelTitle.setForeground(Reception.secondaryColor);
+            labelTitle.setFont(Utils.DEFAULT_FONT);
+            labelTitle.setForeground(Utils.SECONDARY_COLOR);
 
-            Reception.cellConstraints.gridx = i;
-            Reception.cellConstraints.gridy = 0;
-            panel.add(labelTitle, Reception.cellConstraints);
+            Utils.cellConstraints.gridx = i;
+            Utils.cellConstraints.gridy = 0;
+            panel.add(labelTitle, Utils.cellConstraints);
         }
 
         for (int i = 0; i < reservations.length; i++) {
@@ -105,28 +105,28 @@ class ResultPanel extends JPanel {
 
             for (int j = 0; j < content.length; j++) {
                 JLabel contentLabel = new JLabel(content[j], JLabel.LEFT);
-                contentLabel.setFont(Reception.defaultFont);
-                contentLabel.setForeground(Reception.secondaryColor);
+                contentLabel.setFont(Utils.DEFAULT_FONT);
+                contentLabel.setForeground(Utils.SECONDARY_COLOR);
 
                 if (i % 2 == 0) {
                     contentLabel.setOpaque(true);
-                    contentLabel.setBackground(Reception.thirdColor);
+                    contentLabel.setBackground(Utils.THIRD_COLOR);
                 }
 
-                Reception.cellConstraints.gridx = j;
-                Reception.cellConstraints.gridy = i +1;
+                Utils.cellConstraints.gridx = j;
+                Utils.cellConstraints.gridy = i +1;
 
-                panel.add(contentLabel, Reception.cellConstraints);
+                panel.add(contentLabel, Utils.cellConstraints);
             }
             if (createButtons) {
                 JButton selectButton = new JButton("⇒");
                 ReservationSelectListener selectListener = new ReservationSelectListener(this.window, reservations[i]);
                 selectButton.addActionListener(selectListener);
-                selectButton.setFont(Reception.defaultFont);
+                selectButton.setFont(Utils.DEFAULT_FONT);
 
-                Reception.cellConstraints.gridx = content.length;
-                Reception.cellConstraints.gridy = i +1;
-                panel.add(selectButton, Reception.cellConstraints);
+                Utils.cellConstraints.gridx = content.length;
+                Utils.cellConstraints.gridy = i +1;
+                panel.add(selectButton, Utils.cellConstraints);
             }
         }
     }

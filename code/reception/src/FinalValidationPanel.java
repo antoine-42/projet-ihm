@@ -28,23 +28,23 @@ class FinalValidationPanel extends JPanel {
 
 
         JLabel selectedRoomLabel = new JLabel("La chambre " + String.valueOf(selected.number) + " a bien ete attribuee", JLabel.LEFT);
-        selectedRoomLabel.setFont(Reception.titleFont);
-        selectedRoomLabel.setForeground(Reception.secondaryColor);
+        selectedRoomLabel.setFont(Utils.TITLE_FONT);
+        selectedRoomLabel.setForeground(Utils.SECONDARY_COLOR);
 
-        Reception.labelTitleConstraints.gridx = 0;
-        Reception.labelTitleConstraints.gridy = 0;
-        Reception.labelTitleConstraints.weightx = 1;
-        Reception.labelTitleConstraints.fill = GridBagConstraints.BOTH;
-        this.add(selectedRoomLabel, Reception.labelTitleConstraints);
+        Utils.labelTitleConstraints.gridx = 0;
+        Utils.labelTitleConstraints.gridy = 0;
+        Utils.labelTitleConstraints.weightx = 1;
+        Utils.labelTitleConstraints.fill = GridBagConstraints.BOTH;
+        this.add(selectedRoomLabel, Utils.labelTitleConstraints);
 
         JButton finishButton = new JButton("TERMINER");
         FinishListener finishListener = new FinishListener(this.window);
         finishButton.addActionListener(finishListener);
-        finishButton.setFont(Reception.defaultFont);
+        finishButton.setFont(Utils.DEFAULT_FONT);
 
-        Reception.buttonConstraints.gridx = 0;
-        Reception.buttonConstraints.gridy = 1;
-        this.add(finishButton, Reception.buttonConstraints);
+        Utils.buttonConstraints.gridx = 0;
+        Utils.buttonConstraints.gridy = 1;
+        this.add(finishButton, Utils.buttonConstraints);
 
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridy = 2;

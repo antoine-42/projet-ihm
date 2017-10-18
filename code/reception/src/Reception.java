@@ -1,30 +1,9 @@
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
-import java.text.*;
 
 
 class Reception {
-	static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-    static final Insets marginDefault = new Insets(5, 5, 5, 5);
-    static final Insets marginNone = new Insets(0, 0, 0, 0);
-    static final Insets marginNoDown = new Insets(5, 5, 0, 5);
-    static final Insets marginRight = new Insets(0, 0, 0, 20);
-    static final Insets marginLeft = new Insets(0, 20, 0, 0);
-
-    static GridBagConstraints buttonConstraints = new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, marginNone, 10, 10);
-    static GridBagConstraints labelTitleConstraints = new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, marginNone, 25, 25);
-    static GridBagConstraints cellConstraints = new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.NORTH, GridBagConstraints.BOTH, marginNone, 0, 0);
-
-    static final Font defaultFont = new Font("SansSerif", Font.PLAIN, 15);
-    static final Font titleFont = new Font("SansSerif", Font.PLAIN, 23);
-
-    private static final Color primaryColor = Color.decode("#EAEAEA");
-    static final Color secondaryColor = Color.black;
-    static final Color thirdColor = Color.WHITE;
-
-
 	int step = 0;
 	private JFrame window;
 	private CardLayout mainPanelCard;
@@ -56,23 +35,23 @@ class Reception {
         JPanel windowPanel = new JPanel();
         windowPanel.setLayout(new BoxLayout(windowPanel, BoxLayout.Y_AXIS));
         windowPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
-        windowPanel.setBackground(primaryColor);
+        windowPanel.setBackground(Utils.PRIMARY_COLOR);
         this.window.add(windowPanel);
 
         JButton backButton = new JButton("←");
         ReturnButtonListener returnButtonListener = new ReturnButtonListener(this);
         backButton.addActionListener(returnButtonListener);
-        backButton.setFont(Reception.defaultFont);
+        backButton.setFont(Utils.DEFAULT_FONT);
 
         this.buttonWrapper = new JPanel(new FlowLayout(FlowLayout.LEFT));
         this.buttonWrapper.add(backButton);
         this.buttonWrapper.setAlignmentX(Component.RIGHT_ALIGNMENT);
         this.buttonWrapper.setOpaque(false);
 
-        Reception.buttonConstraints.gridx = 0;
-        Reception.buttonConstraints.gridy = 0;
-        Reception.buttonConstraints.gridwidth = 1;
-        Reception.buttonConstraints.anchor = GridBagConstraints.LINE_START;
+        Utils.buttonConstraints.gridx = 0;
+        Utils.buttonConstraints.gridy = 0;
+        Utils.buttonConstraints.gridwidth = 1;
+        Utils.buttonConstraints.anchor = GridBagConstraints.LINE_START;
         windowPanel.add(buttonWrapper);
         windowPanel.add(this.mainPanel);
 
@@ -162,8 +141,8 @@ class Reception {
 		if (!this.searchPanel.reservationNullOrEmpty()) {
 			this.reservations = this.reservationsDB.searchActiveReservationRef(this.searchPanel.getReservation());
 		}
-		else if (!isNullOrEmpty(this.searchPanel.getLastName())) {
-			if (!isNullOrEmpty(this.searchPanel.getFirstName())) {
+		else if (!Utils.isNullOrEmpty(this.searchPanel.getLastName())) {
+			if (!Utils.isNullOrEmpty(this.searchPanel.getFirstName())) {
 				this.reservations = this.reservationsDB.searchActiveReservationFullName(this.searchPanel.getLastName(), this.searchPanel.getFirstName());
                 this.additionalReservations = this.reservationsDB.searchAllReservationFullName(this.searchPanel.getLastName(), this.searchPanel.getFirstName());
 			}
@@ -235,11 +214,5 @@ class Reception {
     void closeConnections(){
         this.internalDB.closeConnection();
         this.reservationsDB.closeConnection();
-    }
-
-
-
-    static Boolean isNullOrEmpty(String str){
-        return str == null || str.isEmpty();
     }
 }

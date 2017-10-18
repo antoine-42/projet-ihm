@@ -30,21 +30,21 @@ class SearchPanel extends JPanel{
         labelConstraints.ipady = 15;
         labelConstraints.weightx = 0;
         labelConstraints.fill = GridBagConstraints.HORIZONTAL;
-        labelConstraints.insets = Reception.marginNoDown;
+        labelConstraints.insets = Utils.MARGIN_NO_DOWN;
 
         GridBagConstraints smallLabelConstraints = new GridBagConstraints();
         smallLabelConstraints.ipadx = 0;
         smallLabelConstraints.ipady = 0;
         smallLabelConstraints.weightx = 0;
         smallLabelConstraints.fill = GridBagConstraints.HORIZONTAL;
-        smallLabelConstraints.insets = Reception.marginNone;
+        smallLabelConstraints.insets = Utils.MARGIN_NONE;
 
         GridBagConstraints textFieldConstraints = new GridBagConstraints();
         textFieldConstraints.ipadx = 10;
         textFieldConstraints.ipady = 10;
         textFieldConstraints.weightx = 1;
         textFieldConstraints.fill = GridBagConstraints.HORIZONTAL;
-        textFieldConstraints.insets = Reception.marginNone;
+        textFieldConstraints.insets = Utils.MARGIN_NONE;
 
         GridBagConstraints panelConstraints = new GridBagConstraints();
         panelConstraints.ipadx = 0;
@@ -59,35 +59,35 @@ class SearchPanel extends JPanel{
         panelConstraints.gridx = 0;
         panelConstraints.gridy = 0;
         panelConstraints.weightx = 1;
-        panelConstraints.insets = Reception.marginRight;
+        panelConstraints.insets = Utils.MARGIN_RIGHT;
         this.add(fullNamePanel, panelConstraints);
 
 
         JLabel lastNameLabel = new JLabel("Nom du client", JLabel.LEFT);
-        lastNameLabel.setFont(Reception.defaultFont);
-        lastNameLabel.setForeground(Reception.secondaryColor);
+        lastNameLabel.setFont(Utils.DEFAULT_FONT);
+        lastNameLabel.setForeground(Utils.SECONDARY_COLOR);
         labelConstraints.gridx = 0;
         labelConstraints.gridy = 0;
         labelConstraints.gridwidth = 1;
         fullNamePanel.add(lastNameLabel, labelConstraints);
 
         this.lastNameTextField = new JTextField("Faure");
-        this.lastNameTextField.setFont(Reception.defaultFont);
+        this.lastNameTextField.setFont(Utils.DEFAULT_FONT);
         this.lastNameTextField.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
         textFieldConstraints.gridx = 0;
         textFieldConstraints.gridy = 1;
         fullNamePanel.add(lastNameTextField, textFieldConstraints);
 
         JLabel nameLabel = new JLabel("Prenom du client", JLabel.LEFT);
-        nameLabel.setFont(Reception.defaultFont);
-        nameLabel.setForeground(Reception.secondaryColor);
+        nameLabel.setFont(Utils.DEFAULT_FONT);
+        nameLabel.setForeground(Utils.SECONDARY_COLOR);
         labelConstraints.gridx = 0;
         labelConstraints.gridy = 2;
         labelConstraints.gridwidth = 1;
         fullNamePanel.add(nameLabel, labelConstraints);
 
         this.nameTextField = new JTextField("Florian");
-        this.nameTextField.setFont(Reception.defaultFont);
+        this.nameTextField.setFont(Utils.DEFAULT_FONT);
         this.nameTextField.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
         textFieldConstraints.gridx = 0;
         textFieldConstraints.gridy = 3;
@@ -100,12 +100,12 @@ class SearchPanel extends JPanel{
         panelConstraints.gridx = 1;
         panelConstraints.gridy = 0;
         panelConstraints.weightx = 3;
-        panelConstraints.insets = Reception.marginLeft;
+        panelConstraints.insets = Utils.MARGIN_LEFT;
         this.add(panelReference, panelConstraints);
 
         JLabel labelReferenceReservation  = new JLabel("Reference de la reservation", JLabel.LEFT);
-        labelReferenceReservation.setFont(Reception.defaultFont);
-        labelReferenceReservation.setForeground(Reception.secondaryColor);
+        labelReferenceReservation.setFont(Utils.DEFAULT_FONT);
+        labelReferenceReservation.setForeground(Utils.SECONDARY_COLOR);
         labelConstraints.gridx = 0;
         labelConstraints.gridy = 0;
         panelReference.add(labelReferenceReservation, labelConstraints);
@@ -117,11 +117,11 @@ class SearchPanel extends JPanel{
         panelConstraints.gridx = 0;
         panelConstraints.gridy = 1;
         panelConstraints.weightx = 3;
-        panelConstraints.insets = Reception.marginNone;
+        panelConstraints.insets = Utils.MARGIN_NONE;
         panelReference.add(panelReferenceText, panelConstraints);
 
         this.referencePt1TextField = new JTextField();
-        this.referencePt1TextField.setFont(Reception.defaultFont);
+        this.referencePt1TextField.setFont(Utils.DEFAULT_FONT);
         this.referencePt1TextField.setBorder(BorderFactory.createEmptyBorder());
         this.referencePt1TextField.setHorizontalAlignment(JTextField.CENTER);
         this.referencePt1TextField.setDocument(new JTextFieldLimit(4, 0, this));
@@ -130,14 +130,14 @@ class SearchPanel extends JPanel{
         panelReferenceText.add(referencePt1TextField, textFieldConstraints);
 
         JLabel dash1Label = new JLabel("-", JLabel.LEFT);
-        dash1Label.setFont(Reception.defaultFont);
-        dash1Label.setForeground(Reception.secondaryColor);
+        dash1Label.setFont(Utils.DEFAULT_FONT);
+        dash1Label.setForeground(Utils.SECONDARY_COLOR);
         smallLabelConstraints.gridx = 1;
         textFieldConstraints.gridy = 0;
         panelReferenceText.add(dash1Label, smallLabelConstraints);
 
         this.referencePt2TextField = new JTextField();
-        this.referencePt2TextField.setFont(Reception.defaultFont);
+        this.referencePt2TextField.setFont(Utils.DEFAULT_FONT);
         this.referencePt2TextField.setBorder(BorderFactory.createEmptyBorder());
         this.referencePt2TextField.setHorizontalAlignment(JTextField.CENTER);
         this.referencePt2TextField.setDocument(new JTextFieldLimit(4, 1, this));
@@ -146,14 +146,14 @@ class SearchPanel extends JPanel{
         panelReferenceText.add(referencePt2TextField, textFieldConstraints);
 
         JLabel dash2Label = new JLabel("-", JLabel.LEFT);
-        dash2Label.setFont(Reception.defaultFont);
-        dash2Label.setForeground(Reception.secondaryColor);
+        dash2Label.setFont(Utils.DEFAULT_FONT);
+        dash2Label.setForeground(Utils.SECONDARY_COLOR);
         smallLabelConstraints.gridx = 3;
         textFieldConstraints.gridy = 0;
         panelReferenceText.add(dash2Label, smallLabelConstraints);
 
         this.referencePt3TextField = new JTextField();
-        this.referencePt3TextField.setFont(Reception.defaultFont);
+        this.referencePt3TextField.setFont(Utils.DEFAULT_FONT);
         this.referencePt3TextField.setBorder(BorderFactory.createEmptyBorder());
         this.referencePt3TextField.setHorizontalAlignment(JTextField.CENTER);
         this.referencePt3TextField.setDocument(new JTextFieldLimit(4));
@@ -165,13 +165,13 @@ class SearchPanel extends JPanel{
         JButton searchButton = new JButton("Chercher");
         ReservationSearchListener reservationListener = new ReservationSearchListener(this.window);
         searchButton.addActionListener(reservationListener);
-        searchButton.setFont(Reception.defaultFont);
+        searchButton.setFont(Utils.DEFAULT_FONT);
 
-        Reception.buttonConstraints.gridx = 0;
-        Reception.buttonConstraints.gridy = 1;
-        Reception.buttonConstraints.gridwidth = 2;
-        Reception.buttonConstraints.anchor = GridBagConstraints.CENTER;
-        this.add(searchButton, Reception.buttonConstraints);
+        Utils.buttonConstraints.gridx = 0;
+        Utils.buttonConstraints.gridy = 1;
+        Utils.buttonConstraints.gridwidth = 2;
+        Utils.buttonConstraints.anchor = GridBagConstraints.CENTER;
+        this.add(searchButton, Utils.buttonConstraints);
 
 
         GridBagConstraints constraints = new GridBagConstraints();
@@ -197,7 +197,7 @@ class SearchPanel extends JPanel{
     }
 
     Boolean reservationNullOrEmpty(){
-        return Reception.isNullOrEmpty(this.referencePt1TextField.getText()) && Reception.isNullOrEmpty(this.referencePt2TextField.getText()) && Reception.isNullOrEmpty(this.referencePt3TextField.getText());
+        return Utils.isNullOrEmpty(this.referencePt1TextField.getText()) && Utils.isNullOrEmpty(this.referencePt2TextField.getText()) && Utils.isNullOrEmpty(this.referencePt3TextField.getText());
     }
     String getReservation(){
         return this.referencePt1TextField.getText() + "-" + this.referencePt2TextField.getText() + "-" + this.referencePt3TextField.getText();

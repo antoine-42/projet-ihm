@@ -71,64 +71,64 @@ class RoomSelectPanel extends JPanel {
         String[] reservationContent = reservation.getInfo();
 
         JLabel selectedReservationLabel = new JLabel("Reservation Selectionnee", JLabel.LEFT);
-        selectedReservationLabel.setFont(Reception.titleFont);
-        selectedReservationLabel.setForeground(Reception.secondaryColor);
+        selectedReservationLabel.setFont(Utils.TITLE_FONT);
+        selectedReservationLabel.setForeground(Utils.SECONDARY_COLOR);
 
-        Reception.labelTitleConstraints.gridx = 0;
-        Reception.labelTitleConstraints.gridy = 0;
-        Reception.labelTitleConstraints.gridwidth = reservationContent.length;
-        this.reservationPanel.add(selectedReservationLabel, Reception.labelTitleConstraints);
+        Utils.labelTitleConstraints.gridx = 0;
+        Utils.labelTitleConstraints.gridy = 0;
+        Utils.labelTitleConstraints.gridwidth = reservationContent.length;
+        this.reservationPanel.add(selectedReservationLabel, Utils.labelTitleConstraints);
 
         for (int i = 0; i < reservationContent.length; i++) {
             JLabel contentLabel = new JLabel(reservationContent[i], JLabel.LEFT);
-            contentLabel.setFont(Reception.defaultFont);
-            contentLabel.setForeground(Reception.secondaryColor);
+            contentLabel.setFont(Utils.DEFAULT_FONT);
+            contentLabel.setForeground(Utils.SECONDARY_COLOR);
 
-            Reception.cellConstraints.gridx = i;
-            Reception.cellConstraints.gridy = 1;
+            Utils.cellConstraints.gridx = i;
+            Utils.cellConstraints.gridy = 1;
 
-            this.reservationPanel.add(contentLabel, Reception.cellConstraints);
+            this.reservationPanel.add(contentLabel, Utils.cellConstraints);
         }
 
 
         JLabel suggestedRoomLabel = new JLabel("Chambre " + String.valueOf(suggested.number), JLabel.LEFT);
-        suggestedRoomLabel.setFont(Reception.titleFont);
-        suggestedRoomLabel.setForeground(Reception.secondaryColor);
+        suggestedRoomLabel.setFont(Utils.TITLE_FONT);
+        suggestedRoomLabel.setForeground(Utils.SECONDARY_COLOR);
 
-        Reception.labelTitleConstraints.gridx = 0;
-        Reception.labelTitleConstraints.gridy = 0;
-        Reception.labelTitleConstraints.gridwidth = 1;
-        this.suggestedRoomPanel.add(suggestedRoomLabel, Reception.labelTitleConstraints);
+        Utils.labelTitleConstraints.gridx = 0;
+        Utils.labelTitleConstraints.gridy = 0;
+        Utils.labelTitleConstraints.gridwidth = 1;
+        this.suggestedRoomPanel.add(suggestedRoomLabel, Utils.labelTitleConstraints);
 
         JButton acceptSuggestedButton = new JButton("VALIDER");
         SelectRoomListener selectRoomListener = new SelectRoomListener(this.window, suggested);
         acceptSuggestedButton.addActionListener(selectRoomListener);
-        acceptSuggestedButton.setFont(Reception.defaultFont);
+        acceptSuggestedButton.setFont(Utils.DEFAULT_FONT);
 
-        Reception.buttonConstraints.gridx = 0;
-        Reception.buttonConstraints.gridy = 1;
-        this.suggestedRoomPanel.add(acceptSuggestedButton, Reception.buttonConstraints);
+        Utils.buttonConstraints.gridx = 0;
+        Utils.buttonConstraints.gridy = 1;
+        this.suggestedRoomPanel.add(acceptSuggestedButton, Utils.buttonConstraints);
 
 
         JLabel alternativesLabel = new JLabel("Alternatives");
-        alternativesLabel.setFont(Reception.titleFont);
-        alternativesLabel.setForeground(Reception.secondaryColor);
+        alternativesLabel.setFont(Utils.TITLE_FONT);
+        alternativesLabel.setForeground(Utils.SECONDARY_COLOR);
 
-        Reception.labelTitleConstraints.gridx = 0;
-        Reception.labelTitleConstraints.gridy = 0;
-        Reception.labelTitleConstraints.gridwidth = 3;
-        this.altRoomsPanel.add(alternativesLabel, Reception.labelTitleConstraints);
+        Utils.labelTitleConstraints.gridx = 0;
+        Utils.labelTitleConstraints.gridy = 0;
+        Utils.labelTitleConstraints.gridwidth = 3;
+        this.altRoomsPanel.add(alternativesLabel, Utils.labelTitleConstraints);
 
         String[] alternativesTableLabel = {"Numero", "Type", "Description"};
         for (int i = 0; i < alternativesTableLabel.length; i++){
             JLabel alternativeContentLabel = new JLabel(alternativesTableLabel[i], JLabel.LEFT);
-            alternativeContentLabel.setFont(Reception.defaultFont);
-            alternativeContentLabel.setForeground(Reception.secondaryColor);
+            alternativeContentLabel.setFont(Utils.DEFAULT_FONT);
+            alternativeContentLabel.setForeground(Utils.SECONDARY_COLOR);
 
-            Reception.cellConstraints.gridx = i;
-            Reception.cellConstraints.gridy = 1;
+            Utils.cellConstraints.gridx = i;
+            Utils.cellConstraints.gridy = 1;
 
-            this.altRoomsPanel.add(alternativeContentLabel, Reception.cellConstraints);
+            this.altRoomsPanel.add(alternativeContentLabel, Utils.cellConstraints);
         }
 
         int maxAltDisplay = Math.min(alternatives.length, maxAlternatives);
@@ -137,28 +137,28 @@ class RoomSelectPanel extends JPanel {
 
             for (int j = 0; j < roomContent.length; j++){
                 JLabel alternativeContentLabel = new JLabel(roomContent[j], JLabel.LEFT);
-                alternativeContentLabel.setFont(Reception.defaultFont);
-                alternativeContentLabel.setForeground(Reception.secondaryColor);
+                alternativeContentLabel.setFont(Utils.DEFAULT_FONT);
+                alternativeContentLabel.setForeground(Utils.SECONDARY_COLOR);
 
-                Reception.cellConstraints.gridx = j;
-                Reception.cellConstraints.gridy = i +2;
+                Utils.cellConstraints.gridx = j;
+                Utils.cellConstraints.gridy = i +2;
 
                 if (i % 2 == 0) {
                     alternativeContentLabel.setOpaque(true);
-                    alternativeContentLabel.setBackground(Reception.thirdColor);
+                    alternativeContentLabel.setBackground(Utils.THIRD_COLOR);
                 }
 
-                this.altRoomsPanel.add(alternativeContentLabel, Reception.cellConstraints);
+                this.altRoomsPanel.add(alternativeContentLabel, Utils.cellConstraints);
             }
 
             JButton acceptAlternativeButton = new JButton("VALIDER");
             SelectRoomListener selectAltRoomListener = new SelectRoomListener(this.window, alternatives[i]);
             acceptAlternativeButton.addActionListener(selectAltRoomListener);
-            acceptAlternativeButton.setFont(Reception.defaultFont);
+            acceptAlternativeButton.setFont(Utils.DEFAULT_FONT);
 
-            Reception.buttonConstraints.gridx = roomContent.length;
-            Reception.buttonConstraints.gridy = i +2;
-            this.altRoomsPanel.add(acceptAlternativeButton, Reception.buttonConstraints);
+            Utils.buttonConstraints.gridx = roomContent.length;
+            Utils.buttonConstraints.gridy = i +2;
+            this.altRoomsPanel.add(acceptAlternativeButton, Utils.buttonConstraints);
         }
     }
 }
