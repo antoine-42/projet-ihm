@@ -6,24 +6,17 @@ class DB {
     private Connection connection;
 
 
-    DB(String location, String user, String password){
-        try{
-            Class.forName("org.mariadb.jdbc.Driver");
-        }
-        catch(ClassNotFoundException e) {
-            this.offline = true;
-            System.out.println("[FATAL] could not load db driver");
-            e.printStackTrace();
-        }
+    DB(String location, String user, String password) throws ClassNotFoundException, SQLException {
+        Class.forName("org.mariadb.jdbc.Driver");
 
-        try{
-            connection = DriverManager.getConnection("jdbc:mariadb://dwarves.iut-fbleau.fr/" + location, user, password);
-        }
-        catch(SQLException e) {
-            offline = true;
-            System.out.println("[FATAL] could not connect to db");
-            e.printStackTrace();
-        }
+        connection = DriverManager.getConnection("jdbc:mariadb://dwarves.iut-fbleau.fr/" + location, user, password);
+    }
+
+    void testDB(String table) throws SQLException{
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM " + table);
+        ResultSet set = statement.executeQuery();
+        set.absolute(1);
+        statement.close();
     }
 
     ResultSet executeQuery(String query, String[] args){

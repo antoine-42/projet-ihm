@@ -1,9 +1,13 @@
+import java.sql.SQLException;
+
+
 class InternalDB {
     private DB dataBase;
 
 
-    InternalDB(){
-        dataBase = new DB("bohl", "bohl", "bohl");
+    InternalDB() throws ClassNotFoundException, SQLException{
+        this.dataBase = new DB("bohl", "bohl", "bohl");
+        this.dataBase.testDB("Chambre");
     }
 
 

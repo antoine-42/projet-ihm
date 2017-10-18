@@ -36,6 +36,9 @@ class Reception {
     private RoomSelectPanel roomSelectPanel = new RoomSelectPanel(this);
     private FinalValidationPanel finalValidationPanel = new FinalValidationPanel(this);
 
+    private ReservationsDB reservationsDB;
+    private InternalDB internalDB;
+
 	private Reservation[] reservations = {};
     private Reservation[] additionalReservations = {};
 
@@ -85,7 +88,38 @@ class Reception {
 		this.setStep(0);
 
         this.window.setVisible(true);
+        this.connectionCheck();
 	}
+
+    void connectionCheck(){
+        Boolean error = false;
+        try{
+            this.reservationsDB = new ReservationsDB();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this.window,
+                "Connection a la base de donnees de reservations impossible.",
+                "Erreur",
+                JOptionPane.ERROR_MESSAGE);
+            error = true;
+        }
+
+        try{
+            this.internalDB = new InternalDB();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this.window,
+                "Connection a la base de donnees interne impossible.",
+                "Erreur",
+                JOptionPane.ERROR_MESSAGE);
+            error = true;
+        }
+
+
+        if (error) {
+            System.exit(0);
+        }
+    }
 
     void setStep(int i){
 		this.step = i;
@@ -125,41 +159,43 @@ class Reception {
 
 
 	void searchReservation(){
-		ReservationsDB db = new ReservationsDB();
-
 		if (!this.searchPanel.reservationNullOrEmpty()) {
-			this.reservations = db.searchActiveReservationRef(this.searchPanel.getReservation());
+			this.reservations = this.reservationsDB.searchActiveReservationRef(this.searchPanel.getReservation());
 		}
 		else if (!isNullOrEmpty(this.searchPanel.getLastName())) {
 			if (!isNullOrEmpty(this.searchPanel.getFirstName())) {
-				this.reservations = db.searchActiveReservationFullName(this.searchPanel.getLastName(), this.searchPanel.getFirstName());
-                this.additionalReservations = db.searchAllReservationFullName(this.searchPanel.getLastName(), this.searchPanel.getFirstName());
+				this.reservations = this.reservationsDB.searchActiveReservationFullName(this.searchPanel.getLastName(), this.searchPanel.getFirstName());
+                this.additionalReservations = this.reservationsDB.searchAllReservationFullName(this.searchPanel.getLastName(), this.searchPanel.getFirstName());
 			}
 			else {
-				this.reservations = db.searchActiveReservationLastName(this.searchPanel.getLastName());
-                this.additionalReservations = db.searchAllReservationLastName(this.searchPanel.getLastName());
+				this.reservations = this.reservationsDB.searchActiveReservationLastName(this.searchPanel.getLastName());
+                this.additionalReservations = this.reservationsDB.searchAllReservationLastName(this.searchPanel.getLastName());
 			}
 		}
 		else {
-			this.reservations = db.searchActiveReservationName(this.searchPanel.getName());
-            this.additionalReservations = db.searchAllReservationName(this.searchPanel.getFirstName());
+			this.reservations = this.reservationsDB.searchActiveReservationName(this.searchPanel.getName());
+            this.additionalReservations = this.reservationsDB.searchAllReservationName(this.searchPanel.getFirstName());
 		}
 
-		db.closeConnection();
+		this.reservationsDB.closeConnection();
 
         int reservationsNumber = this.additionalReservations.length + this.reservations.length;
 		System.out.println("Results: " + reservationsNumber);
 		if (reservationsNumber > 0) {
 			this.setStep(1);
 		}
+        else {
+            JOptionPane.showMessageDialog(this.window,
+                "Aucun resultat.",
+                "Erreur",
+                JOptionPane.ERROR_MESSAGE);
+        }
 	}
 
 	private void searchRooms(){
-        InternalDB internalDB = new InternalDB();
+        Room[] rooms = this.internalDB.searchRoom(this.selectedReservation.category);
 
-        Room[] rooms = internalDB.searchRoom(this.selectedReservation.category);
-
-        internalDB.closeConnection();
+        this.internalDB.closeConnection();
 
         if (rooms.length > 0){
             this.suggestedRoom = rooms[0];
@@ -181,11 +217,9 @@ class Reception {
     void selectRoom(Room room){
 	    this.selectedRoom = room;
 
-        InternalDB internalDB = new InternalDB();
+        this.internalDB.affectRoom(room.number);
 
-        internalDB.affectRoom(room.number);
-
-        internalDB.closeConnection();
+        this.internalDB.closeConnection();
 
 	    this.setStep(3);
     }

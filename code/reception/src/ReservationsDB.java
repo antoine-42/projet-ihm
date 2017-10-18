@@ -1,3 +1,6 @@
+import java.sql.SQLException;
+
+
 class ReservationsDB {
     //test timespamp: 1515193200
     private static String reservationSearchQueryPrefix = "SELECT * FROM Reservation JOIN Client ON ";
@@ -7,8 +10,9 @@ class ReservationsDB {
     private DB dataBase;
 
 
-	ReservationsDB(){
+	ReservationsDB() throws ClassNotFoundException, SQLException{
         this.dataBase = new DB("projetihm", "projetihm", "mhitejorp");
+        this.dataBase.testDB("Reservation");
 	}
 
 	Reservation[] searchActiveReservationFullName(String lastName, String name){
