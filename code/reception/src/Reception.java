@@ -46,10 +46,11 @@ class Reception {
             this.reservationsDB = new DBReservations();
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(this.window,
-                "Connection a la base de donnees de reservations impossible.",
-                "Erreur",
-                JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    this.window,
+                    "Connection a la base de donnees de reservations impossible.",
+                    "Erreur",
+                    JOptionPane.ERROR_MESSAGE);
             error = true;
         }
 
@@ -57,10 +58,11 @@ class Reception {
             this.internalDB = new DBInternal();
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(this.window,
-                "Connection a la base de donnees interne impossible.",
-                "Erreur",
-                JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    this.window,
+                    "Connection a la base de donnees interne impossible.",
+                    "Erreur",
+                    JOptionPane.ERROR_MESSAGE);
             error = true;
         }
 
@@ -131,19 +133,21 @@ class Reception {
 			this.setStep(1);
 		}
         else {
-            JOptionPane.showMessageDialog(this.window,
-                "Aucun resultat.",
-                "Erreur",
-                JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    this.window,
+                    "Aucun resultat.",
+                    "Erreur",
+                    JOptionPane.ERROR_MESSAGE);
         }
 	}
 
 	private void searchRooms(){
         if(this.internalDB.checkReservationValidated(this.selectedReservation.reference)){
-            JOptionPane.showMessageDialog(this.window,
-                "Cette reservation a deja ete utilisee.",
-                "Erreur",
-                JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    this.window,
+                    "Cette reservation a deja ete utilisee.",
+                    "Erreur",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
 
