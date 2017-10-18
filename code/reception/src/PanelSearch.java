@@ -10,11 +10,7 @@ class PanelSearch extends JPanel{
     private JTextField referencePt1TextField;
     private JTextField referencePt2TextField;
     private JTextField referencePt3TextField;
-    private JTextField[] reservationSubPanels = {
-            this.referencePt1TextField,
-            this.referencePt2TextField,
-            this.referencePt3TextField
-    };
+    private JTextField[] reservationSubPanels;
 
     private int reservationSubPanel = 0;
 
@@ -138,6 +134,12 @@ class PanelSearch extends JPanel{
         textFieldConstraints.gridy = 0;
         panelReferenceText.add(referencePt3TextField, textFieldConstraints);
 
+        this.reservationSubPanels = new JTextField[]{
+                this.referencePt1TextField,
+                this.referencePt2TextField,
+                this.referencePt3TextField
+        };
+
 
         ListenerReservationSearch reservationListener = new ListenerReservationSearch(this.window);
         JButton searchButton = Utils.createJButton("Chercher", reservationListener);
@@ -157,11 +159,11 @@ class PanelSearch extends JPanel{
 
     void setReservationSubPanel(int n, String leftover){
         this.setReservationSubPanel(n);
-        reservationSubPanels[this.reservationSubPanel].setText(leftover);
+        this.reservationSubPanels[this.reservationSubPanel].setText(this.reservationSubPanels[this.reservationSubPanel].getText() + leftover);
     }
     void setReservationSubPanel(int n){
         this.reservationSubPanel = n;
-        reservationSubPanels[this.reservationSubPanel].requestFocus();
+        this.reservationSubPanels[this.reservationSubPanel].requestFocus();
     }
 
     Boolean reservationNullOrEmpty(){

@@ -1,9 +1,9 @@
 class Client {
-	String name;
 	String lastName;
+	String name;
 
-	Client(String name_, String lastName_){
-		this.name = name_;
+	Client(String lastName_, String name_){
 		this.lastName = lastName_;
+		this.name = name_;
 	}
 }

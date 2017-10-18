@@ -23,11 +23,11 @@ class PanelFinalValidation extends JPanel {
         panelConstraints.fill = GridBagConstraints.BOTH;
     }
 
-    void refresh(Room selected){
+    void refresh(Room selected, Client client){
         this.removeAll();
 
 
-        JLabel selectedRoomLabel = Utils.createContentJLabel("La chambre " + String.valueOf(selected.number) + " a bien ete attribuee");
+        JLabel selectedRoomLabel = Utils.createContentJLabel("La chambre " + String.valueOf(selected.number) + " a bien ete attribuee a " + client.name + " " + client.lastName + ".");
         Utils.labelTitleConstraints.gridx = 0;
         Utils.labelTitleConstraints.gridy = 0;
         Utils.labelTitleConstraints.weightx = 1;

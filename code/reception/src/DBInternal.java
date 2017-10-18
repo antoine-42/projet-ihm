@@ -38,7 +38,7 @@ class DBInternal {
         }
     }
     void validReservation(String reference, String room){
-        String query = "INSERT INTO Presentations VALUES (CURDATE(), ?, ?)";
+        String query = "INSERT INTO Presentations(Jour, Reservation, Chambre) VALUES (CURDATE(), ?, ?)";
         String[] args = {reference, room};
 
         dataBase.executeQuery(query, args);

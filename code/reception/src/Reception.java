@@ -100,7 +100,7 @@ class Reception {
             this.window.setTitle("Confirmation");
             this.windowPanel.setBackButtonVisible(false);
 
-            this.finalValidationPanel.refresh(this.selectedRoom);
+            this.finalValidationPanel.refresh(this.selectedRoom, this.selectedReservation.client);
             this.windowPanel.setVisiblePanel(3);
         }
 	}
