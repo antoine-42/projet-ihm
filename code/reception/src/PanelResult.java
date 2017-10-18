@@ -2,6 +2,16 @@ import javax.swing.*;
 import java.awt.*;
 
 class PanelResult extends JPanel {
+    private static final String labelTitles[] = {
+            "Nom",
+            "Prenom",
+            "Reference",
+            "Type de chambre",
+            "Debut du sejour",
+            "Duree du sejour"
+    };
+
+
     private Reception window;
 
     private JLabel resultsLabel;
@@ -73,16 +83,8 @@ class PanelResult extends JPanel {
     private void createReservationsTable(JPanel panel, Reservation[] reservations, Boolean createButtons){
         panel.removeAll();
 
-        String labelTitles[] = {
-                "Nom",
-                "Prenom",
-                "Reference",
-                "Type de chambre",
-                "Debut du sejour",
-                "Duree du sejour"
-        };
-        for (int i = 0; i < labelTitles.length; i++) {
-            JLabel labelTitle = Utils.createContentJLabel(labelTitles[i]);
+        for (int i = 0; i < PanelResult.labelTitles.length; i++) {
+            JLabel labelTitle = Utils.createContentJLabel(PanelResult.labelTitles[i]);
             Utils.cellConstraints.gridx = i;
             Utils.cellConstraints.gridy = 0;
             panel.add(labelTitle, Utils.cellConstraints);

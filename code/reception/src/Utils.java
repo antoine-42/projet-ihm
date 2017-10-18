@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.text.*;
 
-public class Utils {
+class Utils {
     static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
     static final Insets MARGIN_DEFAULT = new Insets(5, 5, 5, 5);
@@ -17,15 +17,15 @@ public class Utils {
     static GridBagConstraints labelTitleConstraints = new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, MARGIN_NONE, 25, 25);
     static GridBagConstraints cellConstraints = new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.NORTH, GridBagConstraints.BOTH, MARGIN_NONE, 0, 0);
 
-    static final Font DEFAULT_FONT = new Font("SansSerif", Font.PLAIN, 15);
-    static final Font TITLE_FONT = new Font("SansSerif", Font.PLAIN, 23);
-
-    static final Border DEFAULT_JTEXTFIELD_BORDER = BorderFactory.createLineBorder(Color.GRAY, 1);
-    static final Border EMPTY_BORDER = BorderFactory.createEmptyBorder();
-
     static final Color PRIMARY_COLOR = Color.decode("#EAEAEA");
-    static final Color SECONDARY_COLOR = Color.black;
+    private static final Color SECONDARY_COLOR = Color.black;
     static final Color THIRD_COLOR = Color.WHITE;
+
+    private static final Font DEFAULT_FONT = new Font("SansSerif", Font.PLAIN, 15);
+    private static final Font TITLE_FONT = new Font("SansSerif", Font.PLAIN, 23);
+
+    private static final Border DEFAULT_JTEXTFIELD_BORDER = BorderFactory.createLineBorder(Color.GRAY, 1);
+    private static final Border EMPTY_BORDER = BorderFactory.createEmptyBorder();
 
 
     static JPanel createJPanel(){
@@ -89,6 +89,6 @@ public class Utils {
     }
 
 
-    //make constructor unaccessible
+    //make constructor inaccessible
     private Utils(){}
 }

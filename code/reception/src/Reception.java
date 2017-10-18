@@ -5,7 +5,8 @@ import java.awt.*;
 
 class Reception {
 	int step = 0;
-	private JFrame window;
+	private JFrame window = new MainWindow();
+    private JPanel windowPanel = new JPanel();
 	private CardLayout mainPanelCard;
     private JPanel mainPanel = new JPanel();
     private JPanel buttonWrapper;
@@ -32,28 +33,13 @@ class Reception {
 		this.window = new JFrame();
         this.window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        JPanel windowPanel = new JPanel();
-        windowPanel.setLayout(new BoxLayout(windowPanel, BoxLayout.Y_AXIS));
-        windowPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
-        windowPanel.setBackground(Utils.PRIMARY_COLOR);
-        this.window.add(windowPanel);
+        this.windowPanel.setLayout(new BoxLayout(this.windowPanel, BoxLayout.Y_AXIS));
+        this.windowPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        this.windowPanel.setBackground(Utils.PRIMARY_COLOR);
+        this.window.add(this.windowPanel);
 
-        JButton backButton = new JButton("←");
-        ListenerReturnButton returnButtonListener = new ListenerReturnButton(this);
-        backButton.addActionListener(returnButtonListener);
-        backButton.setFont(Utils.DEFAULT_FONT);
-
-        this.buttonWrapper = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        this.buttonWrapper.add(backButton);
-        this.buttonWrapper.setAlignmentX(Component.RIGHT_ALIGNMENT);
-        this.buttonWrapper.setOpaque(false);
-
-        Utils.buttonConstraints.gridx = 0;
-        Utils.buttonConstraints.gridy = 0;
-        Utils.buttonConstraints.gridwidth = 1;
-        Utils.buttonConstraints.anchor = GridBagConstraints.LINE_START;
-        windowPanel.add(buttonWrapper);
-        windowPanel.add(this.mainPanel);
+        this.createBackButton();
+        this.windowPanel.add(this.mainPanel);
 
         this.mainPanelCard = new CardLayout();
         this.mainPanel.setLayout(this.mainPanelCard);
@@ -70,6 +56,17 @@ class Reception {
         this.connectionCheck();
 	}
 
+    private void createBackButton(){
+        ListenerReturnButton returnButtonListener = new ListenerReturnButton(this);
+        JButton backButton = Utils.createJButton("←", returnButtonListener);
+
+        this.buttonWrapper = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        this.buttonWrapper.add(backButton);
+        this.buttonWrapper.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        this.buttonWrapper.setOpaque(false);
+
+        this.windowPanel.add(buttonWrapper);
+    }
     private void connectionCheck(){
         Boolean error = false;
         try{
@@ -194,7 +191,6 @@ class Reception {
 
 	void selectReservation(Reservation reservation){
         this.selectedReservation = reservation;
-
         this.searchRooms();
     }
     void selectRoom(Room room){

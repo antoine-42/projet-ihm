@@ -4,14 +4,19 @@ import java.awt.*;
 class PanelSearch extends JPanel{
     private Reception window;
 
-    JTextField lastNameTextField;
-    JTextField nameTextField;
+    private JTextField lastNameTextField;
+    private JTextField nameTextField;
 
-    JTextField referencePt1TextField;
-    JTextField referencePt2TextField;
-    JTextField referencePt3TextField;
+    private JTextField referencePt1TextField;
+    private JTextField referencePt2TextField;
+    private JTextField referencePt3TextField;
+    private JTextField[] reservationSubPanels = {
+            this.referencePt1TextField,
+            this.referencePt2TextField,
+            this.referencePt3TextField
+    };
 
-    int reservationSubPanel = 0;
+    private int reservationSubPanel = 0;
 
 
     PanelSearch(Reception window_){
@@ -151,21 +156,21 @@ class PanelSearch extends JPanel{
     }
 
     void setReservationSubPanel(int n, String leftover){
-        JTextField[] reservationSubPanels = {this.referencePt1TextField, this.referencePt2TextField, this.referencePt3TextField};
-
         this.setReservationSubPanel(n);
-
         reservationSubPanels[this.reservationSubPanel].setText(leftover);
     }
     void setReservationSubPanel(int n){
-        JTextField[] reservationSubPanels = {this.referencePt1TextField, this.referencePt2TextField, this.referencePt3TextField};
-
         this.reservationSubPanel = n;
         reservationSubPanels[this.reservationSubPanel].requestFocus();
     }
 
     Boolean reservationNullOrEmpty(){
-        return Utils.isNullOrEmpty(this.referencePt1TextField.getText()) && Utils.isNullOrEmpty(this.referencePt2TextField.getText()) && Utils.isNullOrEmpty(this.referencePt3TextField.getText());
+        for (JTextField field: this.reservationSubPanels) {
+            if (field != null && !Utils.isNullOrEmpty(field.getText())){
+                return false;
+            }
+        }
+        return true;
     }
     String getReservation(){
         return this.referencePt1TextField.getText() + "-" + this.referencePt2TextField.getText() + "-" + this.referencePt3TextField.getText();
