@@ -125,7 +125,7 @@ class SearchPanel extends JPanel{
         this.referencePt1TextField.setFont(Reception.defaultFont);
         this.referencePt1TextField.setBorder(BorderFactory.createEmptyBorder());
         this.referencePt1TextField.setHorizontalAlignment(JTextField.CENTER);
-        this.referencePt1TextField.setDocument(new JTextFieldLimit(4, this));
+        this.referencePt1TextField.setDocument(new JTextFieldLimit(4, 0, this));
         textFieldConstraints.gridx = 0;
         textFieldConstraints.gridy = 0;
         panelReferenceText.add(referencePt1TextField, textFieldConstraints);
@@ -141,7 +141,7 @@ class SearchPanel extends JPanel{
         this.referencePt2TextField.setFont(Reception.defaultFont);
         this.referencePt2TextField.setBorder(BorderFactory.createEmptyBorder());
         this.referencePt2TextField.setHorizontalAlignment(JTextField.CENTER);
-        this.referencePt2TextField.setDocument(new JTextFieldLimit(4, this));
+        this.referencePt2TextField.setDocument(new JTextFieldLimit(4, 1, this));
         textFieldConstraints.gridx = 2;
         textFieldConstraints.gridy = 0;
         panelReferenceText.add(referencePt2TextField, textFieldConstraints);
@@ -183,19 +183,25 @@ class SearchPanel extends JPanel{
         this.add(spacer, constraints);
     }
 
-    void nextReservationSubPanel(){
+    void setReservationSubPanel(int n, String leftover){
         JTextField[] reservationSubPanels = {this.referencePt1TextField, this.referencePt2TextField, this.referencePt3TextField};
 
-        if (reservationSubPanel < reservationSubPanels.length -1) {
-            reservationSubPanel++;
-            reservationSubPanels[reservationSubPanel].requestFocus();
-        }
+        this.setReservationSubPanel(n);
+
+        reservationSubPanels[this.reservationSubPanel].setText(leftover);
+    }
+    void setReservationSubPanel(int n){
+        JTextField[] reservationSubPanels = {this.referencePt1TextField, this.referencePt2TextField, this.referencePt3TextField};
+
+        this.reservationSubPanel = n;
+        reservationSubPanels[this.reservationSubPanel].requestFocus();
     }
 
     Boolean reservationNullOrEmpty(){
         return Reception.isNullOrEmpty(this.referencePt1TextField.getText()) && Reception.isNullOrEmpty(this.referencePt2TextField.getText()) && Reception.isNullOrEmpty(this.referencePt3TextField.getText());
     }
     String getReservation(){
+        System.out.println(this.referencePt1TextField.getText() + "-" + this.referencePt2TextField.getText() + "-" + this.referencePt3TextField.getText());
         return this.referencePt1TextField.getText() + "-" + this.referencePt2TextField.getText() + "-" + this.referencePt3TextField.getText();
     }
     String getLastName(){

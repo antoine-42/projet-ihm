@@ -4,11 +4,13 @@ import javax.swing.*;
 
 public class JTextFieldLimit extends PlainDocument {
     private int limit;
+    private int field_number;
     private SearchPanel panel = null;
 
-    JTextFieldLimit(int limit_, SearchPanel panel_) {
+    JTextFieldLimit(int limit_, int field_number_, SearchPanel panel_) {
         super();
         this.limit = limit_;
+        this.field_number = field_number_;
         this.panel = panel_;
     }
     JTextFieldLimit(int limit) {
@@ -16,17 +18,25 @@ public class JTextFieldLimit extends PlainDocument {
         this.limit = limit;
     }
 
-    public void insertString( int offset, String  str, AttributeSet attr ) throws BadLocationException {
+    public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
         if (str == null){
             return;
         }
+        str = str.replace("-", "");
 
-        if (getLength() + str.length() <= this.limit) {
+        if (getLength() < this.limit){
+            if (getLength() + str.length() > this.limit) {
+                String leftover = str.substring(this.limit - getLength(), str.length());
+                str = str.substring(0, this.limit - getLength());
+
+                if (this.panel != null) {
+                    this.panel.setReservationSubPanel(field_number +1, leftover);
+                }
+            }
             super.insertString(offset, str, attr);
         }
-
-        if (getLength() + str.length() >= this.limit +1 && this.panel != null) {
-            this.panel.nextReservationSubPanel();
+        else if (this.panel != null) {
+            this.panel.setReservationSubPanel(field_number +1);
         }
     }
 }
