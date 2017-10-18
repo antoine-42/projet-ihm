@@ -37,7 +37,7 @@ class DB {
         }
         catch(SQLException e) {
             offline = true;
-            System.out.println("[FATAL] could not connect to db");
+            System.out.println("[FATAL] could not execute query");
             e.printStackTrace();
         }
 

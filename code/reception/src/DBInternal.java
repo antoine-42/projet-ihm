@@ -1,11 +1,11 @@
 import java.sql.*;
 
 
-class InternalDB {
+class DBInternal {
     private DB dataBase;
 
 
-    InternalDB() throws ClassNotFoundException, SQLException{
+    DBInternal() throws ClassNotFoundException, SQLException{
         this.dataBase = new DB("bohl", "bohl", "bohl");
         this.dataBase.testDB("Chambre");
     }
@@ -37,9 +37,9 @@ class InternalDB {
             return false;
         }
     }
-    void validReservation(String reference){
-        String query = "INSERT INTO Presentations VALUES (CURDATE(),?)";
-        String[] args = {String.valueOf(reference)};
+    void validReservation(String reference, String room){
+        String query = "INSERT INTO Presentations(Jour, Reservation, Chambre) VALUES (CURDATE(), ?, ?)";
+        String[] args = {reference, room};
 
         dataBase.executeQuery(query, args);
     }

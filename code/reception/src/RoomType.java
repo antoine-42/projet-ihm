@@ -1,5 +1,5 @@
 class RoomType {
-    static String[] TYPE = {
+    static final String[] TYPE = {
 		"Lit simple",
 		"Lit double",
 		"Deux lits simples"

@@ -1,16 +1,16 @@
 import java.sql.SQLException;
 
 
-class ReservationsDB {
+class DBReservations {
     //test timespamp: 1515193200
-    private static String reservationSearchQueryPrefix = "SELECT * FROM Reservation JOIN Client ON ";
-    private static String activeReservationSearchQuerySuffix = "AND Reservation.client = Client.id AND 1515193200 >= UNIX_TIMESTAMP(Reservation.debut) AND 1515193200 < UNIX_TIMESTAMP(Reservation.debut) + Reservation.nuits *86400 ORDER BY Reservation.debut ASC, Reservation.nuits DESC";
-    private static String allReservationSearchQuerySuffix = "AND Reservation.client = Client.id AND (1515193200 < UNIX_TIMESTAMP(Reservation.debut) OR 1515193200 >= UNIX_TIMESTAMP(Reservation.debut) + Reservation.nuits *86400) ORDER BY Reservation.debut ASC, Reservation.nuits DESC";
+    private final static String reservationSearchQueryPrefix = "SELECT * FROM Reservation JOIN Client ON ";
+    private final static String activeReservationSearchQuerySuffix = "AND Reservation.client = Client.id AND 1515193200 >= UNIX_TIMESTAMP(Reservation.debut) AND 1515193200 < UNIX_TIMESTAMP(Reservation.debut) + Reservation.nuits *86400 ORDER BY Reservation.debut ASC, Reservation.nuits DESC";
+    private final static String allReservationSearchQuerySuffix = "AND Reservation.client = Client.id AND (1515193200 < UNIX_TIMESTAMP(Reservation.debut) OR 1515193200 >= UNIX_TIMESTAMP(Reservation.debut) + Reservation.nuits *86400) ORDER BY Reservation.debut ASC, Reservation.nuits DESC";
 
     private DB dataBase;
 
 
-	ReservationsDB() throws ClassNotFoundException, SQLException{
+	DBReservations() throws ClassNotFoundException, SQLException{
         this.dataBase = new DB("projetihm", "projetihm", "mhitejorp");
         this.dataBase.testDB("Reservation");
 	}

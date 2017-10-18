@@ -1,10 +1,10 @@
 import java.awt.event.*;
 
-public class ReservationSelectListener implements ActionListener{
+public class ListenerReservationSelect implements ActionListener{
     private Reception reception;
     private Reservation reservation;
 
-    ReservationSelectListener(Reception reception_, Reservation reservation_){
+    ListenerReservationSelect(Reception reception_, Reservation reservation_){
         this.reception = reception_;
         this.reservation = reservation_;
     }

@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-
 class Reservation {
 	Client client;
 	String reference;
@@ -70,7 +69,7 @@ class Reservation {
             this.client.name,
             this.reference,
             RoomType.TYPE[this.category],
-            Reception.dateFormat.format(this.start),
+            Utils.DATE_FORMAT.format(this.start),
             String.valueOf(this.length) + " Jours"
         };
     }
