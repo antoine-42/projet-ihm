@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-
 class Reservation {
 	Client client;
 	String reference;

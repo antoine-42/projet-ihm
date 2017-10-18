@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 class RoomSelectPanel extends JPanel {
-    private static int maxAlternatives = 10;
+    private static final int maxAlternatives = 10;
 
     private Reception window;
 

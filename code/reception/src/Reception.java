@@ -7,22 +7,22 @@ import java.text.*;
 class Reception {
 	static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    static Insets marginDefault = new Insets(5, 5, 5, 5);
-    static Insets marginNoDown = new Insets(5, 5, 0, 5);
-    static Insets marginNone = new Insets(0, 0, 0, 0);
-    static Insets marginRight = new Insets(0, 0, 0, 20);
-    static Insets marginLeft = new Insets(0, 20, 0, 0);
+    static final Insets marginDefault = new Insets(5, 5, 5, 5);
+    static final Insets marginNone = new Insets(0, 0, 0, 0);
+    static final Insets marginNoDown = new Insets(5, 5, 0, 5);
+    static final Insets marginRight = new Insets(0, 0, 0, 20);
+    static final Insets marginLeft = new Insets(0, 20, 0, 0);
 
     static GridBagConstraints buttonConstraints = new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE, marginNone, 10, 10);
     static GridBagConstraints labelTitleConstraints = new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, marginNone, 25, 25);
     static GridBagConstraints cellConstraints = new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.NORTH, GridBagConstraints.BOTH, marginNone, 0, 0);
 
-    static Font defaultFont = new Font("SansSerif", Font.PLAIN, 15);
-    static Font titleFont = new Font("SansSerif", Font.PLAIN, 23);
+    static final Font defaultFont = new Font("SansSerif", Font.PLAIN, 15);
+    static final Font titleFont = new Font("SansSerif", Font.PLAIN, 23);
 
-    static Color primaryColor = Color.decode("#EAEAEA");
-    static Color secondaryColor = Color.black;
-    static Color thirdColor = Color.WHITE;
+    private static final Color primaryColor = Color.decode("#EAEAEA");
+    static final Color secondaryColor = Color.black;
+    static final Color thirdColor = Color.WHITE;
 
 
 	int step = 0;
