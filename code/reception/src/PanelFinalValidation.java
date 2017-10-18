@@ -1,11 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 
-class FinalValidationPanel extends JPanel {
+class PanelFinalValidation extends JPanel {
     private Reception window;
 
 
-    FinalValidationPanel(Reception window_){
+    PanelFinalValidation(Reception window_){
         this.window = window_;
 
         this.drawPanel();
@@ -38,7 +38,7 @@ class FinalValidationPanel extends JPanel {
         this.add(selectedRoomLabel, Utils.labelTitleConstraints);
 
         JButton finishButton = new JButton("TERMINER");
-        FinishListener finishListener = new FinishListener(this.window);
+        ListenerFinish finishListener = new ListenerFinish(this.window);
         finishButton.addActionListener(finishListener);
         finishButton.setFont(Utils.DEFAULT_FONT);
 

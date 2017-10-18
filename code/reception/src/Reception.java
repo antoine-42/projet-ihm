@@ -10,13 +10,13 @@ class Reception {
     private JPanel mainPanel = new JPanel();
     private JPanel buttonWrapper;
 
-	private SearchPanel searchPanel = new SearchPanel(this);
-    private ResultPanel resultPanel = new ResultPanel(this);
-    private RoomSelectPanel roomSelectPanel = new RoomSelectPanel(this);
-    private FinalValidationPanel finalValidationPanel = new FinalValidationPanel(this);
+	private PanelSearch searchPanel = new PanelSearch(this);
+    private PanelResult resultPanel = new PanelResult(this);
+    private PanelRoomSelect roomSelectPanel = new PanelRoomSelect(this);
+    private PanelFinalValidation finalValidationPanel = new PanelFinalValidation(this);
 
-    private ReservationsDB reservationsDB;
-    private InternalDB internalDB;
+    private DBReservations reservationsDB;
+    private DBInternal internalDB;
 
 	private Reservation[] reservations = {};
     private Reservation[] additionalReservations = {};
@@ -39,7 +39,7 @@ class Reception {
         this.window.add(windowPanel);
 
         JButton backButton = new JButton("←");
-        ReturnButtonListener returnButtonListener = new ReturnButtonListener(this);
+        ListenerReturnButton returnButtonListener = new ListenerReturnButton(this);
         backButton.addActionListener(returnButtonListener);
         backButton.setFont(Utils.DEFAULT_FONT);
 
@@ -73,7 +73,7 @@ class Reception {
     void connectionCheck(){
         Boolean error = false;
         try{
-            this.reservationsDB = new ReservationsDB();
+            this.reservationsDB = new DBReservations();
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(this.window,
@@ -84,7 +84,7 @@ class Reception {
         }
 
         try{
-            this.internalDB = new InternalDB();
+            this.internalDB = new DBInternal();
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(this.window,

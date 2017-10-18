@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-class ResultPanel extends JPanel {
+class PanelResult extends JPanel {
     private Reception window;
 
     private JLabel resultsLabel;
@@ -11,7 +11,7 @@ class ResultPanel extends JPanel {
     private JPanel panelTableauAdditionalResults;
 
 
-    ResultPanel(Reception window_){
+    PanelResult(Reception window_){
         this.window = window_;
 
         this.drawPanel();
@@ -32,9 +32,7 @@ class ResultPanel extends JPanel {
         constraints.anchor = GridBagConstraints.NORTH;
 
 
-        this.resultsLabel = new JLabel("Resultats", JLabel.LEFT);
-        resultsLabel.setFont(Utils.TITLE_FONT);
-        resultsLabel.setForeground(Utils.SECONDARY_COLOR);
+        this.resultsLabel = Utils.createTitleJLabel("Resultats");
         Utils.labelTitleConstraints.gridx = 0;
         Utils.labelTitleConstraints.gridy = 0;
         Utils.labelTitleConstraints.gridwidth = 1;
@@ -46,9 +44,7 @@ class ResultPanel extends JPanel {
         constraints.gridy = 1;
         this.add(this.panelTableauResults, constraints);
 
-        this.additionalResultsLabel = new JLabel("Autres reservations", JLabel.LEFT);
-        additionalResultsLabel.setFont(Utils.TITLE_FONT);
-        additionalResultsLabel.setForeground(Utils.SECONDARY_COLOR);
+        this.additionalResultsLabel = Utils.createTitleJLabel("Autres reservations");
         Utils.labelTitleConstraints.gridx = 0;
         Utils.labelTitleConstraints.gridy = 3;
         Utils.labelTitleConstraints.gridwidth = 1;
@@ -120,7 +116,7 @@ class ResultPanel extends JPanel {
             }
             if (createButtons) {
                 JButton selectButton = new JButton("⇒");
-                ReservationSelectListener selectListener = new ReservationSelectListener(this.window, reservations[i]);
+                ListenerReservationSelect selectListener = new ListenerReservationSelect(this.window, reservations[i]);
                 selectButton.addActionListener(selectListener);
                 selectButton.setFont(Utils.DEFAULT_FONT);
 

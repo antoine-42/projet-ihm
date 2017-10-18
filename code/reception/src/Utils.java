@@ -23,8 +23,19 @@ public class Utils {
     static final Color THIRD_COLOR = Color.WHITE;
 
 
-    static JLabel titleJLabel(){
-        
+    static JLabel createTitleJLabel(String text){
+        JLabel titleJLabel = new JLabel(text, JLabel.LEFT);
+        titleJLabel.setFont(Utils.TITLE_FONT);
+        titleJLabel.setForeground(Utils.SECONDARY_COLOR);
+
+        return titleJLabel;
+    }
+    static JLabel createContentJLabel(String text){
+        JLabel contentLabel = new JLabel(text, JLabel.LEFT);
+        contentLabel.setFont(Utils.DEFAULT_FONT);
+        contentLabel.setForeground(Utils.SECONDARY_COLOR);
+
+        return contentLabel;
     }
 
 

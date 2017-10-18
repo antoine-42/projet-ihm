@@ -1,11 +1,11 @@
 import java.sql.*;
 
 
-class InternalDB {
+class DBInternal {
     private DB dataBase;
 
 
-    InternalDB() throws ClassNotFoundException, SQLException{
+    DBInternal() throws ClassNotFoundException, SQLException{
         this.dataBase = new DB("bohl", "bohl", "bohl");
         this.dataBase.testDB("Chambre");
     }

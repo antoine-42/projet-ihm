@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-class RoomSelectPanel extends JPanel {
+class PanelRoomSelect extends JPanel {
     private static final int maxAlternatives = 10;
 
     private Reception window;
@@ -11,7 +11,7 @@ class RoomSelectPanel extends JPanel {
     private JPanel altRoomsPanel;
 
 
-    RoomSelectPanel(Reception window_){
+    PanelRoomSelect(Reception window_){
         this.window = window_;
 
         this.drawPanel();
@@ -70,10 +70,7 @@ class RoomSelectPanel extends JPanel {
 
         String[] reservationContent = reservation.getInfo();
 
-        JLabel selectedReservationLabel = new JLabel("Reservation Selectionnee", JLabel.LEFT);
-        selectedReservationLabel.setFont(Utils.TITLE_FONT);
-        selectedReservationLabel.setForeground(Utils.SECONDARY_COLOR);
-
+        JLabel selectedReservationLabel = Utils.createTitleJLabel("Reservation Selectionnee");
         Utils.labelTitleConstraints.gridx = 0;
         Utils.labelTitleConstraints.gridy = 0;
         Utils.labelTitleConstraints.gridwidth = reservationContent.length;
@@ -91,17 +88,14 @@ class RoomSelectPanel extends JPanel {
         }
 
 
-        JLabel suggestedRoomLabel = new JLabel("Chambre " + String.valueOf(suggested.number), JLabel.LEFT);
-        suggestedRoomLabel.setFont(Utils.TITLE_FONT);
-        suggestedRoomLabel.setForeground(Utils.SECONDARY_COLOR);
-
+        JLabel suggestedRoomLabel = Utils.createTitleJLabel("Chambre " + String.valueOf(suggested.number));
         Utils.labelTitleConstraints.gridx = 0;
         Utils.labelTitleConstraints.gridy = 0;
         Utils.labelTitleConstraints.gridwidth = 1;
         this.suggestedRoomPanel.add(suggestedRoomLabel, Utils.labelTitleConstraints);
 
         JButton acceptSuggestedButton = new JButton("VALIDER");
-        SelectRoomListener selectRoomListener = new SelectRoomListener(this.window, suggested);
+        ListenerSelectRoom selectRoomListener = new ListenerSelectRoom(this.window, suggested);
         acceptSuggestedButton.addActionListener(selectRoomListener);
         acceptSuggestedButton.setFont(Utils.DEFAULT_FONT);
 
@@ -110,10 +104,7 @@ class RoomSelectPanel extends JPanel {
         this.suggestedRoomPanel.add(acceptSuggestedButton, Utils.buttonConstraints);
 
 
-        JLabel alternativesLabel = new JLabel("Alternatives");
-        alternativesLabel.setFont(Utils.TITLE_FONT);
-        alternativesLabel.setForeground(Utils.SECONDARY_COLOR);
-
+        JLabel alternativesLabel = Utils.createTitleJLabel("Alternatives");
         Utils.labelTitleConstraints.gridx = 0;
         Utils.labelTitleConstraints.gridy = 0;
         Utils.labelTitleConstraints.gridwidth = 3;
@@ -152,7 +143,7 @@ class RoomSelectPanel extends JPanel {
             }
 
             JButton acceptAlternativeButton = new JButton("VALIDER");
-            SelectRoomListener selectAltRoomListener = new SelectRoomListener(this.window, alternatives[i]);
+            ListenerSelectRoom selectAltRoomListener = new ListenerSelectRoom(this.window, alternatives[i]);
             acceptAlternativeButton.addActionListener(selectAltRoomListener);
             acceptAlternativeButton.setFont(Utils.DEFAULT_FONT);
 

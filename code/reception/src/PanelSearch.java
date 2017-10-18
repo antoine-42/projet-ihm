@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-class SearchPanel extends JPanel{
+class PanelSearch extends JPanel{
     private Reception window;
 
     JTextField lastNameTextField;
@@ -14,7 +14,7 @@ class SearchPanel extends JPanel{
     int reservationSubPanel = 0;
 
 
-    SearchPanel(Reception window_){
+    PanelSearch(Reception window_){
         this.window = window_;
 
         this.drawPanel();
@@ -163,7 +163,7 @@ class SearchPanel extends JPanel{
 
 
         JButton searchButton = new JButton("Chercher");
-        ReservationSearchListener reservationListener = new ReservationSearchListener(this.window);
+        ListenerReservationSearch reservationListener = new ListenerReservationSearch(this.window);
         searchButton.addActionListener(reservationListener);
         searchButton.setFont(Utils.DEFAULT_FONT);
 

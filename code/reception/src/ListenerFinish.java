@@ -1,10 +1,10 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FinishListener implements ActionListener {
+public class ListenerFinish implements ActionListener {
     private Reception reception;
 
-    FinishListener(Reception reception_){
+    ListenerFinish(Reception reception_){
         this.reception = reception_;
     }
 

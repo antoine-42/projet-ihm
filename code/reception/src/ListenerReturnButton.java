@@ -1,9 +1,9 @@
 import java.awt.event.*;
 
-public class ReturnButtonListener implements ActionListener{
+public class ListenerReturnButton implements ActionListener{
 	private Reception reception;
 
-	ReturnButtonListener(Reception reception_){
+	ListenerReturnButton(Reception reception_){
 		this.reception = reception_;
 	}
 

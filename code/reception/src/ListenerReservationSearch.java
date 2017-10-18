@@ -1,9 +1,9 @@
 import java.awt.event.*;
 
-public class ReservationSearchListener implements ActionListener{
+public class ListenerReservationSearch implements ActionListener{
 	private Reception reception;
 
-	ReservationSearchListener(Reception reception_){
+	ListenerReservationSearch(Reception reception_){
 		this.reception = reception_;
 	}
 

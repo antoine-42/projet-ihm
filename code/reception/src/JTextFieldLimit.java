@@ -1,13 +1,12 @@
 import javax.swing.text.*;
-import javax.swing.*;
 
 
 public class JTextFieldLimit extends PlainDocument {
     private int limit;
     private int field_number;
-    private SearchPanel panel = null;
+    private PanelSearch panel = null;
 
-    JTextFieldLimit(int limit_, int field_number_, SearchPanel panel_) {
+    JTextFieldLimit(int limit_, int field_number_, PanelSearch panel_) {
         super();
         this.limit = limit_;
         this.field_number = field_number_;
