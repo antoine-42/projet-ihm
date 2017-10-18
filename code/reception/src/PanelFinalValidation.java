@@ -27,21 +27,15 @@ class PanelFinalValidation extends JPanel {
         this.removeAll();
 
 
-        JLabel selectedRoomLabel = new JLabel("La chambre " + String.valueOf(selected.number) + " a bien ete attribuee", JLabel.LEFT);
-        selectedRoomLabel.setFont(Utils.TITLE_FONT);
-        selectedRoomLabel.setForeground(Utils.SECONDARY_COLOR);
-
+        JLabel selectedRoomLabel = Utils.createContentJLabel("La chambre " + String.valueOf(selected.number) + " a bien ete attribuee");
         Utils.labelTitleConstraints.gridx = 0;
         Utils.labelTitleConstraints.gridy = 0;
         Utils.labelTitleConstraints.weightx = 1;
         Utils.labelTitleConstraints.fill = GridBagConstraints.BOTH;
         this.add(selectedRoomLabel, Utils.labelTitleConstraints);
 
-        JButton finishButton = new JButton("TERMINER");
         ListenerFinish finishListener = new ListenerFinish(this.window);
-        finishButton.addActionListener(finishListener);
-        finishButton.setFont(Utils.DEFAULT_FONT);
-
+        JButton finishButton = Utils.createJButton("TERMINER", finishListener);
         Utils.buttonConstraints.gridx = 0;
         Utils.buttonConstraints.gridy = 1;
         this.add(finishButton, Utils.buttonConstraints);
@@ -49,8 +43,7 @@ class PanelFinalValidation extends JPanel {
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridy = 2;
         constraints.weighty = 1;
-        JPanel spacer = new JPanel();
-        spacer.setOpaque(false);
+        JPanel spacer = Utils.createJPanel();
         this.add(spacer, constraints);
     }
 }

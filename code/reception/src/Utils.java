@@ -1,5 +1,7 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.text.*;
 
 public class Utils {
@@ -18,10 +20,20 @@ public class Utils {
     static final Font DEFAULT_FONT = new Font("SansSerif", Font.PLAIN, 15);
     static final Font TITLE_FONT = new Font("SansSerif", Font.PLAIN, 23);
 
+    static final Border DEFAULT_JTEXTFIELD_BORDER = BorderFactory.createLineBorder(Color.GRAY, 1);
+    static final Border EMPTY_BORDER = BorderFactory.createEmptyBorder();
+
     static final Color PRIMARY_COLOR = Color.decode("#EAEAEA");
     static final Color SECONDARY_COLOR = Color.black;
     static final Color THIRD_COLOR = Color.WHITE;
 
+
+    static JPanel createJPanel(){
+        JPanel jPanel = new JPanel(new GridBagLayout());
+        jPanel.setOpaque(false);
+
+        return jPanel;
+    }
 
     static JLabel createTitleJLabel(String text){
         JLabel titleJLabel = new JLabel(text, JLabel.LEFT);
@@ -36,6 +48,39 @@ public class Utils {
         contentLabel.setForeground(Utils.SECONDARY_COLOR);
 
         return contentLabel;
+    }
+
+    static JButton createJButton(String text){
+        JButton jButton = new JButton(text);
+        jButton.setFont(Utils.DEFAULT_FONT);
+
+        return jButton;
+    }
+    static JButton createJButton(String text, ActionListener listener){
+        JButton jButton = new JButton(text);
+        jButton.addActionListener(listener);
+        jButton.setFont(Utils.DEFAULT_FONT);
+
+        return jButton;
+    }
+
+    static JTextField createJTextField(String text){
+        JTextField jTextField = new JTextField(text);
+        jTextField.setFont(Utils.DEFAULT_FONT);
+        jTextField.setBorder(Utils.DEFAULT_JTEXTFIELD_BORDER);
+
+        return jTextField;
+    }
+    static JTextField createJTextField(){
+        return createJTextField("");
+    }
+    static JTextField createReferenceInputJTextField(){
+        JTextField jTextField = new JTextField();
+        jTextField.setFont(Utils.DEFAULT_FONT);
+        jTextField.setBorder(Utils.EMPTY_BORDER);
+        jTextField.setHorizontalAlignment(JTextField.CENTER);
+
+        return jTextField;
     }
 
 

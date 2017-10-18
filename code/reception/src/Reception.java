@@ -70,7 +70,7 @@ class Reception {
         this.connectionCheck();
 	}
 
-    void connectionCheck(){
+    private void connectionCheck(){
         Boolean error = false;
         try{
             this.reservationsDB = new DBReservations();
@@ -201,7 +201,8 @@ class Reception {
 	    this.selectedRoom = room;
 
         this.internalDB.affectRoom(room.number);
-        this.internalDB.validReservation(this.selectedReservation.reference);
+        this.internalDB.validReservation(this.selectedReservation.reference, String.valueOf(this.selectedRoom.number));
+        //todo: put that in a function called when closing window
         this.closeConnections();
 	    this.setStep(3);
     }
@@ -211,7 +212,7 @@ class Reception {
         this.setStep(0);
     }
 
-    void closeConnections(){
+    private void closeConnections(){
         this.internalDB.closeConnection();
         this.reservationsDB.closeConnection();
     }

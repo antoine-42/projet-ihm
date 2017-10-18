@@ -38,9 +38,7 @@ class PanelResult extends JPanel {
         Utils.labelTitleConstraints.gridwidth = 1;
         this.add(resultsLabel, Utils.labelTitleConstraints);
 
-        this.panelTableauResults = new JPanel();
-        this.panelTableauResults.setLayout(new GridBagLayout());
-        this.panelTableauResults.setOpaque(false);
+        this.panelTableauResults = Utils.createJPanel();
         constraints.gridy = 1;
         this.add(this.panelTableauResults, constraints);
 
@@ -50,14 +48,11 @@ class PanelResult extends JPanel {
         Utils.labelTitleConstraints.gridwidth = 1;
         this.add(additionalResultsLabel, Utils.labelTitleConstraints);
 
-        this.panelTableauAdditionalResults = new JPanel();
-        this.panelTableauAdditionalResults.setLayout(new GridBagLayout());
-        this.panelTableauAdditionalResults.setOpaque(false);
+        this.panelTableauAdditionalResults = Utils.createJPanel();
         constraints.gridy = 4;
         this.add(this.panelTableauAdditionalResults, constraints);
 
-        JPanel spacer = new JPanel();
-        spacer.setOpaque(false);
+        JPanel spacer = Utils.createJPanel();
         constraints.gridy = 2;
         constraints.weighty = 1;
         this.add(spacer, constraints);
@@ -87,10 +82,7 @@ class PanelResult extends JPanel {
                 "Duree du sejour"
         };
         for (int i = 0; i < labelTitles.length; i++) {
-            JLabel labelTitle = new JLabel(labelTitles[i], JLabel.LEFT);
-            labelTitle.setFont(Utils.DEFAULT_FONT);
-            labelTitle.setForeground(Utils.SECONDARY_COLOR);
-
+            JLabel labelTitle = Utils.createContentJLabel(labelTitles[i]);
             Utils.cellConstraints.gridx = i;
             Utils.cellConstraints.gridy = 0;
             panel.add(labelTitle, Utils.cellConstraints);
@@ -100,9 +92,7 @@ class PanelResult extends JPanel {
             String[] content = reservations[i].getInfo();
 
             for (int j = 0; j < content.length; j++) {
-                JLabel contentLabel = new JLabel(content[j], JLabel.LEFT);
-                contentLabel.setFont(Utils.DEFAULT_FONT);
-                contentLabel.setForeground(Utils.SECONDARY_COLOR);
+                JLabel contentLabel = Utils.createContentJLabel(content[j]);
 
                 if (i % 2 == 0) {
                     contentLabel.setOpaque(true);
@@ -115,11 +105,8 @@ class PanelResult extends JPanel {
                 panel.add(contentLabel, Utils.cellConstraints);
             }
             if (createButtons) {
-                JButton selectButton = new JButton("⇒");
                 ListenerReservationSelect selectListener = new ListenerReservationSelect(this.window, reservations[i]);
-                selectButton.addActionListener(selectListener);
-                selectButton.setFont(Utils.DEFAULT_FONT);
-
+                JButton selectButton = Utils.createJButton("⇒", selectListener);
                 Utils.cellConstraints.gridx = content.length;
                 Utils.cellConstraints.gridy = i +1;
                 panel.add(selectButton, Utils.cellConstraints);

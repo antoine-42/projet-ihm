@@ -53,9 +53,7 @@ class PanelSearch extends JPanel{
         panelConstraints.fill = GridBagConstraints.HORIZONTAL;
 
 
-        JPanel fullNamePanel = new JPanel();
-        fullNamePanel.setLayout(new GridBagLayout());
-        fullNamePanel.setOpaque(false);
+        JPanel fullNamePanel = Utils.createJPanel();
         panelConstraints.gridx = 0;
         panelConstraints.gridy = 0;
         panelConstraints.weightx = 1;
@@ -63,55 +61,42 @@ class PanelSearch extends JPanel{
         this.add(fullNamePanel, panelConstraints);
 
 
-        JLabel lastNameLabel = new JLabel("Nom du client", JLabel.LEFT);
-        lastNameLabel.setFont(Utils.DEFAULT_FONT);
-        lastNameLabel.setForeground(Utils.SECONDARY_COLOR);
+        JLabel lastNameLabel = Utils.createContentJLabel("Nom du client");
         labelConstraints.gridx = 0;
         labelConstraints.gridy = 0;
         labelConstraints.gridwidth = 1;
         fullNamePanel.add(lastNameLabel, labelConstraints);
 
-        this.lastNameTextField = new JTextField("Faure");
-        this.lastNameTextField.setFont(Utils.DEFAULT_FONT);
-        this.lastNameTextField.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        this.lastNameTextField = Utils.createJTextField("Faure");
         textFieldConstraints.gridx = 0;
         textFieldConstraints.gridy = 1;
         fullNamePanel.add(lastNameTextField, textFieldConstraints);
 
-        JLabel nameLabel = new JLabel("Prenom du client", JLabel.LEFT);
-        nameLabel.setFont(Utils.DEFAULT_FONT);
-        nameLabel.setForeground(Utils.SECONDARY_COLOR);
+        JLabel nameLabel = Utils.createContentJLabel("Prenom du client");
         labelConstraints.gridx = 0;
         labelConstraints.gridy = 2;
         labelConstraints.gridwidth = 1;
         fullNamePanel.add(nameLabel, labelConstraints);
 
-        this.nameTextField = new JTextField("Florian");
-        this.nameTextField.setFont(Utils.DEFAULT_FONT);
-        this.nameTextField.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        this.nameTextField = Utils.createJTextField("Florian");
         textFieldConstraints.gridx = 0;
         textFieldConstraints.gridy = 3;
         fullNamePanel.add(nameTextField, textFieldConstraints);
 
 
-        JPanel panelReference = new JPanel();
-        panelReference.setLayout(new GridBagLayout());
-        panelReference.setOpaque(false);
+        JPanel panelReference = Utils.createJPanel();
         panelConstraints.gridx = 1;
         panelConstraints.gridy = 0;
         panelConstraints.weightx = 3;
         panelConstraints.insets = Utils.MARGIN_LEFT;
         this.add(panelReference, panelConstraints);
 
-        JLabel labelReferenceReservation  = new JLabel("Reference de la reservation", JLabel.LEFT);
-        labelReferenceReservation.setFont(Utils.DEFAULT_FONT);
-        labelReferenceReservation.setForeground(Utils.SECONDARY_COLOR);
+        JLabel labelReferenceReservation = Utils.createContentJLabel("Reference de la reservation");
         labelConstraints.gridx = 0;
         labelConstraints.gridy = 0;
         panelReference.add(labelReferenceReservation, labelConstraints);
 
-        JPanel panelReferenceText = new JPanel();
-        panelReferenceText.setLayout(new GridBagLayout());
+        JPanel panelReferenceText = new JPanel(new GridBagLayout());
         panelReferenceText.setBackground(Color.WHITE);
         panelReferenceText.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
         panelConstraints.gridx = 0;
@@ -120,53 +105,37 @@ class PanelSearch extends JPanel{
         panelConstraints.insets = Utils.MARGIN_NONE;
         panelReference.add(panelReferenceText, panelConstraints);
 
-        this.referencePt1TextField = new JTextField();
-        this.referencePt1TextField.setFont(Utils.DEFAULT_FONT);
-        this.referencePt1TextField.setBorder(BorderFactory.createEmptyBorder());
-        this.referencePt1TextField.setHorizontalAlignment(JTextField.CENTER);
+        this.referencePt1TextField = Utils.createReferenceInputJTextField();
         this.referencePt1TextField.setDocument(new JTextFieldLimit(4, 0, this));
         textFieldConstraints.gridx = 0;
         textFieldConstraints.gridy = 0;
         panelReferenceText.add(referencePt1TextField, textFieldConstraints);
 
-        JLabel dash1Label = new JLabel("-", JLabel.LEFT);
-        dash1Label.setFont(Utils.DEFAULT_FONT);
-        dash1Label.setForeground(Utils.SECONDARY_COLOR);
+        JLabel dash1Label = Utils.createContentJLabel("-");
         smallLabelConstraints.gridx = 1;
         textFieldConstraints.gridy = 0;
         panelReferenceText.add(dash1Label, smallLabelConstraints);
 
-        this.referencePt2TextField = new JTextField();
-        this.referencePt2TextField.setFont(Utils.DEFAULT_FONT);
-        this.referencePt2TextField.setBorder(BorderFactory.createEmptyBorder());
-        this.referencePt2TextField.setHorizontalAlignment(JTextField.CENTER);
+        this.referencePt2TextField = Utils.createReferenceInputJTextField();
         this.referencePt2TextField.setDocument(new JTextFieldLimit(4, 1, this));
         textFieldConstraints.gridx = 2;
         textFieldConstraints.gridy = 0;
         panelReferenceText.add(referencePt2TextField, textFieldConstraints);
 
-        JLabel dash2Label = new JLabel("-", JLabel.LEFT);
-        dash2Label.setFont(Utils.DEFAULT_FONT);
-        dash2Label.setForeground(Utils.SECONDARY_COLOR);
+        JLabel dash2Label = Utils.createContentJLabel("-");
         smallLabelConstraints.gridx = 3;
         textFieldConstraints.gridy = 0;
         panelReferenceText.add(dash2Label, smallLabelConstraints);
 
-        this.referencePt3TextField = new JTextField();
-        this.referencePt3TextField.setFont(Utils.DEFAULT_FONT);
-        this.referencePt3TextField.setBorder(BorderFactory.createEmptyBorder());
-        this.referencePt3TextField.setHorizontalAlignment(JTextField.CENTER);
+        this.referencePt3TextField = Utils.createReferenceInputJTextField();
         this.referencePt3TextField.setDocument(new JTextFieldLimit(4));
         textFieldConstraints.gridx = 4;
         textFieldConstraints.gridy = 0;
         panelReferenceText.add(referencePt3TextField, textFieldConstraints);
 
 
-        JButton searchButton = new JButton("Chercher");
         ListenerReservationSearch reservationListener = new ListenerReservationSearch(this.window);
-        searchButton.addActionListener(reservationListener);
-        searchButton.setFont(Utils.DEFAULT_FONT);
-
+        JButton searchButton = Utils.createJButton("Chercher", reservationListener);
         Utils.buttonConstraints.gridx = 0;
         Utils.buttonConstraints.gridy = 1;
         Utils.buttonConstraints.gridwidth = 2;
@@ -177,8 +146,7 @@ class PanelSearch extends JPanel{
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridy = 3;
         constraints.weighty = 1;
-        JPanel spacer = new JPanel();
-        spacer.setOpaque(false);
+        JPanel spacer = Utils.createJPanel();
         this.add(spacer, constraints);
     }
 
