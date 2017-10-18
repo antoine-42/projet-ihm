@@ -177,8 +177,6 @@ class Reception {
             this.additionalReservations = this.reservationsDB.searchAllReservationName(this.searchPanel.getFirstName());
 		}
 
-		this.reservationsDB.closeConnection();
-
         int reservationsNumber = this.additionalReservations.length + this.reservations.length;
 		System.out.println("Results: " + reservationsNumber);
 		if (reservationsNumber > 0) {
@@ -193,9 +191,15 @@ class Reception {
 	}
 
 	private void searchRooms(){
-        Room[] rooms = this.internalDB.searchRoom(this.selectedReservation.category);
+        if(this.internalDB.checkReservationValidated(this.selectedReservation.reference)){
+            JOptionPane.showMessageDialog(this.window,
+                "Cette reservation a deja ete utilisee.",
+                "Erreur",
+                JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-        this.internalDB.closeConnection();
+        Room[] rooms = this.internalDB.searchRoom(this.selectedReservation.category);
 
         if (rooms.length > 0){
             this.suggestedRoom = rooms[0];
@@ -218,15 +222,19 @@ class Reception {
 	    this.selectedRoom = room;
 
         this.internalDB.affectRoom(room.number);
-
-        this.internalDB.closeConnection();
-
+        this.internalDB.validReservation(this.selectedReservation.reference);
+        this.closeConnections();
 	    this.setStep(3);
     }
     void reset(){
         this.searchPanel.reset();
 
         this.setStep(0);
+    }
+
+    void closeConnections(){
+        this.internalDB.closeConnection();
+        this.reservationsDB.closeConnection();
     }
 
 

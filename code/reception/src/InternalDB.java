@@ -1,4 +1,4 @@
-import java.sql.SQLException;
+import java.sql.*;
 
 
 class InternalDB {
@@ -20,6 +20,26 @@ class InternalDB {
     void affectRoom(int roomNumber){
         String query = "UPDATE Chambre SET Occupee=1 WHERE Numero = ?";
         String[] args = {String.valueOf(roomNumber)};
+
+        dataBase.executeQuery(query, args);
+    }
+
+    boolean checkReservationValidated(String reference){
+        String query = "SELECT * FROM Presentations WHERE Reservation = ?";
+        String[] args = {String.valueOf(reference)};
+
+        ResultSet set = dataBase.executeQuery(query, args);
+        try{
+            return set.next();
+        }
+        catch (Exception e) {
+            System.out.println("Exception");
+            return false;
+        }
+    }
+    void validReservation(String reference){
+        String query = "INSERT INTO Presentations VALUES (CURDATE(),?)";
+        String[] args = {String.valueOf(reference)};
 
         dataBase.executeQuery(query, args);
     }
