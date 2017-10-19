@@ -3,9 +3,11 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.text.*;
+import java.util.*;
 
 class Utils {
     static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+    static final DateFormat DATE_FORMAT_HUMAN = new SimpleDateFormat("dd MMMM yyyy", new Locale("fr", "fr"));
 
     static final Insets MARGIN_DEFAULT = new Insets(5, 5, 5, 5);
     static final Insets MARGIN_NONE = new Insets(0, 0, 0, 0);
