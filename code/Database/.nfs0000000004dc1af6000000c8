@@ -1021,3 +1021,7 @@ Set a breakpoint on '_pixman_log_error' to debug
 (sublime_text:4006): GLib-CRITICAL **: Source ID 951763 was not found when attempting to remove it
 
 (sublime_text:4006): GLib-CRITICAL **: Source ID 991554 was not found when attempting to remove it
+
+(sublime_text:21730): GLib-CRITICAL **: Source ID 538 was not found when attempting to remove it
+
+(sublime_text:21730): GLib-CRITICAL **: Source ID 9829 was not found when attempting to remove it
