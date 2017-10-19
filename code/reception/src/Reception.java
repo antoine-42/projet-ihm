@@ -48,7 +48,7 @@ class Reception {
         catch(Exception e){
             JOptionPane.showMessageDialog(
                     this.window,
-                    "Connection a la base de donnees de reservations impossible.",
+                    "Connection a la base de données de réservations impossible.",
                     "Erreur",
                     JOptionPane.ERROR_MESSAGE);
             error = true;
@@ -60,7 +60,7 @@ class Reception {
         catch(Exception e){
             JOptionPane.showMessageDialog(
                     this.window,
-                    "Connection a la base de donnees interne impossible.",
+                    "Connection a la base de données interne impossible.",
                     "Erreur",
                     JOptionPane.ERROR_MESSAGE);
             error = true;
@@ -76,14 +76,14 @@ class Reception {
 
 		if (this.step == 0) {
             this.window.setSize(600, 250);
-            this.window.setTitle("Recherche de reservation");
+            this.window.setTitle("Recherche de réservation");
             this.windowPanel.setBackButtonVisible(false);
 
             this.windowPanel.setVisiblePanel(0);
 		}
 		else if (this.step == 1) {
             this.window.setSize(800, 350);
-            this.window.setTitle("Resultats de la recherche");
+            this.window.setTitle("Résultats de la recherche");
             this.windowPanel.setBackButtonVisible(true);
 
 		    this.resultPanel.refresh(this.reservations, this.additionalReservations);
@@ -145,7 +145,7 @@ class Reception {
         if(this.internalDB.checkReservationValidated(this.selectedReservation.reference)){
             JOptionPane.showMessageDialog(
                     this.window,
-                    "Cette reservation a deja ete utilisee.",
+                    "Cette réservation a déja été utilisée.",
                     "Erreur",
                     JOptionPane.ERROR_MESSAGE);
             return;

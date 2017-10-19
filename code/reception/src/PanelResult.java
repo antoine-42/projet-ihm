@@ -1,14 +1,15 @@
 import javax.swing.*;
+import javax.swing.border.*;
 import java.awt.*;
 
 class PanelResult extends JPanel {
     private static final String labelTitles[] = {
             "Nom",
-            "Prenom",
-            "Reference",
+            "Prénom",
+            "Référence",
             "Type de chambre",
-            "Debut du sejour",
-            "Duree du sejour"
+            "Début du séjour",
+            "Duree du séjour"
     };
 
 
@@ -42,7 +43,7 @@ class PanelResult extends JPanel {
         constraints.anchor = GridBagConstraints.NORTH;
 
 
-        this.resultsLabel = Utils.createTitleJLabel("Resultats");
+        this.resultsLabel = Utils.createTitleJLabel("Résultats");
         Utils.labelTitleConstraints.gridx = 0;
         Utils.labelTitleConstraints.gridy = 0;
         Utils.labelTitleConstraints.gridwidth = 1;
@@ -52,7 +53,7 @@ class PanelResult extends JPanel {
         constraints.gridy = 1;
         this.add(this.panelTableauResults, constraints);
 
-        this.additionalResultsLabel = Utils.createTitleJLabel("Autres reservations");
+        this.additionalResultsLabel = Utils.createTitleJLabel("Autres réservations");
         Utils.labelTitleConstraints.gridx = 0;
         Utils.labelTitleConstraints.gridy = 3;
         Utils.labelTitleConstraints.gridwidth = 1;
@@ -70,10 +71,10 @@ class PanelResult extends JPanel {
 
     void refresh(Reservation[] reservations, Reservation[] additionalReservations){
         if (reservations.length == 0) {
-            resultsLabel.setText("Aucune reservation active");
+            resultsLabel.setText("Aucune réservation active");
         }
         else {
-            resultsLabel.setText("Reservations actives");
+            resultsLabel.setText("Réservations actives");
             createReservationsTable(this.panelTableauResults, reservations, true);
         }
 
@@ -83,19 +84,34 @@ class PanelResult extends JPanel {
     private void createReservationsTable(JPanel panel, Reservation[] reservations, Boolean createButtons){
         panel.removeAll();
 
+        //premiere ligne
         for (int i = 0; i < PanelResult.labelTitles.length; i++) {
             JLabel labelTitle = Utils.createContentJLabel(PanelResult.labelTitles[i]);
+            //ajouter marge a la premiere colonne
+            if (i == 0) {
+                Border border = labelTitle.getBorder();
+                Border margin = new EmptyBorder(0, 10, 0, 0);
+                labelTitle.setBorder(new CompoundBorder(border, margin));
+            }
             Utils.cellConstraints.gridx = i;
             Utils.cellConstraints.gridy = 0;
             panel.add(labelTitle, Utils.cellConstraints);
         }
 
+        //lignes suivantes
         for (int i = 0; i < reservations.length; i++) {
             String[] content = reservations[i].getInfo();
 
             for (int j = 0; j < content.length; j++) {
                 JLabel contentLabel = Utils.createContentJLabel(content[j]);
 
+                //ajouter marge a la premiere colonne
+                if (j == 0) {
+                    Border border = contentLabel.getBorder();
+                    Border margin = new EmptyBorder(0, 10, 0, 0);
+                    contentLabel.setBorder(new CompoundBorder(border, margin));
+                }
+                //coloriser 1 ligne sur 2
                 if (i % 2 == 0) {
                     contentLabel.setOpaque(true);
                     contentLabel.setBackground(Utils.THIRD_COLOR);
@@ -106,6 +122,7 @@ class PanelResult extends JPanel {
 
                 panel.add(contentLabel, Utils.cellConstraints);
             }
+            //boutons
             if (createButtons) {
                 ListenerReservationSelect selectListener = new ListenerReservationSelect(this.window, reservations[i]);
                 JButton selectButton = Utils.createJButton("⇒", selectListener);

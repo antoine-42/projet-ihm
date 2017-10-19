@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.*;
 import java.awt.*;
 
 class PanelRoomSelect extends JPanel {
@@ -66,7 +67,7 @@ class PanelRoomSelect extends JPanel {
 
         String[] reservationContent = reservation.getInfo();
 
-        JLabel selectedReservationLabel = Utils.createTitleJLabel("Reservation Selectionnee");
+        JLabel selectedReservationLabel = Utils.createTitleJLabel("Réservation Sélectionnee");
         Utils.labelTitleConstraints.gridx = 0;
         Utils.labelTitleConstraints.gridy = 0;
         Utils.labelTitleConstraints.gridwidth = reservationContent.length;
@@ -101,13 +102,18 @@ class PanelRoomSelect extends JPanel {
         Utils.labelTitleConstraints.gridwidth = 3;
         this.altRoomsPanel.add(alternativesLabel, Utils.labelTitleConstraints);
 
-        String[] alternativesTableLabel = {"Numero", "Type", "Description"};
+        String[] alternativesTableLabel = {"Numéro", "Type", "Description"};
         for (int i = 0; i < alternativesTableLabel.length; i++){
             JLabel alternativeContentLabel = Utils.createContentJLabel(alternativesTableLabel[i]);
+            //ajouter marge a la premiere colonne
+            if (i == 0) {
+                Border border = alternativeContentLabel.getBorder();
+                Border margin = new EmptyBorder(0, 10, 0, 0);
+                alternativeContentLabel.setBorder(new CompoundBorder(border, margin));
+            }
 
             Utils.cellConstraints.gridx = i;
             Utils.cellConstraints.gridy = 1;
-
             this.altRoomsPanel.add(alternativeContentLabel, Utils.cellConstraints);
         }
 
@@ -118,20 +124,26 @@ class PanelRoomSelect extends JPanel {
             for (int j = 0; j < roomContent.length; j++){
                 JLabel alternativeContentLabel = Utils.createContentJLabel(roomContent[j]);
 
-                Utils.cellConstraints.gridx = j;
-                Utils.cellConstraints.gridy = i +2;
-
+                //ajouter marge a la premiere colonne
+                if (j == 0) {
+                    Border border = alternativeContentLabel.getBorder();
+                    Border margin = new EmptyBorder(0, 10, 0, 0);
+                    alternativeContentLabel.setBorder(new CompoundBorder(border, margin));
+                }
+                //coloriser 1 ligne sur 2
                 if (i % 2 == 0) {
                     alternativeContentLabel.setOpaque(true);
                     alternativeContentLabel.setBackground(Utils.THIRD_COLOR);
                 }
 
+                Utils.cellConstraints.gridx = j;
+                Utils.cellConstraints.gridy = i +2;
                 this.altRoomsPanel.add(alternativeContentLabel, Utils.cellConstraints);
             }
 
+            //boutons
             ListenerSelectRoom selectAltRoomListener = new ListenerSelectRoom(this.window, alternatives[i]);
             JButton acceptAlternativeButton = Utils.createJButton("VALIDER", selectAltRoomListener);
-
             Utils.buttonConstraints.gridx = roomContent.length;
             Utils.buttonConstraints.gridy = i +2;
             this.altRoomsPanel.add(acceptAlternativeButton, Utils.buttonConstraints);

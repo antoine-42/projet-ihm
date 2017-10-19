@@ -27,7 +27,7 @@ class PanelFinalValidation extends JPanel {
         this.removeAll();
 
 
-        JLabel selectedRoomLabel = Utils.createContentJLabel("La chambre " + String.valueOf(selected.number) + " a bien ete attribuee a " + client.name + " " + client.lastName + ".");
+        JLabel selectedRoomLabel = Utils.createContentJLabel("La chambre " + String.valueOf(selected.number) + " a bien ete attribuée a " + client.name + " " + client.lastName + ".");
         Utils.labelTitleConstraints.gridx = 0;
         Utils.labelTitleConstraints.gridy = 0;
         Utils.labelTitleConstraints.weightx = 1;

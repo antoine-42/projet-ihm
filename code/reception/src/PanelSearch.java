@@ -73,7 +73,7 @@ class PanelSearch extends JPanel{
         textFieldConstraints.gridy = 1;
         fullNamePanel.add(lastNameTextField, textFieldConstraints);
 
-        JLabel nameLabel = Utils.createContentJLabel("Prenom du client");
+        JLabel nameLabel = Utils.createContentJLabel("Prénom du client");
         labelConstraints.gridx = 0;
         labelConstraints.gridy = 2;
         labelConstraints.gridwidth = 1;
@@ -92,7 +92,7 @@ class PanelSearch extends JPanel{
         panelConstraints.insets = Utils.MARGIN_LEFT;
         this.add(panelReference, panelConstraints);
 
-        JLabel labelReferenceReservation = Utils.createContentJLabel("Reference de la reservation");
+        JLabel labelReferenceReservation = Utils.createContentJLabel("Référence de la réservation");
         labelConstraints.gridx = 0;
         labelConstraints.gridy = 0;
         panelReference.add(labelReferenceReservation, labelConstraints);
