@@ -4,8 +4,8 @@ import javax.swing.*;
 class Reception {
 	int step = 0;
 	private JFrame window = new JFrame();
-	private PanelWindow windowPanel = new PanelWindow(this);
 
+	private PanelWindow windowPanel = new PanelWindow(this);
 	private PanelSearch searchPanel = new PanelSearch(this);
     private PanelResult resultPanel = new PanelResult(this);
     private PanelRoomSelect roomSelectPanel = new PanelRoomSelect(this);
@@ -142,15 +142,6 @@ class Reception {
 	}
 
 	private void searchRooms(){
-        if(this.internalDB.checkReservationValidated(this.selectedReservation.reference)){
-            JOptionPane.showMessageDialog(
-                    this.window,
-                    "Cette réservation a déja été utilisée.",
-                    "Erreur",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
         Room[] rooms = this.internalDB.searchRoom(this.selectedReservation.category);
 
         if (rooms.length > 0){
@@ -167,7 +158,16 @@ class Reception {
 
 	void selectReservation(Reservation reservation){
         this.selectedReservation = reservation;
-        this.searchRooms();
+        if(this.internalDB.checkReservationValidated(this.selectedReservation.reference)){
+            JOptionPane.showMessageDialog(
+                    this.window,
+                    "Cette réservation a déja été utilisée.",
+                    "Erreur",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            this.searchRooms();
+        }
     }
     void selectRoom(Room room){
 	    this.selectedRoom = room;

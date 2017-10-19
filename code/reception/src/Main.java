@@ -4,6 +4,6 @@ public class Main {
         System.setProperty("awt.useSystemAAFontSettings","on");
         System.setProperty("swing.aatext", "true");
 
-        Reception search = new Reception();
+        Reception reception = new Reception();
     }
 }
