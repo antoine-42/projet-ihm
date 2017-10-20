@@ -81,7 +81,7 @@ class PanelRoomSelect extends JPanel {
         }
 
 
-        JLabel suggestedRoomLabel = Utils.createTitleJLabel("Chambre " + String.valueOf(suggested.number));
+        JLabel suggestedRoomLabel = Utils.createTitleJLabel("Chambre " + String.valueOf(suggested.number), JTextField.CENTER);
         Utils.labelTitleConstraints.gridx = 0;
         Utils.labelTitleConstraints.gridy = 0;
         Utils.labelTitleConstraints.gridwidth = 1;

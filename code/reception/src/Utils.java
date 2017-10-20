@@ -38,7 +38,10 @@ class Utils {
     }
 
     static JLabel createTitleJLabel(String text){
-        JLabel titleJLabel = new JLabel(text, JLabel.LEFT);
+        return createTitleJLabel(text, JLabel.LEFT);
+    }
+    static JLabel createTitleJLabel(String text, int alignment){
+        JLabel titleJLabel = new JLabel(text, alignment);
         titleJLabel.setFont(Utils.TITLE_FONT);
         titleJLabel.setForeground(Utils.SECONDARY_COLOR);
 
