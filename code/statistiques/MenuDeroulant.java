@@ -2,70 +2,62 @@ import javax.swing.* ;
 import java.awt.* ;
 
 
-public class MenuDeroulant extends JFrame
+public class MenuDeroulant extends JComponent
 {
-	private JComboBox listeJour ;
-	private JComboBox listeMois ;
-	private JComboBox listeAnnee ;
+	private JComboBox<String> listeJour ;
+	private JComboBox<String> listeMois ;
+	private JComboBox<String> listeAnnee ;
 
 	public MenuDeroulant()
 	{
-		super("Statistiques") ;
-
-		Dimension taille = new Dimension(750, 750) ;
-		Dimension tailleMini = new Dimension(250, 250) ;
-		Dimension tailleMaxi = new Dimension(1500, 1500) ;
-		//Dimension position = new Dimension(20, 20) ;
-
-		this.setMinimumSize(tailleMini) ;
-		this.setMaximumSize(tailleMaxi) ;
-		this.setSize(taille) ;
-		this.setLocation(20, 20) ;
-
-		this.setContentPane(createConteneur()) ;
-
 	} 
 
-	private JPanel createConteneur()
+	public JPanel createConteneur()
 	{
 
 		JPanel panneau = new JPanel() ;
 
 		int nbrJourParMois = 31 ;
+		int nbrMoisParAn = 12 ;
 		int anneeEnCours = 2017 ; //MODIFIER POUR PLUS TARD --> AUTOMATISATION
-		//Object[] jour = new Object[nbrJourParMois];
-		Object[] jour = new Object[]{1, 2, 3} ;
-		Object[] mois = new Object[]{"Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"} ;
-		//Object[] annee = new Object[3] ;
-		Object[] annee = new Object[]{2016, 2017, 2018} ;
 
+		/*
+		String[] mois = new String[]{"Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"} ;
+		*/
+
+		this.listeJour = new JComboBox<String>() ;
+		this.listeMois = new JComboBox<String>() ;
+		this.listeAnnee = new JComboBox<String>() ;
 		int i ;
 
-		/*
 		//Rempli une liste de jours
 		for(i=1 ; i<=nbrJourParMois ; i++)
-			jour[i] = i ;
-		*/
+			this.listeJour.addItem(String.valueOf(i)) ;
 
-		/*
+		//Rempli une liste de mois
+		for(i=1 ; i<=nbrMoisParAn ; i++)
+			this.listeMois.addItem(String.valueOf(i)) ;
+
 		//Rempli une liste d'années
 		for(i=-1 ; i<=1 ; i++)
-			annee[i] = anneeEnCours + i ;
-		*/
+			this.listeAnnee.addItem(String.valueOf(anneeEnCours + i)) ;
 
 
-		this.listeJour = new JComboBox(jour) ;
-		this.listeMois = new JComboBox(mois) ;
-		this.listeAnnee = new JComboBox(annee) ;
+		MenuActionListener controleur = new MenuActionListener(this, listeJour, listeMois, listeAnnee) ;
+
+		JButton valider = new JButton("Valider") ;
+		valider.addActionListener(controleur) ;
+
 
 		panneau.add(listeJour) ;
 		panneau.add(listeMois) ;
 		panneau.add(listeAnnee) ;
+		panneau.add(valider) ;
 
 		return panneau ;
 	}
 
-	public JComboBox getListeJour()
+	public JComboBox<String> getListeJour()
 	{
 		return listeJour ;
 	}
@@ -75,9 +67,15 @@ public class MenuDeroulant extends JFrame
 		return listeMois ;
 	}
 
-	public JComboBox getListeAnnee()
+	public JComboBox<String> getListeAnnee()
 	{
 		return listeAnnee ;
+	}
+
+	public String dateSelected(Object jour, Object mois, Object annee)
+	{
+		String currentDate = annee+"-"+mois+"-"+jour ;
+		return currentDate ;
 	}
 
 
