@@ -113,7 +113,7 @@ class Reception {
 
 
 	void searchReservation(){
-		if (!this.searchPanel.reservationNullOrEmpty()) {
+        if (!this.searchPanel.reservationNullOrEmpty()) {
 			this.reservations = this.reservationsDB.searchActiveReservationRef(this.searchPanel.getReservation());
 		}
 		else if (!Utils.isNullOrEmpty(this.searchPanel.getLastName())) {

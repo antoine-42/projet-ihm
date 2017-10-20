@@ -48,6 +48,7 @@ class PanelRoomSelect extends JPanel {
         this.altRoomsPanel = Utils.createJPanel();
         JScrollPane altRoomsScrollPane = new JScrollPane(this.altRoomsPanel);
         altRoomsScrollPane.setOpaque(false);
+        altRoomsScrollPane.getViewport().setOpaque(false);
         altRoomsScrollPane.setBorder(Utils.EMPTY_BORDER);
         panelConstraints.gridx = 1;
         panelConstraints.gridy = 2;

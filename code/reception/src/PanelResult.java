@@ -36,7 +36,8 @@ class PanelResult extends JScrollPane {
         this.content.setOpaque(false);
 
         this.setViewportView(this.content);
-        this.setOpaque(true);
+        this.setOpaque(false);
+        this.getViewport().setOpaque(false);
         this.setBorder(Utils.EMPTY_BORDER);
 
 
@@ -77,6 +78,8 @@ class PanelResult extends JScrollPane {
     }
 
     void refresh(Reservation[] reservations, Reservation[] additionalReservations){
+        this.reset();
+
         if (reservations.length == 0) {
             resultsLabel.setText("Aucune réservation active");
         }
@@ -87,10 +90,12 @@ class PanelResult extends JScrollPane {
 
         createReservationsTable(this.panelTableauAdditionalResults, additionalReservations, false);
     }
+    void reset(){
+        this.panelTableauResults.removeAll();
+        this.panelTableauAdditionalResults.removeAll();
+    }
 
     private void createReservationsTable(JPanel panel, Reservation[] reservations, Boolean createButtons){
-        panel.removeAll();
-
         //premiere ligne
         for (int i = 0; i < PanelResult.labelTitles.length; i++) {
             JLabel labelTitle = Utils.createContentJLabel(PanelResult.labelTitles[i]);
