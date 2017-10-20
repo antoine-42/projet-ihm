@@ -2,7 +2,7 @@ import java.sql.ResultSet ;
 import java.sql.SQLException ;
 
 
-
+/*
 class DBHistorique
 {
 	int recuperation ;
@@ -13,16 +13,16 @@ class DBHistorique
     }
 
 
-    static DBHistorique[] resultSetToRooms(ResultSet result)
+    static DBHistorique setHistoriqueResult(ResultSet result)
     {
         try{
             result.last();
             int resultNumber = result.getRow();
-            Room[] rooms = new Room[resultNumber];
+            DBHistorique[] historique = new DBHistorique[resultNumber];
 
-            result.absolute(1);
-            for (int i = 0; i < resultNumber; i++) {
-                int number = result.getInt("Numero");
+            result.absolute(1) ;
+
+                int recuperation = result.getInt("Numero");
                 int category = result.getInt("Categorie") -1;
                 boolean clean = result.getBoolean("Nettoyee");
                 boolean occupied = result.getBoolean("Occupee");
@@ -40,3 +40,4 @@ class DBHistorique
             return null;
         }
     }
+*/

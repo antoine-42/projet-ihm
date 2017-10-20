@@ -750,3 +750,15 @@
 (sublime_text:4526): GLib-CRITICAL **: Source ID 1645237 was not found when attempting to remove it
 
 (sublime_text:4526): GLib-CRITICAL **: Source ID 1645865 was not found when attempting to remove it
+1508524041651	addons.update-checker	WARN	Update manifest for webcompat@mozilla.org did not contain an updates property
+1508524041672	addons.update-checker	WARN	Update manifest for aushelper@mozilla.org did not contain an updates property
+1508524041686	addons.update-checker	WARN	Update manifest for e10srollout@mozilla.org did not contain an updates property
+1508524041699	addons.update-checker	WARN	Update manifest for firefox@getpocket.com did not contain an updates property
+1508524041713	addons.update-checker	WARN	Update manifest for clicktoplay-rollout@mozilla.org did not contain an updates property
+1508524041833	addons.update-checker	WARN	Update manifest for followonsearch@mozilla.com did not contain an updates property
+1508524041846	addons.update-checker	WARN	Update manifest for formautofill@mozilla.org did not contain an updates property
+1508524041863	addons.update-checker	WARN	Update manifest for activity-stream@mozilla.org did not contain an updates property
+1508524041897	addons.update-checker	WARN	Update manifest for onboarding@mozilla.org did not contain an updates property
+1508524042058	addons.update-checker	WARN	Update manifest for {972ce4c6-7e08-4474-a285-3208198ce6fd} did not contain an updates property
+1508524042108	addons.update-checker	WARN	Update manifest for sbv4-gradual-rollout@mozilla.com did not contain an updates property
+1508524043173	addons.xpi	ERROR	Failed to clean updated system add-ons directories.

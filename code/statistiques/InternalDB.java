@@ -24,13 +24,15 @@ class InternalDB {
     */
 
 
-    void getOccupationRate(String day)
+    void getOccupationRate(String day){}/*
     {
         String query = "SELECT taux_occupation FROM Historique WHERE jour = ? ;" ;
         String[] args = {day} ;
+        Resultset resultat = dataBase.executeQuery(query, args)) ;
 
-        return String.valueOf(dataBase.executeQuery(query, args)) ;
+        return resultat.getInt.("taux_occupation") ;
     }
+    */
 
     void getCurrentOccupationRate(int nbr_rooms)
     {

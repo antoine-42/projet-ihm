@@ -6,6 +6,11 @@ public class Main
 	{
 		Fenetre menu = new Fenetre() ;
 		menu.setVisible(true) ;
+
+		Statistiques test = new Statistiques() ;
+		test.getOccupationRangeDay("2017-10-20", "2017-1-20") ;
+
+
 	}
 	
 }
