@@ -1,4 +1,5 @@
 import java.awt.* ;
+import java.sql.*;
 
 public class Statistiques
 {
@@ -10,7 +11,7 @@ public class Statistiques
 		 interne = new InternalDB()	;
 	}
 
-	float getOccupation1Day(date day)
+	static public float getOccupation1Day(date day)
 	{
 		float occupation ;
 
@@ -19,7 +20,7 @@ public class Statistiques
 		return occupation ;
 	}
 
-	float getOccupationRangeDay(date init, date last)
+	static public float getOccupationRangeDay(date init, date last)
 	{
 		float occupation = 0 ;
 		date i ;
@@ -33,8 +34,6 @@ public class Statistiques
 		}
 
 		return occupation ;
-
-
 	}
 
 

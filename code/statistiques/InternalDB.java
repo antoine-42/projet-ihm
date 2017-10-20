@@ -1,3 +1,5 @@
+import java.sql.*;
+
 class InternalDB {
     private DB dataBase;
 
@@ -6,7 +8,7 @@ class InternalDB {
         dataBase = new DB("bohl", "bohl", "bohl");
     }
 
-
+    /*
     Room[] searchRoom(int roomType){
         String query = "SELECT * FROM Chambre WHERE Categorie = ? AND Nettoyee AND !Occupee";
         String[] args = {String.valueOf(roomType +1)};
@@ -19,6 +21,25 @@ class InternalDB {
 
         dataBase.executeQuery(query, args);
     }
+    */
+
+    float getOccupationRate(date day)
+    {
+        String query = "SELECT taux_occupation FROM Historique WHERE jour = ? ;" ;
+        String[] args = {String.valueOf(day)} ;
+
+        return dataBase.executeQuery(query, args) ;
+    }
+
+    float getCurrentOccupationRate(int nbr_rooms)
+    {
+        String query = "SELECT COUNT(*)/?*100 FROM Chambre WHERE Occupee=1 ;" ;
+        String[] args = {String.valueOf(nbr_rooms)} ;
+
+        return dataBase.executeQuery(query, args) ;
+    }
+
+
 
 
     boolean closeConnection(){
