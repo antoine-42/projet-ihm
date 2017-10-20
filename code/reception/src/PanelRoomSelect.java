@@ -46,17 +46,15 @@ class PanelRoomSelect extends JPanel {
         this.add(this.suggestedRoomPanel, panelConstraints);
 
         this.altRoomsPanel = Utils.createJPanel();
+        JScrollPane altRoomsScrollPane = new JScrollPane(this.altRoomsPanel);
+        altRoomsScrollPane.setOpaque(false);
+        altRoomsScrollPane.setBorder(Utils.EMPTY_BORDER);
         panelConstraints.gridx = 1;
         panelConstraints.gridy = 2;
         panelConstraints.gridwidth = 1;
         panelConstraints.weightx = 4;
-        this.add(this.altRoomsPanel, panelConstraints);
-
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.gridy = 1;
-        constraints.weighty = 1;
-        JPanel spacer = Utils.createJPanel();
-        this.add(spacer, constraints);
+        panelConstraints.weighty = 9999;
+        this.add(altRoomsScrollPane, panelConstraints);
     }
 
     void refresh(Reservation reservation, Room suggested, Room[] alternatives){
@@ -135,6 +133,9 @@ class PanelRoomSelect extends JPanel {
                     alternativeContentLabel.setOpaque(true);
                     alternativeContentLabel.setBackground(Utils.THIRD_COLOR);
                 }
+                else {
+                    alternativeContentLabel.setOpaque(false);
+                }
 
                 Utils.cellConstraints.gridx = j;
                 Utils.cellConstraints.gridy = i +2;
@@ -148,5 +149,11 @@ class PanelRoomSelect extends JPanel {
             Utils.buttonConstraints.gridy = i +2;
             this.altRoomsPanel.add(acceptAlternativeButton, Utils.buttonConstraints);
         }
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridy = maxAltDisplay + 2;
+        constraints.weighty = 1;
+        JPanel spacer = Utils.createJPanel();
+        this.add(spacer, constraints);
     }
 }

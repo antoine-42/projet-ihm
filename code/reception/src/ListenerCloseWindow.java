@@ -10,5 +10,6 @@ public class ListenerCloseWindow extends WindowAdapter {
     public void windowClosing(WindowEvent e)
     {
         this.reception.closeConnections();
+        System.exit(0);
     }
 }

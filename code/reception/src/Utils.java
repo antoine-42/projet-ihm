@@ -27,7 +27,7 @@ class Utils {
     private static final Font TITLE_FONT = new Font("SansSerif", Font.PLAIN, 23);
 
     private static final Border DEFAULT_JTEXTFIELD_BORDER = BorderFactory.createLineBorder(Color.GRAY, 1);
-    private static final Border EMPTY_BORDER = BorderFactory.createEmptyBorder();
+    static final Border EMPTY_BORDER = BorderFactory.createEmptyBorder();
 
 
     static JPanel createJPanel(){

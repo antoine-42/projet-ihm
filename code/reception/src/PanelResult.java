@@ -2,7 +2,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
 
-class PanelResult extends JPanel {
+class PanelResult extends JScrollPane {
     private static final String labelTitles[] = {
             "Nom",
             "Prénom",
@@ -14,6 +14,8 @@ class PanelResult extends JPanel {
 
 
     private Reception window;
+
+    private JPanel content;
 
     private JLabel resultsLabel;
     private JLabel additionalResultsLabel;
@@ -30,8 +32,13 @@ class PanelResult extends JPanel {
 
 
     private void drawPanel(){
-        this.setLayout(new GridBagLayout());
-        this.setOpaque(false);
+        this.content = new JPanel(new GridBagLayout());
+        this.content.setOpaque(false);
+
+        this.setViewportView(this.content);
+        this.setOpaque(true);
+        this.setBorder(Utils.EMPTY_BORDER);
+
 
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.ipadx = 0;
@@ -47,26 +54,26 @@ class PanelResult extends JPanel {
         Utils.labelTitleConstraints.gridx = 0;
         Utils.labelTitleConstraints.gridy = 0;
         Utils.labelTitleConstraints.gridwidth = 1;
-        this.add(resultsLabel, Utils.labelTitleConstraints);
+        this.content.add(resultsLabel, Utils.labelTitleConstraints);
 
         this.panelTableauResults = Utils.createJPanel();
         constraints.gridy = 1;
-        this.add(this.panelTableauResults, constraints);
+        this.content.add(this.panelTableauResults, constraints);
 
         this.additionalResultsLabel = Utils.createTitleJLabel("Autres réservations");
         Utils.labelTitleConstraints.gridx = 0;
         Utils.labelTitleConstraints.gridy = 3;
         Utils.labelTitleConstraints.gridwidth = 1;
-        this.add(additionalResultsLabel, Utils.labelTitleConstraints);
+        this.content.add(additionalResultsLabel, Utils.labelTitleConstraints);
 
         this.panelTableauAdditionalResults = Utils.createJPanel();
         constraints.gridy = 4;
-        this.add(this.panelTableauAdditionalResults, constraints);
+        this.content.add(this.panelTableauAdditionalResults, constraints);
 
         JPanel spacer = Utils.createJPanel();
-        constraints.gridy = 2;
+        constraints.gridy = 5;
         constraints.weighty = 1;
-        this.add(spacer, constraints);
+        this.content.add(spacer, constraints);
     }
 
     void refresh(Reservation[] reservations, Reservation[] additionalReservations){
