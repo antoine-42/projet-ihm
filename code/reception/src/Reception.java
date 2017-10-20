@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.event.*;
 
 
 class Reception {
@@ -25,7 +26,9 @@ class Reception {
 
 
 	Reception() {
-        this.window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.window.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        ListenerCloseWindow listenerCloseWindow = new ListenerCloseWindow(this);
+        this.window.addWindowListener(listenerCloseWindow);
 
         this.window.add(this.windowPanel);
 
@@ -67,6 +70,7 @@ class Reception {
         }
 
         if (error) {
+            this.closeConnections();
             System.exit(0);
         }
     }
@@ -174,8 +178,7 @@ class Reception {
 
         this.internalDB.affectRoom(room.number);
         this.internalDB.validReservation(this.selectedReservation.reference, String.valueOf(this.selectedRoom.number));
-        //todo: put that in a function called when closing window
-        this.closeConnections();
+
 	    this.setStep(3);
     }
     void reset(){
@@ -184,7 +187,7 @@ class Reception {
         this.setStep(0);
     }
 
-    private void closeConnections(){
+    void closeConnections(){
         this.internalDB.closeConnection();
         this.reservationsDB.closeConnection();
     }

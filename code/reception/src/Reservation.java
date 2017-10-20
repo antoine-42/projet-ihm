@@ -39,10 +39,9 @@ class Reservation {
 				int category = result.getInt("categorie") -1;
 				int length = result.getInt("nuits");
 
-				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				Date start;
 				try{
-					start = dateFormat.parse(result.getString("debut"));
+					start = Utils.DATE_FORMAT.parse(result.getString("debut"));
 				}
 				catch(ParseException e){
 					System.out.println("[FATAL] could not parse DB output");
