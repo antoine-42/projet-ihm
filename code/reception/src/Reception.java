@@ -188,7 +188,12 @@ class Reception {
     }
 
     void closeConnections(){
-        this.internalDB.closeConnection();
-        this.reservationsDB.closeConnection();
+        try {
+            this.internalDB.closeConnection();
+            this.reservationsDB.closeConnection();
+        }
+        catch (Exception e){
+            //on s'en fout, le programme se ferme de toute facon.
+        }
     }
 }
