@@ -28,6 +28,9 @@ public class MenuActionListener implements ActionListener
 		menu.afficherSelect(selected) ;		
 		*/
 		if(action.equals("Valider"))
-			menu.dateSelected(jour.getSelectedItem(), mois.getSelectedItem(), annee.getSelectedItem()) ;
+		{
+			menu.setDateSelected(jour.getSelectedItem(), mois.getSelectedItem(), annee.getSelectedItem()) ;
+			menu.getStats() ;
+		}
 	}
 }

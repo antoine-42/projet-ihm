@@ -23,20 +23,21 @@ class InternalDB {
     }
     */
 
-    float getOccupationRate(date day)
+
+    void getOccupationRate(String day)
     {
         String query = "SELECT taux_occupation FROM Historique WHERE jour = ? ;" ;
-        String[] args = {String.valueOf(day)} ;
+        String[] args = {day} ;
 
-        return dataBase.executeQuery(query, args) ;
+        return String.valueOf(dataBase.executeQuery(query, args)) ;
     }
 
-    float getCurrentOccupationRate(int nbr_rooms)
+    void getCurrentOccupationRate(int nbr_rooms)
     {
         String query = "SELECT COUNT(*)/?*100 FROM Chambre WHERE Occupee=1 ;" ;
         String[] args = {String.valueOf(nbr_rooms)} ;
 
-        return dataBase.executeQuery(query, args) ;
+        //return dataBase.executeQuery(query, args) ;
     }
 
 

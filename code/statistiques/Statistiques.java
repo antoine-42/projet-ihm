@@ -1,9 +1,9 @@
 import java.awt.* ;
-import java.sql.*;
+import java.sql.* ;
 
 public class Statistiques
 {
-	InternalDB interne
+	InternalDB interne ;
 
 
 	Statistiques()
@@ -11,29 +11,18 @@ public class Statistiques
 		 interne = new InternalDB()	;
 	}
 
-	static public float getOccupation1Day(date day)
+	public void getOccupation1Day(String day)
 	{
-		float occupation ;
+		String occupation ;
 
-		occupation = interne.getOccupationRate(day) ;
+		occupation = getOccupationRate(day) ;
 
-		return occupation ;
+		System.out.println(occupation) ;
 	}
 
-	static public float getOccupationRangeDay(date init, date last)
+	public void getOccupationRangeDay(String init, String last)
 	{
-		float occupation = 0 ;
-		date i ;
-
-		for(i=init ; i<=last ; i++)
-		{
-			if (occupation==0)
-				occupation+=getOccupation1Day(i) ;
-			else
-				occupation+=getOccupation1Day(i)/2 ;
-		}
-
-		return occupation ;
+		
 	}
 
 
@@ -41,6 +30,6 @@ public class Statistiques
 
 
 
-	interne.closeConnection() ;
+	//interne.closeConnection() ;
 
 }
