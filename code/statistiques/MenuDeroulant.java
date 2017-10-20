@@ -87,7 +87,8 @@ public class MenuDeroulant extends JComponent
 
 	public void getStats()
 	{
-		//System.out.println(Statistiques.getOccupation1Day(this.currentDate)) ;
+		Statistiques stats = new Statistiques() ;
+		System.out.println(stats.getOccupation1Day(this.currentDate)) ;
 	}
 
 

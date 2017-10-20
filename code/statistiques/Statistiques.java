@@ -12,15 +12,16 @@ public class Statistiques
 		 interne = new InternalDB()	;
 	}
 
-	public void getOccupation1Day(String day)
+	public String getOccupation1Day(String day)
 	{
-		String occupation = null ;
+		String occupation ;
 
-		//occupation = interne.getOccupationRate(day) ;
+		occupation = String.valueOf(new DBHistorique(day)) ;
 
-		System.out.println(occupation) ;
+		return occupation ;
 	}
 
+	/*
 	public void getOccupationRangeDay(String init, String last)
 	{
 		int[] initInt = conversionDate(init) ;
@@ -77,6 +78,7 @@ public class Statistiques
 		return dateInt ;
 
 	}
+	*/
 
 
 	

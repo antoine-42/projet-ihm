@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.awt.* ;
 
 class InternalDB {
     private DB dataBase;
@@ -24,13 +25,13 @@ class InternalDB {
     */
 
 
-    void getOccupationRate(String day){}/*
+    /*
+    DBHistorique[] getOccupationRate(String day)
     {
         String query = "SELECT taux_occupation FROM Historique WHERE jour = ? ;" ;
         String[] args = {day} ;
-        Resultset resultat = dataBase.executeQuery(query, args)) ;
-
-        return resultat.getInt.("taux_occupation") ;
+       
+        return DBHistorique.setHistoriqueResult(dataBase.executeQuery(query, args)) ;
     }
     */
 
