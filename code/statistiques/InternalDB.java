@@ -6,7 +6,7 @@ class InternalDB {
 
 
     InternalDB(){
-        dataBase = new DB("bohl", "bohl", "bohl");
+        //dataBase = new DB("bohl", "bohl", "bohl");
     }
 
     /*

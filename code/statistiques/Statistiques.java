@@ -16,10 +16,22 @@ public class Statistiques
 	{
 		String occupation ;
 
-		occupation = String.valueOf(new DBHistorique(day)) ;
+		occupation = String.valueOf(new DBHistorique(day).taux_occupation) ;
 
 		return occupation ;
 	}
+
+	/*
+	public String getNonOccupation1Day(String day)
+	{
+		String non_presentation ;
+		System.out.println("test") ;
+		non_presentation = String.valueOf(new DBHistorique(day).taux_non_presentation) ;
+		System.out.println(non_presentation) ;
+
+		return non_presentation ;
+	}
+	*/
 
 	/*
 	public void getOccupationRangeDay(String init, String last)

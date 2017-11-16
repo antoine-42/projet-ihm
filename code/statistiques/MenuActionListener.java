@@ -23,10 +23,7 @@ public class MenuActionListener implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		String action =e.getActionCommand() ;
-		/*
-		String selected = this.jour.getSelectedItem() ;
-		menu.afficherSelect(selected) ;		
-		*/
+
 		if(action.equals("Valider"))
 		{
 			menu.setDateSelected(jour.getSelectedItem(), mois.getSelectedItem(), annee.getSelectedItem()) ;

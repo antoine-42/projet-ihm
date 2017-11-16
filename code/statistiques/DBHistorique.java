@@ -22,9 +22,11 @@ class DBHistorique
 
         ResultSet result = this.database.executeQuery(query, args);
         try{
-            result.absolute(1) ;
-            this.taux_occupation = result.getInt("taux_occupation");
-            this.taux_non_presentation = result.getInt("taux_non_presentation");
+            if (result.next()){
+                result.absolute(1) ;
+                this.taux_occupation = result.getInt("taux_occupation");
+                this.taux_non_presentation = result.getInt("taux_non_presentation");
+            }
         }
         catch(SQLException e){
             System.out.println("[FATAL] could not parse DB output");

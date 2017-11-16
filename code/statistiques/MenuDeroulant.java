@@ -4,10 +4,14 @@ import java.awt.* ;
 
 public class MenuDeroulant extends JComponent
 {
+	private final String message1 = "Pas de résultat pour la date souhaitée" ;
+
 	private JComboBox<String> listeJour ;
 	private JComboBox<String> listeMois ;
 	private JComboBox<String> listeAnnee ;
 	private String currentDate ;
+	private String currentDateHuman ;
+	private JLabel occupationTexte = new JLabel(message1) ;
 
 	public MenuDeroulant()
 	{
@@ -21,9 +25,9 @@ public class MenuDeroulant extends JComponent
 		JLabel labelDebut = new JLabel("Debut") ;
 
 		/*Liste déroulante*/
-		int nbrJourParMois = 31 ;
-		int nbrMoisParAn = 12 ;
-		int anneeEnCours = 2017 ; //MODIFIER POUR PLUS TARD --> AUTOMATISATION
+		final int NBR_JOUR_MOIS = 31 ;
+		final int NBR_MOIS_AN = 12 ;
+		final int ANNEE_EN_COURS = 2017 ; //MODIFIER POUR PLUS TARD --> AUTOMATISATION
 
 		this.listeJour = new JComboBox<String>() ;
 		this.listeMois = new JComboBox<String>() ;
@@ -32,16 +36,16 @@ public class MenuDeroulant extends JComponent
 		int i ; //Compteur
 
 		//Rempli une liste de jours
-		for(i=1 ; i<=nbrJourParMois ; i++)
+		for(i=1 ; i<=NBR_JOUR_MOIS ; i++)
 			this.listeJour.addItem(String.valueOf(i)) ;
 
 		//Rempli une liste de mois
-		for(i=1 ; i<=nbrMoisParAn ; i++)
+		for(i=1 ; i<=NBR_MOIS_AN ; i++)
 			this.listeMois.addItem(String.valueOf(i)) ;
 
 		//Rempli une liste d'années
 		for(i=-1 ; i<=1 ; i++)
-			this.listeAnnee.addItem(String.valueOf(anneeEnCours + i)) ;
+			this.listeAnnee.addItem(String.valueOf(ANNEE_EN_COURS + i)) ;
 
 		/*Contrôleur*/
 		MenuActionListener controleur = new MenuActionListener(this, listeJour, listeMois, listeAnnee) ;
@@ -50,16 +54,19 @@ public class MenuDeroulant extends JComponent
 		JButton valider = new JButton("Valider") ;
 		valider.addActionListener(controleur) ;
 
+
 		/*Ajouts au panneau*/
 		panneau.add(labelDebut) ;
 		panneau.add(listeJour) ;
 		panneau.add(listeMois) ;
 		panneau.add(listeAnnee) ;
 		panneau.add(valider) ;
+		panneau.add(occupationTexte) ;
 
 		return panneau ;
 	}
 
+	/*Getters composants date*/
 	public JComboBox<String> getListeJour()
 	{
 		return listeJour ;
@@ -75,11 +82,15 @@ public class MenuDeroulant extends JComponent
 		return listeAnnee ;
 	}
 
+
+	/*Set Date of the selected day*/
 	public void setDateSelected(Object jour, Object mois, Object annee)
 	{
-		 currentDate = annee+"-"+mois+"-"+jour ;
+		 this.currentDate = annee+"-"+mois+"-"+jour ;
+		 this.currentDateHuman = jour + "/" + mois + "/" + annee ;
 	}
 
+	/*Get Date of the selected day*/
 	public String getDateSelected()
 	{
 		return currentDate ;
@@ -88,7 +99,12 @@ public class MenuDeroulant extends JComponent
 	public void getStats()
 	{
 		Statistiques stats = new Statistiques() ;
-		System.out.println(stats.getOccupation1Day(this.currentDate)) ;
+		String occupation = stats.getOccupation1Day(this.currentDate) ;
+		String nonOccupation = stats.getOccupation1Day(this.currentDate) ;
+		final String message1 = String.format("L\'occupation pour le %s est de %s pourcents", currentDateHuman, occupation) ;
+		final String message2 = String.format("\nLes non-présentations représentent, pour le %s, %s pourcents", currentDateHuman, nonOccupation) ;
+
+		this.occupationTexte.setText(message1+message2) ;
 	}
 
 
