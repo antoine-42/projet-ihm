@@ -3,9 +3,11 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.text.*;
+import java.util.*;
 
 class Utils {
     static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+    static final DateFormat DATE_FORMAT_HUMAN = new SimpleDateFormat("dd MMMM yyyy", new Locale("fr", "fr"));
 
     static final Insets MARGIN_DEFAULT = new Insets(5, 5, 5, 5);
     static final Insets MARGIN_NONE = new Insets(0, 0, 0, 0);
@@ -25,7 +27,7 @@ class Utils {
     private static final Font TITLE_FONT = new Font("SansSerif", Font.PLAIN, 23);
 
     private static final Border DEFAULT_JTEXTFIELD_BORDER = BorderFactory.createLineBorder(Color.GRAY, 1);
-    private static final Border EMPTY_BORDER = BorderFactory.createEmptyBorder();
+    static final Border EMPTY_BORDER = BorderFactory.createEmptyBorder();
 
 
     static JPanel createJPanel(){
@@ -36,7 +38,10 @@ class Utils {
     }
 
     static JLabel createTitleJLabel(String text){
-        JLabel titleJLabel = new JLabel(text, JLabel.LEFT);
+        return createTitleJLabel(text, JLabel.LEFT);
+    }
+    static JLabel createTitleJLabel(String text, int alignment){
+        JLabel titleJLabel = new JLabel(text, alignment);
         titleJLabel.setFont(Utils.TITLE_FONT);
         titleJLabel.setForeground(Utils.SECONDARY_COLOR);
 

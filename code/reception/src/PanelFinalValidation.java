@@ -27,7 +27,7 @@ class PanelFinalValidation extends JPanel {
         this.removeAll();
 
 
-        JLabel selectedRoomLabel = Utils.createContentJLabel("La chambre " + String.valueOf(selected.number) + " a bien ete attribuée a " + client.name + " " + client.lastName + ".");
+        JLabel selectedRoomLabel = Utils.createContentJLabel("La chambre " + String.valueOf(selected.number) + " a bien ete attribuée à " + client.name + " " + client.lastName + ".");
         Utils.labelTitleConstraints.gridx = 0;
         Utils.labelTitleConstraints.gridy = 0;
         Utils.labelTitleConstraints.weightx = 1;
@@ -38,6 +38,8 @@ class PanelFinalValidation extends JPanel {
         JButton finishButton = Utils.createJButton("TERMINER", finishListener);
         Utils.buttonConstraints.gridx = 0;
         Utils.buttonConstraints.gridy = 1;
+        Utils.buttonConstraints.weightx = 1;
+        Utils.buttonConstraints.anchor = GridBagConstraints.CENTER;
         this.add(finishButton, Utils.buttonConstraints);
 
         GridBagConstraints constraints = new GridBagConstraints();

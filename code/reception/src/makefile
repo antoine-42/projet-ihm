@@ -25,7 +25,8 @@ CLASSES = \
 	Reservation.java \
 	Room.java \
 	RoomType.java \
-	Utils.java
+	Utils.java \
+	ListenerCloseWindow.java
 
 default: classes
 

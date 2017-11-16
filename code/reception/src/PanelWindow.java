@@ -44,6 +44,10 @@ class PanelWindow extends JPanel {
         this.mainPanel.add(jPanel, panels[currAddPanel]);
         currAddPanel++;
     }
+    void addPanel(JScrollPane jScrollPane){
+        this.mainPanel.add(jScrollPane, panels[currAddPanel]);
+        currAddPanel++;
+    }
     void setVisiblePanel(int panelN){
         this.mainPanelCard.show(this.mainPanel, panels[panelN]);
     }

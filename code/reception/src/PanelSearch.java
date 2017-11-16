@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
+
 class PanelSearch extends JPanel{
     private Reception window;
 
