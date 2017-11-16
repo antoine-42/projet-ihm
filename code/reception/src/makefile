@@ -35,4 +35,4 @@ clean:
 	$(RM) *.class
 
 start: classes
-	java -cp "/export/documents/mariadb-client.jar:." Main
+	java -cp "../../mariadb-client.jar:." Main
