@@ -15,7 +15,6 @@ CLASSES = \
 	ListenerReturnButton.java \
 	ListenerSelectRoom.java \
 	Main.java \
-	makefile \
 	PanelFinalValidation.java \
 	PanelResult.java \
 	PanelRoomSelect.java \
@@ -35,5 +34,5 @@ classes: $(CLASSES:.java=.class)
 clean:
 	$(RM) *.class
 
-start: classes
+run: classes
 	java -cp "../../mariadb-client.jar:." Main
