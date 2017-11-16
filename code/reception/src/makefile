@@ -10,7 +10,7 @@ CLASSES = \
 	DBReservations.java \
 	JTextFieldLimit.java \
 	ListenerFinish.java \
-	ListenerReservationSearch.java \
+	ActionSearchReservation.java \
 	ListenerReservationSelect.java \
 	ListenerReturnButton.java \
 	ListenerSelectRoom.java \

@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.sql.SQLException;
 
 
 class Reception {
@@ -37,7 +38,7 @@ class Reception {
         this.windowPanel.addPanel(this.roomSelectPanel);
         this.windowPanel.addPanel(this.finalValidationPanel);
 
-		this.setStep(0);
+        this.setStep(0);
 
         this.window.setVisible(true);
         this.connectionCheck();
@@ -84,6 +85,7 @@ class Reception {
             this.windowPanel.setBackButtonVisible(false);
 
             this.windowPanel.setVisiblePanel(0);
+            this.searchPanel.refresh();
 		}
 		else if (this.step == 1) {
             this.window.setSize(800, 350);

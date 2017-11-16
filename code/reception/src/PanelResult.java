@@ -81,14 +81,27 @@ class PanelResult extends JScrollPane {
         this.reset();
 
         if (reservations.length == 0) {
-            resultsLabel.setText("Aucune réservation active");
+            this.resultsLabel.setText("Aucune réservation active");
         }
         else {
-            resultsLabel.setText("Réservations actives");
+            if (reservations.length > 1){
+                this.resultsLabel.setText("Réservations actives");
+            }
+            else {
+                this.resultsLabel.setText("Réservation active");
+            }
             createReservationsTable(this.panelTableauResults, reservations, true);
         }
 
-        createReservationsTable(this.panelTableauAdditionalResults, additionalReservations, false);
+        if (additionalReservations.length > 0){
+            if (additionalReservations.length > 1){
+                this.additionalResultsLabel.setText("Autres réservations");
+                createReservationsTable(this.panelTableauAdditionalResults, additionalReservations, false);
+            }
+            else {
+                this.additionalResultsLabel.setText("Autre réservation");
+            }
+        }
     }
     void reset(){
         this.panelTableauResults.removeAll();

@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 
 class PanelSearch extends JPanel{
@@ -19,7 +20,16 @@ class PanelSearch extends JPanel{
     PanelSearch(Reception window_){
         this.window = window_;
 
+        KeyStroke enter = KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0);
+        Action actionSearchKeyInput = new ActionSearchReservation(this.window);
+        this.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(enter, "enter");
+        this.getActionMap().put("enter", actionSearchKeyInput);
+
         this.drawPanel();
+    }
+
+    void refresh(){
+        lastNameTextField.requestFocusInWindow();
     }
 
 
@@ -142,7 +152,7 @@ class PanelSearch extends JPanel{
         };
 
 
-        ListenerReservationSearch reservationListener = new ListenerReservationSearch(this.window);
+        ActionSearchReservation reservationListener = new ActionSearchReservation(this.window);
         JButton searchButton = Utils.createJButton("Chercher", reservationListener);
         Utils.buttonConstraints.gridx = 0;
         Utils.buttonConstraints.gridy = 1;
