@@ -8,8 +8,8 @@ public class Fenetre extends JFrame
 	{
 		super("Statistiques") ;
 
-		Dimension taille = new Dimension(750, 250) ;
-		Dimension tailleMini = new Dimension(250, 250) ;
+		Dimension taille = new Dimension(750, 75) ;
+		Dimension tailleMini = new Dimension(250, 75) ;
 		Dimension tailleMaxi = new Dimension(1500, 1500) ;
 		//Dimension position = new Dimension(20, 20) ;
 
