@@ -4,6 +4,7 @@ import java.awt.* ;
 
 public class MenuDeroulant extends JComponent
 {
+	private final char pourcent = (char) 37 ;
 	private final String message1 = "Pas de résultat pour la date souhaitée" ;
 
 	private JComboBox<String> listeJour ;
@@ -101,8 +102,8 @@ public class MenuDeroulant extends JComponent
 		Statistiques stats = new Statistiques() ;
 		String occupation = stats.getOccupation1Day(this.currentDate) ;
 		String nonOccupation = stats.getOccupation1Day(this.currentDate) ;
-		final String message1 = String.format("L\'occupation pour le %s est de %s pourcents", currentDateHuman, occupation) ;
-		final String message2 = String.format("\nLes non-présentations représentent, pour le %s, %s pourcents", currentDateHuman, nonOccupation) ;
+		final String message1 = String.format("<html>L\'occupation pour le %s est de %s%c<br>", currentDateHuman, occupation, this.pourcent) ;
+		final String message2 = String.format("Les non-présentations représentent, pour le %s, %s%c</html>", currentDateHuman, nonOccupation, this.pourcent) ;
 
 		this.occupationTexte.setText(message1+message2) ;
 	}
