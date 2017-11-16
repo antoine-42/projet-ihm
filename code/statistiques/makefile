@@ -8,7 +8,6 @@ CLASSES = \
 	DBHistorique.java \
 	DB.java \
 	Fenetre.java \
-	InternalDB.java \
 	MenuActionListener.java \
 	MenuDeroulant.java \
 	Statistiques.java
