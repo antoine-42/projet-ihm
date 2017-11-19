@@ -17,5 +17,14 @@ public class Statistiques
 
 		return occupation ;
 	}
+	
+	public String getNonOccupation1Day(String day)
+	{
+		String non_presentation ;
+
+		non_presentation = String.valueOf(new DBHistorique(day).taux_non_presentation) ;
+
+		return non_presentation ;
+	}
 
 }

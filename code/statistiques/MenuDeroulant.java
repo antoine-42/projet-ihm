@@ -101,7 +101,7 @@ public class MenuDeroulant extends JComponent
 	{
 		Statistiques stats = new Statistiques() ;
 		String occupation = stats.getOccupation1Day(this.currentDate) ;
-		String nonOccupation = stats.getOccupation1Day(this.currentDate) ;
+		String nonOccupation = stats.getNonOccupation1Day(this.currentDate) ;
 		final String message1 = String.format("<html>L\'occupation pour le %s est de %s%c<br>", currentDateHuman, occupation, this.pourcent) ;
 		final String message2 = String.format("Les non-présentations représentent, pour le %s, %s%c</html>", currentDateHuman, nonOccupation, this.pourcent) ;
 

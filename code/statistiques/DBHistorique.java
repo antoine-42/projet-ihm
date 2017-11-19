@@ -6,8 +6,8 @@ class DBHistorique
     int taux_occupation;
     int taux_non_presentation;
 
-    double moy_occupation ;
-    double moy_presentation ;
+    double moy_occupation = 0 ;
+    double moy_presentation = 0 ;
 
     DB database;
     
@@ -75,28 +75,38 @@ class DBHistorique
                 {
                     result2.absolute(1) ;
                     id_max = result2.getInt("id");
-
-                    while(id_min >= id_max)
+					
+					System.out.println("test"+id_min+","+id_max) ;
+					
+                    while(id_min <= id_max)
                     {
-                        String[] args3 = {date_max} ;
+                        String[] args3 = {Integer.toString(id_min)} ;
                         result3 = this.database.executeQuery(query3, args3) ;
 
-                        //Occupation
+                        
                         if (result3.next())
                         {
                             result3.absolute(1) ;
+                            
+                            //Occupation
                             current_occ = result3.getInt("taux_occupation") ;
-                            this.moy_occupation = (this.moy_occupation + current_occ)/2 ;
+                            
+                            if(moy_occupation == 0)
+								moy_occupation = current_occ ;
+							else
+								this.moy_occupation = (this.moy_occupation + current_occ)/2 ;
+								
+							//Presentation
+							current_pres = result3.getInt("taux_non_presentation") ;
+                            System.out.println(current_pres) ;
+                            
+                            if(moy_presentation == 0)
+								moy_presentation =  current_pres ;
+							else
+								this.moy_presentation = (this.moy_presentation + current_pres)/2 ;
                         }
 
-                        //Presentation
-                        if (result3.next())
-                        {
-                            result3.absolute(1) ;
-                            current_pres = result3.getInt("taux_non_presentation") ;
-                            this.moy_presentation = (this.moy_presentation + current_pres)/2 ;
-                        }
-
+						id_min+=1 ;
                     }
                 }
             }
