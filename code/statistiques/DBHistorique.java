@@ -56,8 +56,7 @@ class DBHistorique
         ResultSet result2 = this.database.executeQuery(query2, args2);
 
         //Prépare la requete de balayage
-        String query3 = "SELECT * FROM Historique WHERE jour = ?";
-        String[] args3 ;
+        String query3 = "SELECT * FROM Historique WHERE id = ?";
         ResultSet result3 ;
 
 
@@ -69,39 +68,38 @@ class DBHistorique
             if (result1.next())
             {
                 result1.absolute(1) ;
-                id_min = result.getInt("id");                
-            }
+                id_min = result1.getInt("id");
 
-            //Place la valeur d'id_max
-            if (result2.next())
-            {
-                result2.absolute(1) ;
-                id_max = result.getInt("id");                
-            }
-
-            while(id_min>=id_max)
-            {
-                args3 = new String[1]({id_min}) ;
-                result3 = this.database.executeQuery(query3, args3) ;
-
-                //Occupation
-                if (result3.next())
+                //Place la valeur d'id_max
+                if (result2.next())
                 {
-                   result3.absolute(1) ;
-                   current_occ = result.getInt("taux_occupation") ;
-                   this.moy_occupation = (this.moy_occupation + current_occ)/2 ;
-                }
+                    result2.absolute(1) ;
+                    id_max = result2.getInt("id");
 
-                //Presentation
-                if (result3.next())
-                {
-                   result3.absolute(1) ;
-                   current_pres = result.getInt("taux_non_presentation") ;
-                   this.moy_presentation = (this.moy_presentation + current_pres)/2 ;
-                }
+                    while(id_min >= id_max)
+                    {
+                        String[] args3 = {date_max} ;
+                        result3 = this.database.executeQuery(query3, args3) ;
 
+                        //Occupation
+                        if (result3.next())
+                        {
+                            result3.absolute(1) ;
+                            current_occ = result3.getInt("taux_occupation") ;
+                            this.moy_occupation = (this.moy_occupation + current_occ)/2 ;
+                        }
+
+                        //Presentation
+                        if (result3.next())
+                        {
+                            result3.absolute(1) ;
+                            current_pres = result3.getInt("taux_non_presentation") ;
+                            this.moy_presentation = (this.moy_presentation + current_pres)/2 ;
+                        }
+
+                    }
+                }
             }
-            
         }
         catch(SQLException e){
             System.out.println("[FATAL] could not parse DB output");
