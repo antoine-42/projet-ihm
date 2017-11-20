@@ -36,6 +36,7 @@ public class MenuActionListener implements ActionListener
 	{
 		String action =e.getActionCommand() ;
 
+
 		if(action.equals("Valider"))
 		{
 			if(periode.isSelected())

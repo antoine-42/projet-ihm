@@ -73,10 +73,13 @@ public class MenuDeroulant extends JComponent
 
 		/*Contrôleur*/
 		MenuActionListener controleur = new MenuActionListener(this, listeJour, listeMois, listeAnnee, listeJour2, listeMois2, listeAnnee2, periode) ;
+		CheckActionListener coche = new CheckActionListener(listeJour2, listeMois2, listeAnnee2, periode) ;
 
 		/*Bouton de validation*/
 		JButton valider = new JButton("Valider") ;
 		valider.addActionListener(controleur) ;
+
+		periode.addActionListener(coche) ;
 
 
 		/*Ajouts au panneau*/
@@ -93,6 +96,10 @@ public class MenuDeroulant extends JComponent
 
 		panneau.add(valider) ;
 		panneau.add(occupationTexte) ;
+
+		listeJour2.setEnabled(false) ;
+		listeMois2.setEnabled(false) ;
+		listeAnnee2.setEnabled(false) ;
 
 		return panneau ;
 	}
