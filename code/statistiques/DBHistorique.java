@@ -76,8 +76,6 @@ class DBHistorique
                     result2.absolute(1) ;
                     id_max = result2.getInt("id");
 					
-					System.out.println("test"+id_min+","+id_max) ;
-					
                     while(id_min <= id_max)
                     {
                         String[] args3 = {Integer.toString(id_min)} ;
@@ -98,7 +96,6 @@ class DBHistorique
 								
 							//Presentation
 							current_pres = result3.getInt("taux_non_presentation") ;
-                            System.out.println(current_pres) ;
                             
                             if(moy_presentation == 0)
 								moy_presentation =  current_pres ;

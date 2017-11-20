@@ -27,4 +27,21 @@ public class Statistiques
 		return non_presentation ;
 	}
 
+	public String getOccupationPeriode(String dayStart, String dayEnd)
+	{
+		String occupation ;
+
+		occupation = String.valueOf(new DBHistorique(dayStart, dayEnd).moy_occupation) ;
+
+		return occupation ;
+	}
+
+	public String getNonOccupationPeriode(String dayStart, String dayEnd)
+	{
+		String non_presentation ;
+
+		non_presentation = String.valueOf(new DBHistorique(dayStart, dayEnd).moy_presentation) ;
+
+		return non_presentation ;
+	}
 }
