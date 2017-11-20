@@ -5,7 +5,7 @@ import java.awt.* ;
 public class MenuDeroulant extends JComponent
 {
 	private final char pourcent = (char) 37 ;
-	private final String message1 = "Pas de résultat pour la date souhaitée" ;
+	private final String message1 = "" ;
 
 	private JComboBox<String> listeJour ;
 	private JComboBox<String> listeMois ;

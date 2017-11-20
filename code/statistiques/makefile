@@ -10,7 +10,8 @@ CLASSES = \
 	Fenetre.java \
 	MenuActionListener.java \
 	MenuDeroulant.java \
-	Statistiques.java
+	Statistiques.java \
+	CheckActionListener.java
 
 
 default: classes
